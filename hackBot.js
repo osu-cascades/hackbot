@@ -13,13 +13,14 @@ bot.on("ready", () => {
 const help = //a running list of all commands
 {
 	"commands": [
-		{"command": "help", "description": "list all commands."},
-		{"command": "say", "description": "echos back the string passed as arguments."},
-		{"command": "add", "description": "adds together _integers_ passed as arguments."},
-		{"command": "rules", "description": "list the rules for the CTC Discord server."},
-		{"command": "xmas", "description": "Merry Christmas, ya filthy animals."},
-		{"command": "purge", "description": "Purges the channel it is called within. Restricted to Board Members and Admins."},
-		{"command": "search", "description": "searches Google's custom search API and sends back the top response."}
+		{"command": "!help", "description": "list all commands."},
+		{"command": "!say [args]", "description": "echos back the string passed as arguments."},
+		{"command": "!add [args]", "description": "adds together _integers_ passed as arguments."},
+		{"command": "!rules", "description": "list the rules for the CTC Discord server."},
+		{"command": "!xmas", "description": "Merry Christmas, ya filthy animals."},
+		{"command": "!purge", "description": "Purges the channel it is called within. Restricted to Board Members and Admins."},
+		{"command": "!search [query]", "description": "searches Google's custom search API and sends back the top response."},
+		{"command": "!lmgtfy [query]", "description": "When someone is being...lazy...?"}
 	]
 };
 
@@ -37,10 +38,16 @@ bot.on("message", msg => {
 
 	//!help command that DMs the user that called it with a list of all the commands
 	if(command === "help"){
+		let response = "";
 		msg.reply("sliding into your DMs...");
+		response += "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n";
+		response += "Here is a list of the commands that we've got right now:\n";
+		response += "\`\`\`";
 		for(var i = 0, l = help.commands.length; i < l; i++){
-			return msg.author.sendMessage(`${help.commands[i].command} - ${help.commands[i].description}`);
+			response += `${help.commands[i].command}  =>  ${help.commands[i].description}\n`;
 		}
+		response += "\`\`\`";
+		return msg.author.sendMessage(response);
 	}
 
 	//!say command echos back the string passed to it
@@ -102,6 +109,10 @@ bot.on("message", msg => {
 				return msg.reply("response error...");
 			});
 		});
+	}
+
+	if(command === "lmgtfy"){
+		return msg.channel.sendMessage('<http://lmgtfy.com/?q=' + args.join('+') + '>');
 	}
 
 });
