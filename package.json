@@ -9,6 +9,8 @@
 	"author": "Justin Tappert",
 	"license": "MIT",
 	"dependencies": {
-		"discord.js": "^10.0.1"
+		"cheerio": "^0.22.0",
+		"discord.js": "^10.0.1",
+		"superagent": "^2.3.0"
 	}
 }

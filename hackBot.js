@@ -1,8 +1,16 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client();
 const config = require("./config.json");
+const superagent = require('superagent');
+const cheerio = require('cheerio');
+const bot = new Discord.Client();
 
-let help = //a running list of all commands
+
+//prints ready message to console
+bot.on("ready", () => {
+    console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
+});
+
+const help = //a running list of all commands
 {
 	"commands": [
 		{"command": "help", "description": "list all commands."},
@@ -10,7 +18,8 @@ let help = //a running list of all commands
 		{"command": "add", "description": "adds together _integers_ passed as arguments."},
 		{"command": "rules", "description": "list the rules for the CTC Discord server."},
 		{"command": "xmas", "description": "Merry Christmas, ya filthy animals."},
-		{"command": "purge", "description": "Purges the channel it is called within. Restricted to Board Members and Admins."}
+		{"command": "purge", "description": "Purges the channel it is called within. Restricted to Board Members and Admins."},
+		{"command": "search", "description": "searches Google's custom search API and sends back the top response."}
 	]
 };
 
@@ -30,34 +39,34 @@ bot.on("message", msg => {
 	if(command === "help"){
 		msg.reply("sliding into your DMs...");
 		for(var i = 0, l = help.commands.length; i < l; i++){
-			msg.author.sendMessage(`${help.commands[i].command} - ${help.commands[i].description}`);
+			return msg.author.sendMessage(`${help.commands[i].command} - ${help.commands[i].description}`);
 		}
 	}
 
 	//!say command echos back the string passed to it
 	if(command === "say"){
-		msg.channel.sendMessage(args.join(" "));
+		return msg.channel.sendMessage(args.join(" "));
 	}
 
 	//!add command adds together the integer values passed to it
 	if (command === "add"){
 		let numArray = args.map(n=> parseInt(n));
 		let total = numArray.reduce( (p, c) => p+c);
-		msg.channel.sendMessage(total);
+		return msg.channel.sendMessage(total);
 	}
 
 	//!rules command explaining the rules
 	if(command === "rules"){
-		msg.channel.sendMessage("Be nice and don't copy each other's homework!");
+		return msg.channel.sendMessage("Be nice and don't copy each other's homework!");
 	}
 
 	//!xmas command
 	if(command === "xmas"){
-		msg.channel.sendMessage("https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0");
+		return msg.channel.sendMessage("https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0");
 	}
 
 	//!purge command deletes all messages in the channel it's called.
-	if (command === "purge") {
+	if(command === "purge") {
 		let boardRole = msg.guild.roles.find("name", "Board Member");
 		if(msg.member.roles.has(boardRole.id)){
         	let chan = msg.channel;
@@ -78,19 +87,29 @@ bot.on("message", msg => {
        	if(!msg.guild.member(bot.user).hasPermission("MANAGE_CHANNELS")){
        		return msg.reply("sorry m8, I'm not authorized to use that command.");
        	}
-
 	}
+
+	//!search command searches Google's custom search API and sends back the top response
+	if(command === "search"){
+		const key = config.key;
+		const cx = config.cx;
+		let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
+		
+		superagent.get(url).end((err, res) => {
+			if(err) return msg.reply("superagent error...");
+			if(res.body.queries.request[0].totalResults === '0') return msg.channel.sendMessage('`No results found.`');
+			msg.channel.sendMessage(res.body.items[0].link).catch(() => {
+				return msg.reply("response error...");
+			});
+		});
+	}
+
 });
 
 //Detects new users and sends them a little message.
 bot.on("guildMemberAdd", (member) => {
     console.log(`New User "${member.user.username}" has joined "${member.guild.name}"` );
     member.guild.defaultChannel.sendMessage(`"${member.user.username}" has joined this server`);
-});
-
-//prints ready message to console
-bot.on("ready", () => {
-    console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
 });
 
 //log any errors in the event the bot crashes
