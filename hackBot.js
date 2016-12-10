@@ -2,21 +2,44 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
 
+let help = //a running list of all commands
+{
+	"commands": [
+		{"command": "help", "description": "list all commands."},
+		{"command": "say", "description": "echos back the string passed as arguments."},
+		{"command": "add", "description": "adds together _integers_ passed as arguments."},
+		{"command": "rules", "description": "list the rules for the CTC Discord server."},
+		{"command": "xmas", "description": "Merry Christmas, ya filthy animals."},
+		{"command": "purge", "description": "Purges the channel it is called within. Restricted to Board Members and Admins."}
+	]
+};
+
 bot.on("message", msg => {
 	//If a command doesn't begin with the prefix, return
 	if(!msg.content.startsWith(config.prefix)) return;
 	//prevents bot-cepetion
 	if(msg.author.bot) return;
 
+	//sptrips off the prefix and stores the command
 	let command = msg.content.split(" ")[0];
 	command = command.slice(config.prefix.length);
-
+	//gets the arguments passed after the command
 	let args = msg.content.split(" ").slice(1);
 
+	//!help command that DMs the user that called it with a list of all the commands
+	if(command === "help"){
+		msg.reply("sliding into your DMs...");
+		for(var i = 0, l = help.commands.length; i < l; i++){
+			msg.author.sendMessage(`${help.commands[i].command} - ${help.commands[i].description}`);
+		}
+	}
+
+	//!say command echos back the string passed to it
 	if(command === "say"){
 		msg.channel.sendMessage(args.join(" "));
 	}
 
+	//!add command adds together the integer values passed to it
 	if (command === "add"){
 		let numArray = args.map(n=> parseInt(n));
 		let total = numArray.reduce( (p, c) => p+c);
@@ -37,25 +60,22 @@ bot.on("message", msg => {
 	if (command === "purge") {
 		let boardRole = msg.guild.roles.find("name", "Board Member");
 		if(msg.member.roles.has(boardRole.id)){
-        let chan = msg.channel;
-        let chanName = chan.name;
-        let chanType = chan.type;
+        	let chan = msg.channel;
+        	let chanName = chan.name;
+        	let chanType = chan.type;
 
-        chan.delete()
-          .then()
-          .catch(console.error); 
+        	chan.delete()
+          		.then()
+          		.catch(console.error); 
 
-        msg.guild.createChannel(chanName, chanType)
-          .then(channel => console.log(`Created new channel ${channel}`))
-
-    		/*let messagecount = 100;
-    		msg.channel.fetchMessages({limit: messagecount})
-       		.then(messages => msg.channel.bulkDelete(messages));*/
+        	msg.guild.createChannel(chanName, chanType)
+          		.then(channel => console.log(`Created new channel ${channel}`))
+          		.catch(console.error);
        	} else {
        		return msg.reply("sorry m8, you're not authorized to use that command.");
        	}
 
-       	if(!msg.guild.member(bot.user).hasPermission("KICK_MEMBERS")){
+       	if(!msg.guild.member(bot.user).hasPermission("MANAGE_CHANNELS")){
        		return msg.reply("sorry m8, I'm not authorized to use that command.");
        	}
 
@@ -68,6 +88,7 @@ bot.on("guildMemberAdd", (member) => {
     member.guild.defaultChannel.sendMessage(`"${member.user.username}" has joined this server`);
 });
 
+//prints ready message to console
 bot.on("ready", () => {
     console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
 });

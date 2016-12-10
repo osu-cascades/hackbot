@@ -1,0 +1,14 @@
+{
+	"name": "hackBot", 
+	"version": "0.0.1",
+	"description": "General bot for the CTC Discord server.",
+	"main": "hackBot.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Justin Tappert",
+	"license": "MIT",
+	"dependencies": {
+		"discord.js": "^10.0.1"
+	}
+}
