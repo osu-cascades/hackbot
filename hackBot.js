@@ -37,9 +37,20 @@ bot.on("message", msg => {
 	if (command === "purge") {
 		let boardRole = msg.guild.roles.find("name", "Board Member");
 		if(msg.member.roles.has(boardRole.id)){
-    		let messagecount = 100;
+        let chan = msg.channel;
+        let chanName = chan.name;
+        let chanType = chan.type;
+
+        chan.delete()
+          .then()
+          .catch(console.error); 
+
+        msg.guild.createChannel(chanName, chanType)
+          .then(channel => console.log(`Created new channel ${channel}`))
+
+    		/*let messagecount = 100;
     		msg.channel.fetchMessages({limit: messagecount})
-       		.then(messages => msg.channel.bulkDelete(messages));
+       		.then(messages => msg.channel.bulkDelete(messages));*/
        	} else {
        		return msg.reply("sorry m8, you're not authorized to use that command.");
        	}
