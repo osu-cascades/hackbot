@@ -30,9 +30,13 @@ exports.commands = {
     "!add [args]",
     "adds together _integers_ passed as arguments.",
     function( args, msg ){
-	    let numArray = args.map(n=> parseInt(n));
-	    let total = numArray.reduce( (p, c) => p+c);
-	    return total;
+      if( args.length > 0 ){
+	      let numArray = args.map(n=> parseInt(n));
+	      let total = numArray.reduce( (p, c) => p+c);
+	      return total;
+      }else{
+        return;
+      }
     }
   ),
   
