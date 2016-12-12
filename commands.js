@@ -8,6 +8,7 @@ var Command = function(synopsis, description, exec){
 }
 exports.Command = Command;
 
+//Generic error message if an arg is missing
 var argsErr = "[cannot compute, args missing]";
 
 //Define commands
