@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
 const superagent = require('superagent');
-const cheerio = require('cheerio');
+//const cheerio = require('cheerio');
 const Parser = require('./CommandParser.js');
 const bot = new Discord.Client();
 

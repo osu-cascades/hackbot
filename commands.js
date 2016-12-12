@@ -60,16 +60,21 @@ exports.commands = {
     "!purge",
     "Purges the channel it is called within. Restricted to Board Members and Admins.",
     function( args, msg ){
+      //Make sure the person doing the command is a Board Member
       let boardRole = msg.guild.roles.find("name", "Board Member");
       if(msg.member.roles.has(boardRole.id)){
+
+        //Grab the channels info
         let chan = msg.channel;
         let chanName = chan.name;
         let chanType = chan.type;
 
+        //Delete the channel
         chan.delete()
         .then()
         .catch(console.error); 
         
+        //Now re-create the channel with the same name and type
         msg.guild.createChannel(chanName, chanType)
         .then(channel => console.log(`Created new channel ${channel}`))
         .catch(console.error);
