@@ -14,6 +14,8 @@ exports.commands = {
     "!say [args]",
     "echos back the string passed as arguments.",
     function( args, msg ){
+      if( args.length < 1){return;}
+
       return args.join(" ");
     }
   ),
@@ -22,6 +24,8 @@ exports.commands = {
     "!lmgtfy [args]",
     "When someone is being...lazy...?",
     function( args, msg ){
+      if( args.length < 1){return;}
+
       return '<http://lmgtfy.com/?q=' + args.join('+') + '>';
     }
   ),
@@ -30,13 +34,11 @@ exports.commands = {
     "!add [args]",
     "adds together _integers_ passed as arguments.",
     function( args, msg ){
-      if( args.length > 0 ){
-	      let numArray = args.map(n=> parseInt(n));
-	      let total = numArray.reduce( (p, c) => p+c);
-	      return total;
-      }else{
-        return;
-      }
+      if( args.length < 1){return;}
+
+      let numArray = args.map(n=> parseInt(n));
+      let total = numArray.reduce( (p, c) => p+c);
+      return total;
     }
   ),
   
