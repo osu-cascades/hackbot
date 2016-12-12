@@ -8,13 +8,15 @@ var Command = function(synopsis, description, exec){
 }
 exports.Command = Command;
 
+var argsErr = "[cannot compute, args missing]";
+
 //Define commands
 exports.commands = {
   "say" : new Command(
     "!say [args]",
     "echos back the string passed as arguments.",
     function( args, msg ){
-      if( args.length < 1){return;}
+      if( args.length < 1){return argsErr;}
 
       return args.join(" ");
     }
@@ -24,7 +26,7 @@ exports.commands = {
     "!lmgtfy [args]",
     "When someone is being...lazy...?",
     function( args, msg ){
-      if( args.length < 1){return;}
+      if( args.length < 1){return argsErr;}
 
       return '<http://lmgtfy.com/?q=' + args.join('+') + '>';
     }
@@ -34,7 +36,7 @@ exports.commands = {
     "!add [args]",
     "adds together _integers_ passed as arguments.",
     function( args, msg ){
-      if( args.length < 1){return;}
+      if( args.length < 1){return argsErr;}
 
       let numArray = args.map(n=> parseInt(n));
       let total = numArray.reduce( (p, c) => p+c);
