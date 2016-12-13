@@ -1,3 +1,5 @@
+const config = require("./config.json");
+const superagent = require('superagent');
 /***
 * Generic command object
 ***/
@@ -13,6 +15,25 @@ var argsErr = "[cannot compute, args missing]";
 
 //Define commands
 exports.commands = {
+  "search" : new Command(
+    "!search [query]",
+    "searches the web for the passed query and return the top result.",
+    function ( args, msg ){
+      const key = config.key;
+      const cx = config.cx;
+      let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
+
+      superagent.get(url).end((err, res) => {
+        if(err) return msg.reply("superagent error...");
+        if(res.body.queries.request[0].totalResults === '0') return msg.channel.sendMessage('`No results found.`');
+        msg.channel.sendMessage(res.body.items[0].link).catch(() => {
+          return msg.reply("response error...");
+        });
+      });
+    }
+  ),
+
+
   "say" : new Command(
     "!say [args]",
     "echos back the string passed as arguments.",
