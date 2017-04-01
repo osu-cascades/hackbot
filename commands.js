@@ -20,7 +20,7 @@ module.exports.commands = {
   "search" : new Command(
     "!search [query]",
     "searches the web for the passed query and return the top result.",
-    function ( args, msg ) {
+    function( args, msg ){
       const key = config.key;
       const cx = config.cx;
       let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
@@ -39,8 +39,8 @@ module.exports.commands = {
   "say" : new Command(
     "!say [args]",
     "echos back the string passed as arguments.",
-    function( args, msg ) {
-      if ( args.length < 1) {return argsErr;}
+    function( args, msg ){
+      if( args.length < 1){return argsErr;}
 
       return args.join(" ");
     }
@@ -49,8 +49,8 @@ module.exports.commands = {
   "lmgtfy" : new Command(
     "!lmgtfy [args]",
     "When someone is being...lazy...?",
-    function( args, msg ) {
-      if ( args.length < 1) {return argsErr;}
+    function( args, msg ){
+      if( args.length < 1){return argsErr;}
 
       return '<http://lmgtfy.com/?q=' + args.join('+') + '>';
     }
@@ -59,8 +59,8 @@ module.exports.commands = {
   "add" : new Command(
     "!add [args]",
     "adds together _integers_ passed as arguments.",
-    function( args, msg ) {
-      if ( args.length < 1) {return argsErr;}
+    function( args, msg ){
+      if( args.length < 1){return argsErr;}
 
       let numArray = args.map(n=> parseInt(n));
       let total = numArray.reduce( (p, c) => p+c);
@@ -71,7 +71,7 @@ module.exports.commands = {
   "rules" : new Command(
     "!rules",
     "list the rules for the CTC Discord server.",
-    function( args, msg ) {
+    function( args, msg ){
 	    return "Be nice and don't copy each other's homework!";
     }
   ),
@@ -79,7 +79,7 @@ module.exports.commands = {
   "xmas" : new Command(
     "!xmas",
     "Merry Christmas, ya filthy animals.",
-    function( args, msg ) {
+    function( args, msg ){
 		  return "https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0";
     }
   ),
@@ -87,10 +87,10 @@ module.exports.commands = {
   "purge" : new Command(
     "!purge",
     "Purges the channel it is called within. Restricted to Board Members and Admins.",
-    function( args, msg ) {
+    function( args, msg ){
       //Make sure the person doing the command is a Board Member
       let boardRole = msg.guild.roles.find("name", "Board Member");
-      if (msg.member.roles.has(boardRole.id)) {
+      if(msg.member.roles.has(boardRole.id)){
 
         //Grab the channels info
         let chan = msg.channel;
@@ -109,7 +109,7 @@ module.exports.commands = {
       } else {
         return msg.reply("sorry m8, you're not authorized to use that command.");
       }
-      if (!msg.guild.member(bot.user).hasPermission("MANAGE_CHANNELS")) {
+      if(!msg.guild.member(bot.user).hasPermission("MANAGE_CHANNELS")){
         return "sorry m8, I'm not authorized to use that command.";
       }
     }
@@ -118,40 +118,40 @@ module.exports.commands = {
   "weather": new Command(
     "!weather [Location]",
     "Provide City and State, or City and Country to get current temperature.",
-    function(args, msg) {
-        function getWeather(location) {
-            return new Promise(function(resolve, reject) {
+    function(args, msg){
+        function getWeather(location){
+            return new Promise(function(resolve, reject){
                 let encodedLocation = encodeURIComponent(location);
-                let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation} us&units=imperial&appid=${config.weatherKey}`;
-                if (location.length === 0) {
+                let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
+                           us&units=imperial&appid=${config.weatherKey}`;
+                if(location.length === 0){
                     return reject('No location provided');
                 }
-                location.map(function(location) {
+                location.map(function(location){
                     let trimmedLocation = (location.trim());
                     let isInt = parseInt(trimmedLocation);
-                    if (Number.isInteger(isInt)) {
+                    if(Number.isInteger(isInt)){
                         return reject("Please provide a location");
                     }
                 })
                 request({
                     url: url,
                     json: true
-                }, function(error, response, body) {
-                    if (error) {
+                }, function(error, response, body){
+                    if(error){
                         reject('Unable to fetch weather.');
                     } else {
-
                         resolve(`It\'s ${body.main.temp} degrees in ${body.name} !`);
                     }
                 });
 
             })
         }
-        getWeather(args).then(function(currentWeather) {
+        getWeather(args).then(function(currentWeather){
 
             msg.channel.sendMessage(currentWeather);
 
-        }, function(error) {
+        }, function(error){
             msg.channel.sendMessage(error);
 
         })
