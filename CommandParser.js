@@ -3,7 +3,7 @@
 * Commands are stored in commands.js
 ***/
 
-exports.CommandParser = function(prefix){
+module.exports.CommandParser = function(prefix){
   this.prefix = prefix; //command prefix e.g. "!"
   this.C = require('./commands.js'); //available commands
 	//if(command === "help"){
