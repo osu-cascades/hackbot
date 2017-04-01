@@ -1,7 +1,6 @@
 const config = require("./config.json");
 const superagent = require('superagent');
 const request = require('request');
-
 /***
 * Generic command object
 ***/
@@ -21,6 +20,7 @@ module.exports.commands = {
     "!search [query]",
     "searches the web for the passed query and return the top result.",
     function( args, msg ){
+
       const key = config.key;
       const cx = config.cx;
       let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
