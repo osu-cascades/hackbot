@@ -1,24 +1,26 @@
 const config = require("./config.json");
 const superagent = require('superagent');
+const request = require('request');
 /***
 * Generic command object
 ***/
-var Command = function(synopsis, description, exec){
+var Command = function(synopsis, description, exec) {
   this.synopsis = synopsis;
   this.description = description;
   this.response = exec;
 }
-exports.Command = Command;
+module.exports.Command = Command;
 
 //Generic error message if an arg is missing
 var argsErr = "[cannot compute, args missing]";
 
 //Define commands
-exports.commands = {
+module.exports.commands = {
   "search" : new Command(
     "!search [query]",
     "searches the web for the passed query and return the top result.",
-    function ( args, msg ){
+    function( args, msg ){
+
       const key = config.key;
       const cx = config.cx;
       let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
@@ -112,4 +114,47 @@ exports.commands = {
       }
     }
   ),
+ 
+  "weather": new Command(
+    "!weather [Location]",
+    "Provide City and State, or City and Country to get current temperature.",
+    function(args, msg){
+        function getWeather(location){
+            return new Promise(function(resolve, reject){
+                let encodedLocation = encodeURIComponent(location);
+                let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
+                           us&units=imperial&appid=${config.weatherKey}`;
+                if(location.length === 0){
+                    return reject('No location provided');
+                }
+                location.map(function(location){
+                    let trimmedLocation = (location.trim());
+                    let isInt = parseInt(trimmedLocation);
+                    if(Number.isInteger(isInt)){
+                        return reject("Please provide a location");
+                    }
+                })
+                request({
+                    url: url,
+                    json: true
+                }, function(error, response, body){
+                    if(error){
+                        reject('Unable to fetch weather.');
+                    } else {
+                        resolve(`It\'s ${body.main.temp} degrees in ${body.name} !`);
+                    }
+                });
+
+            })
+        }
+        getWeather(args).then(function(currentWeather){
+
+            msg.channel.sendMessage(currentWeather);
+
+        }, function(error){
+            msg.channel.sendMessage(error);
+
+        })
+    }
+)
 }
