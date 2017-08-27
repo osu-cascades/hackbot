@@ -16,10 +16,10 @@ bot.on("ready", () => {
 
 bot.on("message", msg => {
   response = cmdParser.parse(msg);
-  if( response != "" && response != undefined ){
+  if ( response != "" && response != undefined ) {
 	  return msg.channel.sendMessage( response );
-  }else{
-    return;
+  } else {
+      return;
   }
 });
 
