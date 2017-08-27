@@ -167,7 +167,7 @@ module.exports.commands = {
         var getGithubProfile = (userName) => {
                 return new Promise((resolve, reject) => {
                     if (userName === undefined) {
-                        return reject('please Enter a username');
+                        return reject('Please enter a username.');
                     } else {
                         let url = `https://api.github.com/users/${userName}`;
                         let options = {
