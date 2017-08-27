@@ -2,3 +2,4 @@ token.txt
 .DS_Store
 config.json
 node_modules/
+package-lock.json
