@@ -157,6 +157,15 @@ module.exports.commands = {
             })
     }
   ),
+
+  "git" : new Command(
+    "!git",
+    "Retrieves the hackBot's github repo url.",
+    function (args, msg) {
+
+      msg.channel.sendMessage("My repo is located here: https://github.com/JWTappert/hackBot");
+    }
+  ),
   
   "gitProfile" : new Command (
     "!gitProfile [username]",
