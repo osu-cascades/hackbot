@@ -1,15 +1,11 @@
-# hackBot
-Discord Bot for CTC Discord Channel
+# hackbot
 
-[Start here for the basics.](https://eslachance.gitbooks.io/discord-js-bot-guide/content/coding-walkthroughs/your_basic_bot.html)
+A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server.
 
-# Mac OSX Install Instructions
+To work on hackbot, you should:
 
-Use the following steps to install everything needed to work on hackBot.
+1. Install the latest [node.js](https://nodejs.org).
+2. Install the dependencies: `npm install`
+3. TODO ?
 
-1. Install node.js using [this](https://nodejs.org/en/download/package-manager/#osx) link.
-
-2. Install Discord.js: `npm i --save discord.js`
-
-3. Install superagent: `npm install superagent`
-
+(c) 2017 [Justin Tappert](https://github.com/JWTappert). All rights reserved.
