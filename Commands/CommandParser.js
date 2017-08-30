@@ -19,10 +19,10 @@ class CommandParser {
         var args = content.split(" ").slice(1);
 
         try {
-          this.command[cmd](args, msg);
+            this.command[cmd](args, msg);
         } catch( error ) {
-             console.log(`Error on command: ${cmd} \n${error}` );
-             return "";
+            console.log(`Error on command: ${cmd} \n${error}` );
+            return "";
         }
     }
 }
