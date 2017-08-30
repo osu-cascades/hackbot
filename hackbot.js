@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const superagent = require('superagent');
 //const cheerio = require('cheerio');
-const Parser = require('./CommandParser.js');
+const Parser = require('./command-parser.js');
 const bot = new Discord.Client();
 
 cmdParser = new Parser.CommandParser( config.prefix );
@@ -17,7 +17,7 @@ bot.on("ready", () => {
 bot.on("message", msg => {
   response = cmdParser.parse(msg);
   if ( response != "" && response != undefined ) {
-	  return msg.channel.sendMessage( response );
+    return msg.channel.sendMessage( response );
   } else {
       return;
   }
