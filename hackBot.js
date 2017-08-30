@@ -1,36 +1,33 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
-const superagent = require('superagent');
-//const cheerio = require('cheerio');
-const Parser = require('./CommandParser.js');
+const CommandParser = require('./Commands/CommandParser');
 const bot = new Discord.Client();
 
-cmdParser = new Parser.CommandParser( config.prefix );
+var cmdParser = new CommandParser(config.prefix);
 
-
-//prints ready message to console
+// Prints ready message to console
 bot.on("ready", () => {
     console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
 });
 
-
 bot.on("message", msg => {
-  response = cmdParser.parse(msg);
-  if ( response != "" && response != undefined ) {
-	  return msg.channel.sendMessage( response );
-  } else {
-      return;
-  }
+    response = cmdParser.parse(msg);
+    if ( response !== "" && response !== undefined ) {
+	      return response;
+    } else {
+        return;
+    }
 });
 
-//Detects new users and sends them a little message.
+// Detects new users and sends them a little message.
 bot.on("guildMemberAdd", (member) => {
-    console.log(`New User "${member.user.username}" has joined "${member.guild.name}"` );
-    member.guild.defaultChannel.sendMessage(`"${member.user.username}" has joined this server`);
+    var { username } = member.user;
+    console.log(`New User "${username}" has joined "${member.guild.name}"` );
+    member.guild.defaultChannel.sendMessage(`"${username}" has joined this server`);
 });
 
-//log any errors in the event the bot crashes
+// Log any errors in the event the bot crashes
 bot.on('error', e => { console.error(e); });
 
-//login creds
+// Login creds
 bot.login(config.token);
