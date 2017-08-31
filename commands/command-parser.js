@@ -1,3 +1,4 @@
+// OH HAI
 class CommandParser {
 
     constructor(prefix, command) {
