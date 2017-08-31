@@ -10,8 +10,11 @@ test('Is valid after instantiation', () => {
 
 describe('Parsing messages', () => {
   context('When the message content is not prefixed', () => {
-    test('It returns null', () => {
-      pending();
+    test('It returns undefined', () => {
+      const prefix = 'FAKE';
+      const fakeCommandObject = 'Fake Command Object';
+      const parser = new CommandParser(prefix, fakeCommandObject);
+      expect(parser.parse({content: 'An ignorable message'})).toBeUndefined();
     });
   });
   context('When the message content is prefixed', () => {
