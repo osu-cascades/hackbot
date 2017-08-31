@@ -1,4 +1,4 @@
-const commandInformation = require('./commandInformation');
+const commandInformation = require('./command-information');
 const superagent = require('superagent');
 const request = require('request');
 const config = require('../config.json');

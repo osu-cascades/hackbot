@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const CommandParser = require('./Commands/CommandParser');
+const CommandParser = require('./commands/command-parser');
 const bot = new Discord.Client();
 
 var cmdParser = new CommandParser(config.prefix);

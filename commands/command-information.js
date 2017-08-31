@@ -1,4 +1,3 @@
-
 var commandInformation = [
   {
       command: "help",
