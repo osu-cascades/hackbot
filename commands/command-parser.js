@@ -1,9 +1,8 @@
-const Command = require('./command');
-
 class CommandParser {
-    constructor(prefix) {
+
+    constructor(prefix, command) {
         this.prefix = prefix;
-        this.command = new Command();
+        this.command = command;
     }
 
     parse(msg) {
@@ -11,13 +10,12 @@ class CommandParser {
         if (!content.startsWith(this.prefix)) {
             return;
         }
-        // Gets command
+        // Get command
         var cmd = content.split(" ")[0];
-        // Gets command without prefix
+        // Remove command prefix
         cmd = cmd.slice(this.prefix.length);
-        // Gets the arguments passed after the command
+        // Parse the arguments passed after the command
         var args = content.split(" ").slice(1);
-
         try {
             this.command[cmd](args, msg);
         } catch( error ) {
@@ -26,4 +24,5 @@ class CommandParser {
         }
     }
 }
+
 module.exports = CommandParser;
