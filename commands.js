@@ -55,7 +55,7 @@ module.exports.commands = {
       return '<http://lmgtfy.com/?q=' + args.join('+') + '>';
     }
   ),
-  
+
   "add" : new Command(
     "!add [args]",
     "adds together _integers_ passed as arguments.",
@@ -67,7 +67,7 @@ module.exports.commands = {
       return total;
     }
   ),
-  
+
   "rules" : new Command (
     "!rules",
     "list the rules for the CTC Discord server.",
@@ -75,7 +75,7 @@ module.exports.commands = {
 	    return "Be nice and don't copy each other's homework!";
     }
   ),
-  
+
   "xmas" : new Command (
     "!xmas",
     "Merry Christmas, ya filthy animals.",
@@ -83,7 +83,7 @@ module.exports.commands = {
 		  return "https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0";
     }
   ),
-  
+
   "purge" : new Command (
     "!purge",
     "Purges the channel it is called within. Restricted to Board Members and Admins.",
@@ -100,8 +100,8 @@ module.exports.commands = {
         //Delete the channel
         chan.delete()
             .then()
-            .catch(console.error); 
-        
+            .catch(console.error);
+
         //Now re-create the channel with the same name and type
         msg.guild.createChannel(chanName, chanType)
             .then(channel => console.log(`Created new channel ${channel}`))
@@ -114,7 +114,7 @@ module.exports.commands = {
       }
     }
   ),
- 
+
   "weather": new Command (
     "!weather [Location]",
     "Provide City and State, or City and Country to get current temperature.",
@@ -160,19 +160,19 @@ module.exports.commands = {
 
   "git" : new Command(
     "!git",
-    "Retrieves the hackBot's github repo url.",
+    "Display hackbot's GitHub url.",
     function (args, msg) {
 
-      msg.channel.sendMessage("My repo is located here: https://github.com/JWTappert/hackBot");
+      msg.channel.sendMessage("Hack me here: https://github.com/osu-cascades/hackbot");
     }
   ),
-  
+
   "gitProfile" : new Command (
     "!gitProfile [username]",
     "Retrieves any public github profile.",
     function(args, msg) {
         if (args.length < 1) return argsErr;
-        
+
         var getGithubProfile = (userName) => {
                 return new Promise((resolve, reject) => {
                     if (userName === undefined) {
@@ -203,6 +203,6 @@ module.exports.commands = {
             .catch((error) => {
                 msg.channel.sendMessage(error);
             })
-    }    
+    }
   )
 }
