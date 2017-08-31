@@ -14,7 +14,7 @@ To work on hackbot, you should:
 8. Visit [https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0](https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0), replacing the placeholder with your real Client ID.
 9. Select the server that you want the bot to join.
 10. Copy the **config-example.json** file to **config.json**, and replace the keys with your own.[1]
-11. Run the bot from the command line: `node hackbot.js`
+11. Run the bot from the command line: `npm start`
 12. Hack...
 
 [1] _the !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
