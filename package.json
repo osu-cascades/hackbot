@@ -20,6 +20,12 @@
     "superagent": "^2.3.0"
   },
   "devDependencies": {
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "jest-plugin-context": "^1.7.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-plugin-context/setup"
+    ]
   }
 }
