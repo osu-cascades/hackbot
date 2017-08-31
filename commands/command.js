@@ -1,7 +1,6 @@
 const superagent = require('superagent');
 const request = require('request');
 const commandInformation = require('./command-information');
-const config = require('../config.json');
 
 class Command {
 
@@ -61,7 +60,7 @@ class Command {
         var longest = 0;
         commandInformation.map((info) => {
           var { command } = info;
-          command = `${config.prefix}${command}`
+          command = `${process.env.MESSAGE_PREFIX}${command}`
           if (command.length > longest) {
                longest = command.length;
             }
@@ -71,7 +70,7 @@ class Command {
         longest = longest + 1;
         commandInformation.map((info) => {
             var { command, description } = info;
-            command = `${config.prefix}${command}`
+            command = `${process.env.MESSAGE_PREFIX}${command}`
             helpMsg += command + " ";
             let spaces = longest - command.length;
             for (var i = 0; i < spaces; i++) {
@@ -134,8 +133,8 @@ class Command {
     }
 
     search(args, msg) {
-      const { key } = config;
-      const { cx }  = config;
+      const { key } = process.env.GOOGLE_API_KEY;
+      const { cx }  = process.env.GOOGLE_SEARCH_ENGINE_ID;
       var { channel } = msg;
       let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
 
@@ -159,7 +158,7 @@ class Command {
             return new Promise((resolve, reject) => {
                 let encodedLocation = encodeURIComponent(location);
                 let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
-                           us&units=imperial&appid=${config.weatherKey}`;
+                           us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
                 location.map((location) => {
                     let trimmedLocation = (location.trim());
                     let isInt = parseInt(trimmedLocation);
