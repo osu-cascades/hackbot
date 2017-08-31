@@ -38,4 +38,6 @@ You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io
 
 [Tutorial: Creating a Simple Discord Bot](https://medium.com/@renesansz/tutorial-creating-a-simple-discord-bot-9465a2764dc0)
 
+[Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
+
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
