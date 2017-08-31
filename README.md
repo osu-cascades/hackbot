@@ -43,6 +43,7 @@ Once you're happy with your new _hackbot_ feature running on your development en
 can try it out. This bot is always named _hackbot-staging_. Once you're happy, you can deploy it to production; this bot is always named _hackbot_.
 
 1. Get a [Heroku](https://heroku.com) account.
+2. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 2. Become a collaborator on the staging and production apps (ask others how).
 3. Add the remotes for staging and production: `heroku git:remote -a osu-hackbot -r production && heroku git:remote -a osu-hackbot-staging -r staging`
 4. Deploy to staging: `git push staging` or `git push staging dev:master` or `git push staging feature-branch-name:master`.
