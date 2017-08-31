@@ -56,5 +56,8 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 
 [Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
 
+[Deploying a Bot on Heroku](http://shiffman.net/a2z/bot-heroku/)
+
+
 ___
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
