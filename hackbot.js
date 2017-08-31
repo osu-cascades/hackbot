@@ -23,11 +23,6 @@ bot.on('message', msg => {
           return "Sorry, I didn't get that.";
         }
     }
-    // if ( response !== "" && response !== undefined ) {
-    //      return response;
-    // } else {
-    //     return;
-    // }
 });
 
 bot.on('guildMemberAdd', (member) => {
