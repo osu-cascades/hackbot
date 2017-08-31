@@ -15,7 +15,7 @@ To work on hackbot, you should:
 9. Rename the config-example.json file to config.json after you have replaced the keys with your own.*
 10. Run the bot from the command line: `node hackbot.js`
 
-&ast; _the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
+&ast; _the !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
 
 
 (c) 2017 [Justin Tappert](https://github.com/JWTappert). All rights reserved.
