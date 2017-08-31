@@ -34,7 +34,19 @@ You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io
 
 ## Deploying
 
-TODO
+Hackbot is hosted on [Heroku](https://heroku.com) as two _worker_-based applications:
+
+* osu-hackbot
+* osu-hackbot-staging
+
+Once you're happy with your new _hackbot_ feature running on your development environment, deploy it to staging so that the bot stays running and other people
+can try it out. This bot is always named _hackbot-staging_. Once you're happy, you can deploy it to production; this bot is always named _hackbot_.
+
+1. Get a [Heroku](https://heroku.com) account.
+2. Become a collaborator on the staging and production apps (ask others how).
+3. Add the remotes for staging and production: `heroku git:remote -a osu-hackbot -r production && heroku git:remote -a osu-hackbot-staging -r staging`
+4. Deploy to staging: `git push staging` or `git push staging dev:master` or `git push staging feature-branch-name:master`.
+5. Deploy to production: `put push production`.
 
 ## References
 
