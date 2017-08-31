@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const CommandParser = require('./commands/command-parser');
+const Command = require('./commands/command');
 
 const bot = new Discord.Client();
-const cmdParser = new CommandParser(config.prefix);
+const cmdParser = new CommandParser(config.prefix, new Command());
 
 bot.on('ready', () => {
     console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);

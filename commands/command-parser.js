@@ -1,10 +1,8 @@
-const Command = require('./command');
-
 class CommandParser {
 
-    constructor(prefix) {
+    constructor(prefix, command) {
         this.prefix = prefix;
-        this.command = new Command();
+        this.command = command;
     }
 
     parse(msg) {
