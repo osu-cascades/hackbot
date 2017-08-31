@@ -18,5 +18,8 @@
     "discord.js": "^10.0.1",
     "request": "^2.81.0",
     "superagent": "^2.3.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
   }
 }
