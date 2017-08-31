@@ -4,7 +4,7 @@ A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server
 
 ## Setup
 
-To work on hackbot, you should:
+To work on _hackbot_, you should:
 
 1. Clone this repository: `git clone https://github.com/osu-cascades/hackbot.git`
 2. Install the latest [node.js](https://nodejs.org).
@@ -20,6 +20,17 @@ To work on hackbot, you should:
 12. Hack...
 
 [1] _the !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
+
+## Suggested Workflow
+
+In a nutshell, work in the [dev](https://github.com/osu-cascades/hackbot/tree/dev) branch and don't merge to [master](https://github.com/osu-cascades/hackbot/tree/master) unless:
+
+1. You've communicated your changes to others and given folks a _little_ time to respond (or ideally, do a code review).
+2. Your changes are innocuous.
+
+In all cases, be sure to run the test suite to make sure all tests pass. _All tests should be passing before you merge dev to master_.
+
+You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm test -- --watch`. It is sweet and people will think you are a super hacker.
 
 ## References
 
