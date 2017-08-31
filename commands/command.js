@@ -1,24 +1,25 @@
-const commandInformation = require('./command-information');
 const superagent = require('superagent');
 const request = require('request');
+const commandInformation = require('./command-information');
 const config = require('../config.json');
 
 class Command {
+
     constructor() {
-        this.argsErrorMessage = "Arguments are missing. \n"
-        this.argsErrorMessage += "Refer to `!help` or ask an Adminstrator if this error occurs"
+        this.argsErrorMessage = "Arguments are missing.\n"
+        this.argsErrorMessage += "Refer to `!help` or ask an Adminstrator if this error occurs."
     }
 
     add(args, msg) {
       var { channel } = msg;
-      if ( args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+      if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
       let numArray = args.map(n => parseInt(n));
       let total = numArray.reduce((p, c) => p + c);
       return channel.sendMessage(total);
     }
 
     gitProfile(args, msg) {
-        if ( args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+        if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
         var getGithubProfile = (userName) => {
                 return new Promise((resolve, reject) => {
                     if (userName === undefined) {
@@ -61,7 +62,7 @@ class Command {
         commandInformation.map((info) => {
           var { command } = info;
           command = `${config.prefix}${command}`
-          if ( command.length > longest ) {
+          if (command.length > longest) {
                longest = command.length;
             }
         })
@@ -73,7 +74,7 @@ class Command {
             command = `${config.prefix}${command}`
             helpMsg += command + " ";
             let spaces = longest - command.length;
-            for ( var i = 0; i < spaces; i++ ) {
+            for (var i = 0; i < spaces; i++) {
                 helpMsg += " ";
             }
             helpMsg += "→ "
@@ -88,7 +89,7 @@ class Command {
 
     lmgtfy(args, msg) {
       var { channel } = msg;
-      if ( args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+      if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
       return channel.sendMessage('<http://lmgtfy.com/?q=' + args.join('+') + '>');
     }
 
@@ -127,7 +128,7 @@ class Command {
 
     say(args, msg) {
       var { channel } = msg;
-      if ( args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+      if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
           let saying = args.join(" ");
           return channel.sendMessage(saying);
     }
@@ -153,7 +154,7 @@ class Command {
 
     weather(args, msg) {
         var { channel } = msg;
-        if ( args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+        if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
         var getWeather = (location) => {
             return new Promise((resolve, reject) => {
                 let encodedLocation = encodeURIComponent(location);
