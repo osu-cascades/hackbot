@@ -1,4 +1,4 @@
-const Command = require('./Command');
+const Command = require('./command');
 
 class CommandParser {
     constructor(prefix) {
