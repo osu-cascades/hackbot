@@ -2,6 +2,8 @@
 
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server.
 
+## Setup
+
 To work on hackbot, you should:
 
 1. Clone this repository: `git clone https://github.com/osu-cascades/hackbot.git`
@@ -22,6 +24,7 @@ To work on hackbot, you should:
 ## References
 
 [Creating a Discord bot and getting a token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
+
 [Tutorial: Creating a Simple Discord Bot](https://medium.com/@renesansz/tutorial-creating-a-simple-discord-bot-9465a2764dc0)
 
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
