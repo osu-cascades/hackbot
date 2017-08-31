@@ -159,7 +159,7 @@ class Command {
     }
 
     source(args, msg) {
-        return msg.channel.sendMessage("My repo is located here: https://github.com/JWTappert/hackBot");
+        return msg.channel.sendMessage("Hack me at https://github.com/osu-cascades/hackbot");
     }
 
     gitProfile(args, msg) {
