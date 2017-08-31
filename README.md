@@ -15,11 +15,11 @@ To work on _hackbot_, you should:
 7. Notice the Client ID, reveal your app's Token, and record them both for later.
 8. Visit [https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0](https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0), replacing the placeholder with your real Client ID.
 9. Select the server that you want the bot to join.
-10. Copy the **config-example.json** file to **config.json**, and replace the keys with your own.[1]
+10. Copy the hidden **.env-example** file to **.env**, and replace the placeholder values with your own.[1]
 11. Run the bot from the command line: `npm start`
 12. Hack...
 
-[1] _the !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
+[1] _The !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
 
 ## Suggested Workflow
 
@@ -32,6 +32,22 @@ In all cases, be sure to run the test suite to make sure all tests pass. _All te
 
 You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm test -- --watch`. It is sweet and people will think you are a super hacker.
 
+## Deploying
+
+Hackbot is hosted on [Heroku](https://heroku.com) as two _worker_-based applications:
+
+* osu-hackbot
+* osu-hackbot-staging
+
+Once you're happy with your new _hackbot_ feature running on your development environment, deploy it to staging so that the bot stays running and other people
+can try it out. This bot is always named _hackbot-staging_. Once you're happy, you can deploy it to production; this bot is always named _hackbot_.
+
+1. Get a [Heroku](https://heroku.com) account.
+2. Become a collaborator on the staging and production apps (ask others how).
+3. Add the remotes for staging and production: `heroku git:remote -a osu-hackbot -r production && heroku git:remote -a osu-hackbot-staging -r staging`
+4. Deploy to staging: `git push staging` or `git push staging dev:master` or `git push staging feature-branch-name:master`.
+5. Deploy to production: `put push production`.
+
 ## References
 
 [Creating a Discord bot and getting a token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
@@ -40,4 +56,8 @@ You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io
 
 [Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
 
+[Deploying a Bot on Heroku](http://shiffman.net/a2z/bot-heroku/)
+
+
+___
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.

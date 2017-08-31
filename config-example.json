@@ -1,7 +1,0 @@
-{
-    "prefix": "!",
-    "token": "YOUR TOKEN",
-    "key": "YOUR GOOGLE API KEY",
-    "cx": "YOUR GOOGLE CX CODE",
-    "weatherKey": "YOUR OPEN WEATHER KEY"
-}

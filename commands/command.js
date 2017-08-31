@@ -1,7 +1,6 @@
 const superagent = require('superagent');
 const request = require('request');
 const commandInformation = require('./command-information');
-const config = require('../config.json');
 
 class Command {
 
@@ -61,7 +60,7 @@ class Command {
         var longest = 0;
         commandInformation.map((info) => {
           var { command } = info;
-          command = `${config.prefix}${command}`
+          command = `${process.env.MESSAGE_PREFIX}${command}`
           if (command.length > longest) {
                longest = command.length;
             }
@@ -71,7 +70,7 @@ class Command {
         longest = longest + 1;
         commandInformation.map((info) => {
             var { command, description } = info;
-            command = `${config.prefix}${command}`
+            command = `${process.env.MESSAGE_PREFIX}${command}`
             helpMsg += command + " ";
             let spaces = longest - command.length;
             for (var i = 0; i < spaces; i++) {
@@ -134,16 +133,20 @@ class Command {
     }
 
     search(args, msg) {
-      const { key } = config;
-      const { cx }  = config;
+      const { key } = process.env.GOOGLE_API_KEY;
+      const { cx }  = process.env.GOOGLE_SEARCH_ENGINE_ID;
       var { channel } = msg;
       let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
 
       superagent.get(url).end((err, res) => {
-          if (err) return msg.reply("superagent error...");
+          if (err) {
+            console.log("superagent error...");
+            return msg.reply("Sorry, I don't seem to be able to do that...");
+          }
           if (res.body.queries.request[0].totalResults === '0') return channel.sendMessage('`No results found.`');
           channel.sendMessage(res.body.items[0].link).catch(() => {
-              return msg.reply("response error...");
+            console.log("response error...");
+            return msg.reply("Sorry, I had a problem getting a response from google.");
         });
       });
     }
@@ -159,7 +162,7 @@ class Command {
             return new Promise((resolve, reject) => {
                 let encodedLocation = encodeURIComponent(location);
                 let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
-                           us&units=imperial&appid=${config.weatherKey}`;
+                           us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
                 location.map((location) => {
                     let trimmedLocation = (location.trim());
                     let isInt = parseInt(trimmedLocation);
