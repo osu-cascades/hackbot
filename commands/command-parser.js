@@ -1,9 +1,7 @@
-// OH HAI
 class CommandParser {
 
-    constructor(prefix, command) {
+    constructor(prefix) {
         this.prefix = prefix;
-        this.command = command;
     }
 
     parse(msg) {

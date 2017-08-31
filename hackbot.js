@@ -4,7 +4,7 @@ const CommandParser = require('./commands/command-parser');
 const Command = require('./commands/command');
 
 const bot = new Discord.Client();
-const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX, new Command());
+const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
 const commandRunner = new Command();
 
 bot.on('ready', () => {
