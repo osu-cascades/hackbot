@@ -16,12 +16,7 @@ class CommandParser {
         cmd = cmd.slice(this.prefix.length);
         // Parse the arguments passed after the command
         var args = content.split(" ").slice(1);
-        try {
-            this.command[cmd](args, msg);
-        } catch( error ) {
-            console.log(`Error on command: ${cmd} \n${error}` );
-            return "";
-        }
+        return [cmd, args]
     }
 }
 

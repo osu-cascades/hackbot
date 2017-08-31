@@ -19,7 +19,10 @@ describe('Parsing messages', () => {
   });
   context('When the message content is prefixed', () => {
     test('It returns a command and its arguments', () => {
-      pending();
+      const prefix = 'FAKE';
+      const fakeCommandObject = 'Fake Command Object';
+      const parser = new CommandParser(prefix, fakeCommandObject);
+      expect(parser.parse({content: `${prefix}cmd`})).toMatchObject(['cmd', []]);
     });
   });
 });

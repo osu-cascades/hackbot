@@ -5,18 +5,29 @@ const Command = require('./commands/command');
 
 const bot = new Discord.Client();
 const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX, new Command());
+const commandRunner = new Command();
 
 bot.on('ready', () => {
     console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
 });
 
 bot.on('message', msg => {
-    response = cmdParser.parse(msg);
-    if ( response !== "" && response !== undefined ) {
-         return response;
-    } else {
+    if (!msg.content.startsWith(process.env.MESSAGE_PREFIX)) {
         return;
+    } else {
+        let [command, arguments] = cmdParser.parse(msg);
+        try {
+          return commandRunner[command](arguments, msg);
+        } catch( error ) {
+          console.log(`Error on command: ${cmd} \n${error}` );
+          return "Sorry, I didn't get that.";
+        }
     }
+    // if ( response !== "" && response !== undefined ) {
+    //      return response;
+    // } else {
+    //     return;
+    // }
 });
 
 bot.on('guildMemberAdd', (member) => {
