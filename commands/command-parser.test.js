@@ -10,14 +10,14 @@ describe('Parsing messages', () => {
     test('It returns undefined', () => {
       const prefix = 'FAKE';
       const parser = new CommandParser(prefix);
-      expect(parser.parse({content: 'An ignorable message'})).toBeUndefined();
+      expect(parser.parse({ content: 'An ignorable message' })).toBeUndefined();
     });
   });
   context('When the message content is prefixed', () => {
     test('It returns a command and its arguments', () => {
       const prefix = 'FAKE';
       const parser = new CommandParser(prefix);
-      expect(parser.parse({content: `${prefix}cmd`})).toMatchObject(['cmd', []]);
+      expect(parser.parse({ content: `${prefix}cmd` })).toMatchObject(['cmd', []]);
     });
   });
 });

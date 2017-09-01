@@ -1,4 +1,4 @@
-let commandInformation = [
+const commandInformation = [
   {
     command: 'add [Integers]',
     description: 'Adds together _integers_ passed as arguments.',
@@ -42,7 +42,7 @@ let commandInformation = [
   {
     command: 'xmas',
     description: 'Merry Christmas, ya filthy animals.',
-  }
-]
+  },
+];
 
 module.exports = commandInformation;

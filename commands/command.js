@@ -8,45 +8,42 @@ class Command {
   }
 
   add(args, msg) {
-    let { channel } = msg;
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
-    let numArray = args.map(n => parseInt(n));
-    let total = numArray.reduce((p, c) => p + c);
+    const numArray = args.map(n => parseInt(n));
+    const total = numArray.reduce((p, c) => p + c);
     return channel.sendMessage(total);
   }
 
   gitProfile(args, msg) {
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
-    let getGithubProfile = (userName) => {
-      return new Promise((resolve, reject) => {
-        if (userName === undefined) {
-            return reject('Please enter a username.');
-        } else {
-          let url = `https://api.github.com/users/${userName}`;
-          let options = {
-                url: url,
-                headers: {
-                  'User-Agent': 'request'
-                }
-              }
-          request(options, (error, response, body) => {
-            if (error) {
-              return reject(`error: ${error}`);
-            } else {
-              resolve(body);
-            }
-          })
-          }
-      })
-    }
+    const getGithubProfile = userName => new Promise((resolve, reject) => {
+      if (userName === undefined) {
+        return reject('Please enter a username.');
+      }
+      const url = `https://api.github.com/users/${userName}`;
+      const options = {
+        url,
+        headers: {
+          'User-Agent': 'request',
+        },
+      };
+      request(options, (error, response, body) => {
+        if (error) {
+          return reject(`error: ${error}`);
+        }
+        return resolve(body);
+      });
+    });
     getGithubProfile(args)
       .then((profile) => {
-        let parsedProfile = JSON.parse(profile);
-        msg.channel.sendMessage(parsedProfile.html_url);
+        const parsedProfile = JSON.parse(profile);
+        return msg.channel.sendMessage(parsedProfile.html_url);
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }
 
   help(args, msg) {
@@ -62,45 +59,43 @@ class Command {
       if (command.length > longest) {
         longest = command.length;
       }
-    })
+    });
 
     // Add an extra space
-    longest = longest + 1;
+    longest += 1;
     commandInformation.map((info) => {
       let { command, description } = info;
       command = `${process.env.MESSAGE_PREFIX}${command}`;
-      helpMsg += command + ' ';
-      let spaces = longest - command.length;
+      helpMsg += `${command} `;
+      const spaces = longest - command.length;
       for (let i = 0; i < spaces; i++) {
         helpMsg += ' ';
       }
-      helpMsg += '→ '
-      helpMsg += description + '\n';
-    })
-    helpMsg += '\`\`\`'
+      helpMsg += '→ ';
+      helpMsg += `${description}\n`;
+    });
+    helpMsg += '\`\`\`';
 
     msg.reply('sliding into your DMs...');
     msg.author.sendMessage(helpMsg);
-    return
   }
 
   lmgtfy(args, msg) {
-    let { channel } = msg;
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
-    return channel.sendMessage('<http://lmgtfy.com/?q=' + args.join('+') + '>');
+    return channel.sendMessage(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 
   purge(args, msg) {
-    let { guild } = msg;
+    const { guild } = msg;
 
     // Make sure the person doing the command is a Board Member
-    let boardRole = guild.roles.find('name', 'Board Member');
+    const boardRole = guild.roles.find('name', 'Board Member');
     if (msg.member.roles.has(boardRole.id)) {
-
       // Grab the channels info
-      let chan = msg.channel;
-      let chanName = chan.name;
-      let chanType = chan.type;
+      const chan = msg.channel;
+      const chanName = chan.name;
+      const chanType = chan.type;
 
       // Delete the channel
       chan.delete()
@@ -120,29 +115,29 @@ class Command {
   }
 
   rules(args, msg) {
-    let { channel } = msg;
+    const { channel } = msg;
     return channel.sendMessage('Be nice and don\'t copy each other\'s homework!');
   }
 
   say(args, msg) {
-    let { channel } = msg;
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
-      let saying = args.join(' ');
-      return channel.sendMessage(saying);
+    const saying = args.join(' ');
+    return channel.sendMessage(saying);
   }
 
   search(args, msg) {
     const { key } = process.env.GOOGLE_API_KEY;
-    const { cx }  = process.env.GOOGLE_SEARCH_ENGINE_ID;
-    let { channel } = msg;
-    let url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
+    const { cx } = process.env.GOOGLE_SEARCH_ENGINE_ID;
+    const { channel } = msg;
+    const url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
 
     superagent.get(url).end((err, res) => {
       if (err) {
         console.log('superagent error...');
         return msg.reply('Sorry, I don\'t seem to be able to do that...');
       }
-      if (res.body.queries.request[0].totalResults === '0') { return channel.sendMessage('`No results found.`') };
+      if (res.body.queries.request[0].totalResults === '0') { return channel.sendMessage('`No results found.`'); }
       channel.sendMessage(res.body.items[0].link).catch(() => {
         console.log('response error...');
         return msg.reply('Sorry, I had a problem getting a response from google.');
@@ -155,46 +150,44 @@ class Command {
   }
 
   weather(args, msg) {
-    let { channel } = msg;
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
-    let getWeather = (location) => {
-      return new Promise((resolve, reject) => {
-        let encodedLocation = encodeURIComponent(location);
-        let url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
+    const getWeather = location => new Promise((resolve, reject) => {
+      const encodedLocation = encodeURIComponent(location);
+      const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
                    us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
-        location.map((location) => {
-          let trimmedLocation = (location.trim());
-          let isInt = parseInt(trimmedLocation);
+      location.map((location) => {
+        const trimmedLocation = (location.trim());
+        const isInt = parseInt(trimmedLocation);
 
-          if (Number.isInteger(isInt)) {
-            return reject('Please provide a location');
-          }
-        })
-        request({
-          url: url,
-          json: true
-        }, function(error, response, body) {
-             if (error) {
-                 reject('Unable to fetch weather.');
-             } else {
-                 let temp = Math.floor(body.main.temp)
-                 resolve(`It\'s ${temp} degrees in ${body.name}.`);
-             }
-          });
-        })
-    }
+        if (Number.isInteger(isInt)) {
+          return reject('Please provide a location');
+        }
+      });
+      request({
+        url,
+        json: true,
+      }, (error, response, body) => {
+        if (error) {
+          reject('Unable to fetch weather.');
+        } else {
+          const temp = Math.floor(body.main.temp);
+          return resolve(`It\'s ${temp} degrees in ${body.name}.`);
+        }
+      });
+    });
     getWeather(args)
       .then((currentWeather) => {
-        channel.sendMessage(currentWeather);
+        return channel.sendMessage(currentWeather);
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }
 
   xmas(args, msg) {
-    let { channel } = msg;
-    let randomImage = 'https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0';
+    const { channel } = msg;
+    const randomImage = 'https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0';
     channel.sendMessage(randomImage);
   }
 }
