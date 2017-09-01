@@ -40,6 +40,11 @@ describe('CommandParser', () => {
         expect(parser.parse({ content: 'An ignorable message' })).toBeUndefined();
       });
     });
+    context('When the message content only contains the prefix', () => {
+      test('It returns undefined', () => {
+        expect(parser.parse({ content: 'FAKE' })).toBeUndefined();
+      });
+    });
     context('When the message content is prefixed', () => {
       test('It returns a command and its arguments', () => {
         expect(parser.parse({ content: `${messagePrefix}cmd` })).toMatchObject(['cmd', []]);

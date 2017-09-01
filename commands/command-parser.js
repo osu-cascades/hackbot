@@ -10,6 +10,7 @@ class CommandParser {
   parse(msg) {
     if (!(msg && 'content' in msg)) return;
     if (!String(msg.content).startsWith(this.prefix)) return;
+    if (msg.content == this.prefix) return;
     const { content } = msg;
     // Get command
     let cmd = content.split(' ')[0];
