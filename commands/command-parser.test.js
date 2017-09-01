@@ -6,6 +6,12 @@ test('Is valid after instantiation', () => {
   expect(parser.prefix).toMatch(prefix);
 });
 describe('Parsing messages', () => {
+  context('When the message is undefined', () => {
+    test('It returns undefined', () => {
+      const parser = new CommandParser('FAKE');
+      expect(parser.parse(undefined)).toBeUndefined();
+    });
+  });
   context('When the message content is not prefixed', () => {
     test('It returns undefined', () => {
       const prefix = 'FAKE';

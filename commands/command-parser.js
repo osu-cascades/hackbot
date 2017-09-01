@@ -3,7 +3,12 @@ class CommandParser {
     this.prefix = prefix;
   }
 
+  // Extract a Discord Message object's content String into two components: the
+  // bot command and an array of the command arguments. For example,
+  // `{ content: '!multiply 2 4' }` becomes `[ 'multiply', ['2', '4']]`.
+  // Returns `undefined` in all invalid cases.
   parse(msg) {
+    if (!msg) return;
     const { content } = msg;
     if (!content.startsWith(this.prefix)) {
       return;
