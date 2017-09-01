@@ -9,11 +9,8 @@ class CommandParser {
   // Returns `undefined` in all invalid cases.
   parse(msg) {
     if (!(msg && 'content' in msg)) return;
+    if (!String(msg.content).startsWith(this.prefix)) return;
     const { content } = msg;
-    if (!content.startsWith(this.prefix)) {
-      return;
-    }
-
     // Get command
     let cmd = content.split(' ')[0];
 

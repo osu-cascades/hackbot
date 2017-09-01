@@ -24,6 +24,14 @@ describe('Parsing messages', () => {
       expect(parser.parse({ fake: 'fake' })).toBeUndefined();
     });
   });
+  context('When the message content is not a String', () => {
+    test('It returns undefined', () => {
+      const parser = new CommandParser('FAKE');
+      expect(parser.parse({ content: null })).toBeUndefined();
+      expect(parser.parse({ content: undefined })).toBeUndefined();
+      expect(parser.parse({ content: 42 })).toBeUndefined();
+    });
+  });
   context('When the message content is not prefixed', () => {
     test('It returns undefined', () => {
       const prefix = 'FAKE';
