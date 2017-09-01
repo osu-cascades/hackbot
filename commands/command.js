@@ -4,7 +4,7 @@ const commandInformation = require('./command-information');
 
 class Command {
   constructor() {
-    this.argsErrorMessage = 'Arguments are missing.\n Refer to `!help` or ask an Adminstrator if this error occurs.';
+    this.argsErrorMessage = 'Arguments are missing.\n Refer to `!help` or ask an Administrator if this error occurs.';
   }
 
   add(args, msg) {
