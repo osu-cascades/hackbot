@@ -24,6 +24,17 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": "off"
+    },
+    "globals": {
+        "process": true,
+        "console": true,
+        "cmd": true,
+        // Testing Suite
+        "test": true,
+        "expect": true,
+        "describe": true,
+        "context": true
     }
 }

@@ -109,6 +109,7 @@ class Command {
     } else {
       return msg.reply('sorry m8, you\'re not authorized to use that command.');
     }
+    /* global bot */
     if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
       return msg.reply('sorry m8, you\'re not authorized to use that command.');
     }
