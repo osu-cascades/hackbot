@@ -49,7 +49,7 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 3. Become a collaborator on the staging and production apps (ask others how).
 4. Add the remotes for staging and production: `heroku git:remote -a osu-hackbot -r production && heroku git:remote -a osu-hackbot-staging -r staging`
 5. Deploy to staging: `git push staging` or `git push staging dev:master` or `git push staging feature-branch-name:master`.
-6. Deploy to production: `put push production`.
+6. Deploy to production: `git push production`.
 
 ## References
 
