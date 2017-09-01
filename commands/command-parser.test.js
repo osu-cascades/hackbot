@@ -9,8 +9,31 @@ describe('CommandParser', () => {
     parser = new CommandParser(messagePrefix)
   });
 
-  test('Is valid after instantiation', () => {
-    expect(parser.prefix).toMatch(messagePrefix);
+  describe('Instantiation', () => {
+    context('With a valid prefix', () => {
+      test('it is valid', () => {
+        expect(parser.prefix).toMatch(messagePrefix);
+      });
+    });
+    context('With an invalid prefix', () => {
+      test('it throws an exception', () => {
+        expect(() => {
+          new CommandParser(null);
+        }).toThrow('Prefix must be a non-empty string');
+        expect(() => {
+          new CommandParser(undefined);
+        }).toThrow('Prefix must be a non-empty string');
+        expect(() => {
+          new CommandParser(42);
+        }).toThrow('Prefix must be a non-empty string');
+        expect(() => {
+          new CommandParser('');
+        }).toThrow('Prefix must be a non-empty string');
+        expect(() => {
+          new CommandParser("\n  \n\tg");
+        }).toThrow('Prefix must be a non-empty string');
+      });
+    });
   });
 
   describe('Parsing messages', () => {

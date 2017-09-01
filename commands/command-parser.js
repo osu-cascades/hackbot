@@ -1,5 +1,11 @@
 class CommandParser {
+
+  // Discord users are expected to prefix bot commands with a single character,
+  // such as '!cmd foo'. Throw an exception if the prefix is not a string, an
+  // empty string, or a string that contains whitespace.
   constructor(prefix) {
+    if (typeof prefix != 'string' || prefix.length === 0 || /\s/g.test(prefix))
+      throw 'Prefix must be a non-empty string';
     this.prefix = prefix;
   }
 
