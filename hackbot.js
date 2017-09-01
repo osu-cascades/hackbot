@@ -12,7 +12,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if (!msg.content.startsWith(process.env.MESSAGE_PREFIX)) {
+  if (!msg.content.startsWith(process.env.MESSAGE_PREFIX || msg.content.length <= process.env.MESSAGE_PREFIX.length)) {
     return;
   } else {
     let [command, arguments] = cmdParser.parse(msg);
