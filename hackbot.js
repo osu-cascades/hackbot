@@ -8,27 +8,27 @@ const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
 const commandRunner = new Command();
 
 bot.on('ready', () => {
-    console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
+  console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
 });
 
 bot.on('message', msg => {
-    if (!msg.content.startsWith(process.env.MESSAGE_PREFIX)) {
-        return;
-    } else {
-        let [command, arguments] = cmdParser.parse(msg);
-        try {
-          return commandRunner[command](arguments, msg);
-        } catch( error ) {
-          console.log(`Error on command: ${cmd} \n${error}` );
-          return "Sorry, I didn't get that.";
-        }
+  if (!msg.content.startsWith(process.env.MESSAGE_PREFIX)) {
+    return;
+  } else {
+    let [command, arguments] = cmdParser.parse(msg);
+    try {
+      return commandRunner[command](arguments, msg);
+    } catch( error ) {
+      console.log(`Error on command: ${cmd} \n${error}` );
+      return 'Sorry, I didn\'t get that.';
     }
+  }
 });
 
 bot.on('guildMemberAdd', (member) => {
-    var { username } = member.user;
-    console.log(`New User "${username}" has joined "${member.guild.name}"` );
-    member.guild.defaultChannel.sendMessage(`"${username}" has joined this server`);
+  var { username } = member.user;
+  console.log(`New User '${username}' has joined '${member.guild.name}'` );
+  member.guild.defaultChannel.sendMessage(`'${username}' has joined this server`);
 });
 
 bot.on('error', e => { console.error(e); });

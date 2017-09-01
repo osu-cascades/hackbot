@@ -32,6 +32,8 @@ In all cases, be sure to run the test suite to make sure all tests pass. _All te
 
 You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm test -- --watch`. It is sweet and people will think you are a super hacker.
 
+[Please refer to airbnb's style guide while coding.](https://github.com/airbnb/javascript)
+
 ## Deploying
 
 Hackbot is hosted on [Heroku](https://heroku.com) as two _worker_-based applications:
@@ -58,7 +60,6 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 [Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
 
 [Deploying a Bot on Heroku](http://shiffman.net/a2z/bot-heroku/)
-
 
 ___
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
