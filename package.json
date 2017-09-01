@@ -9,7 +9,9 @@
   "main": "hackbot.js",
   "scripts": {
     "start": "node hackbot.js",
-    "test": "jest"
+    "watch": "nodemon hackbot.js",
+    "test": "jest",
+    "test-watch": "jest --watchAll"
   },
   "author": "Justin Tappert",
   "license": "MIT",
