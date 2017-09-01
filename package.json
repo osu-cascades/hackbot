@@ -11,9 +11,11 @@
     "start": "node hackbot.js",
     "watch": "nodemon hackbot.js",
     "test": "jest",
-    "test-watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "lint": "eslint **/*.js",
+    "lint-fix": "eslint --fix **/*.js"
   },
-  "author": "Justin Tappert",
+  "author": "osu-cascades",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.22.0",
@@ -23,6 +25,8 @@
     "superagent": "^2.3.0"
   },
   "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
     "jest-plugin-context": "^1.7.0"
   },
