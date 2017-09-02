@@ -14,12 +14,14 @@ const Command = require('../library/command');
  */
 
 class CommandNameCommand extends Command {
+  // Not currently used
   constructor(...args) {
     super(...args);
   }
 
-  commandName(args, msg) {
+  static commandName(args, msg) {
     // msg Class Info: https://discord.js.org/#/docs/main/stable/class/Message
+    throw `Not Yet Implemented ${msg}`;
   }
 
 }
