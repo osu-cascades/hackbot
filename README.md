@@ -53,13 +53,11 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 
 ## References
 
-[Creating a Discord bot and getting a token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
-
-[Tutorial: Creating a Simple Discord Bot](https://medium.com/@renesansz/tutorial-creating-a-simple-discord-bot-9465a2764dc0)
-
-[Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
-
-[Deploying a Bot on Heroku](http://shiffman.net/a2z/bot-heroku/)
+* [Creating a Discord bot and getting a token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
+* [Tutorial: Creating a Simple Discord Bot](https://medium.com/@renesansz/tutorial-creating-a-simple-discord-bot-9465a2764dc0)
+* [Video Series: Creating a Discord bot with Discord.js!](https://youtu.be/rVfjZrqoQ7o)
+* [Deploying a Bot on Heroku](http://shiffman.net/a2z/bot-heroku/)
+* [discord.js Documentation](https://discord.js.org)
 
 ___
 (c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
