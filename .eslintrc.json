@@ -2,7 +2,8 @@
     "env": {
         "browser": false,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -24,6 +25,18 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": "off"
+    },
+    "globals": {
+        "process": true,
+        "console": true,
+        "cmd": true
+    },
+    "overrides": {
+        "files": [ "**/*.test.js" ],
+        "globals": {
+            "context": true
+        }
     }
 }

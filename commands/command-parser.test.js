@@ -6,7 +6,7 @@ describe('CommandParser', () => {
   var parser;
 
   beforeEach(() => {
-    parser = new CommandParser(messagePrefix)
+    parser = new CommandParser(messagePrefix);
   });
 
   describe('Instantiation', () => {
@@ -30,7 +30,7 @@ describe('CommandParser', () => {
           new CommandParser('');
         }).toThrow('Prefix must be a non-empty string');
         expect(() => {
-          new CommandParser("\n  \n\tg");
+          new CommandParser('\n  \n\tg');
         }).toThrow('Prefix must be a non-empty string');
       });
     });

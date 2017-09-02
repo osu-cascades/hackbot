@@ -18,9 +18,9 @@ bot.on('message', msg => {
   ) {
     return;
   } else {
-    let [command, arguments] = cmdParser.parse(msg);
+    let [command, args] = cmdParser.parse(msg);
     try {
-      return commandRunner[command](arguments, msg);
+      return commandRunner[command](args, msg);
     } catch( error ) {
       console.log(`Error on command: ${cmd} \n${error}` );
       return 'Sorry, I didn\'t get that.';
