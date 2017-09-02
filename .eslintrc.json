@@ -32,5 +32,11 @@
         "process": true,
         "console": true,
         "cmd": true
+    },
+    "overrides": {
+        "files": [ "**/*.test.js" ],
+        "globals": {
+            "context": true
+        }
     }
 }
