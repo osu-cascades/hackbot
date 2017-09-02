@@ -30,7 +30,7 @@ In a nutshell, work in the [dev](https://github.com/osu-cascades/hackbot/tree/de
 
 In all cases, be sure to run the test suite to make sure all tests pass. _All tests should be passing before you merge dev to master_.
 
-You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm test -- --watch`. It is sweet and people will think you are a super hacker.
+You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker.
 
 [Please refer to airbnb's style guide while coding.](https://github.com/airbnb/javascript)
 
@@ -49,7 +49,7 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 3. Become a collaborator on the staging and production apps (ask others how).
 4. Add the remotes for staging and production: `heroku git:remote -a osu-hackbot -r production && heroku git:remote -a osu-hackbot-staging -r staging`
 5. Deploy to staging: `git push staging` or `git push staging dev:master` or `git push staging feature-branch-name:master`.
-6. Deploy to production: `put push production`.
+6. Deploy to production: `git push production`.
 
 ## References
 
