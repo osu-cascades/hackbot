@@ -19,7 +19,7 @@ class UsefulCommand extends Command {
     return channel.sendMessage(total);
   }
 
-  gitProfile(args, msg) {
+  static gitProfile(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const getGithubProfile = userName => new Promise((resolve, reject) => {
@@ -50,13 +50,13 @@ class UsefulCommand extends Command {
       });
   }
 
-  lmgtfy(args, msg) {
+  static lmgtfy(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     return channel.sendMessage(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 
-  search(args, msg) {
+  static search(args, msg) {
     const { key } = process.env.GOOGLE_API_KEY;
     const { cx } = process.env.GOOGLE_SEARCH_ENGINE_ID;
     const { channel } = msg;
@@ -75,7 +75,7 @@ class UsefulCommand extends Command {
     });
   }
 
-  weather(args, msg) {
+  static weather(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const getWeather = location => new Promise((resolve, reject) => {
@@ -98,7 +98,7 @@ class UsefulCommand extends Command {
           reject('Unable to fetch weather.');
         } else {
           const temp = Math.floor(body.main.temp);
-          return resolve(`It\'s ${temp} degrees in ${body.name}.`);
+          return resolve(`It's ${temp} degrees in ${body.name}.`);
         }
       });
     });

@@ -14,10 +14,7 @@ const Command = require('../library/command');
 
 class RulesCommand extends Command {
 
-  static rules(args, msg) {
-    const { channel } = msg;
-    return channel.sendMessage('Be nice and don\'t copy each other\'s homework!');
-  }
+
 
 }
 
