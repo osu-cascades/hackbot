@@ -16,6 +16,10 @@ const commandInformation = [
     description: 'When someone is being...lazy...?',
   },
   {
+    command: 'magic8ball [Question]',
+    description: 'Ask and you shall recieve... a vague, randomly generated response.'
+  },
+  {
     command: 'purge',
     description: 'Purges the channel it is called within. Restricted to Board Members and Administrators.',
   },

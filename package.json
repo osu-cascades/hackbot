@@ -28,6 +28,7 @@
     "eslint": "^4.5.0",
     "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "jest-plugin-context": "^1.7.0"
   },
   "jest": {
