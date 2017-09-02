@@ -1,7 +1,6 @@
 const CommandParser = require('./command-parser');
 
 describe('CommandParser', () => {
-
   const messagePrefix = 'FAKE';
   var parser;
 
@@ -17,27 +16,15 @@ describe('CommandParser', () => {
     });
     context('With an invalid prefix', () => {
       test('it throws an exception', () => {
+        prefixes = [null, undefined, 42, '', '\n  \n\tg'];
         expect(() => {
-          new CommandParser(null);
-        }).toThrow('Prefix must be a non-empty string');
-        expect(() => {
-          new CommandParser(undefined);
-        }).toThrow('Prefix must be a non-empty string');
-        expect(() => {
-          new CommandParser(42);
-        }).toThrow('Prefix must be a non-empty string');
-        expect(() => {
-          new CommandParser('');
-        }).toThrow('Prefix must be a non-empty string');
-        expect(() => {
-          new CommandParser('\n  \n\tg');
+          prefixes.map(prefix => new CommandParser(prefix));
         }).toThrow('Prefix must be a non-empty string');
       });
     });
   });
 
   describe('Parsing messages', () => {
-
     context('When the message is undefined', () => {
       test('it returns undefined', () => {
         expect(parser.parse(undefined)).toBeUndefined();
@@ -55,18 +42,15 @@ describe('CommandParser', () => {
     });
     context('When the message content is not a String', () => {
       test('it returns undefined', () => {
-        expect(parser.parse({ content: null })).toBeUndefined();
-        expect(parser.parse({ content: undefined })).toBeUndefined();
-        expect(parser.parse({ content: 42 })).toBeUndefined();
+        const msg = [{ content: null }, { content: undefined }, { content: 42 }];
+        msg.map(msg => expect(parser.parse(msg)).toBeUndefined());
       });
     });
-
     context('When the message content is not prefixed', () => {
       test('it returns undefined', () => {
         expect(parser.parse({ content: 'An ignorable message' })).toBeUndefined();
       });
     });
-
     context('When the message content is prefixed', () => {
       context('and the content has many space-separated words', () => {
         test('it returns a command and the words as an array of arguments', () => {
