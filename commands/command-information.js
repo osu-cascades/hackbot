@@ -15,7 +15,7 @@ let commands = [
   {
     command: 'gitProfile [Username]',
     description: 'Retrieves any public github profile.',
-    execution: { gitProfile: (args, msg) => usefulCommand.gitProfile(args, msg) }
+    execution: { gitProfile: (args, msg) => usefulCommand.gitProfile(args, msg) },
   },
   {
     command: 'help',
