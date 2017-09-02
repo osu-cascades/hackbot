@@ -2,7 +2,8 @@
     "env": {
         "browser": false,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -30,11 +31,6 @@
     "globals": {
         "process": true,
         "console": true,
-        "cmd": true,
-        // Testing Suite
-        "test": true,
-        "expect": true,
-        "describe": true,
-        "context": true
+        "cmd": true
     }
 }
