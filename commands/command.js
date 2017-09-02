@@ -4,7 +4,7 @@ const commandInformation = require('./command-information');
 
 class Command {
   constructor() {
-    this.argsErrorMessage = 'Arguments are missing.\n Refer to `!help` or ask an Administrator if this error occurs.';
+    this.argsErrorMessage = 'Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.';
   }
 
   add(args, msg) {
@@ -87,7 +87,7 @@ class Command {
   }
 
   magic8ball(args, msg) {
-    var { channel } = msg;
+    const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
     let response = [ 'It is certain',
       'It is decidedly so',
@@ -108,7 +108,7 @@ class Command {
       'My reply is no',
       'My sources say no',
       'Outlook not so good',
-      'Very doubtful' ]
+      'Very doubtful' ];
     return channel.sendMessage(response[Math.floor(Math.random()*response.length)]);
   }
 
