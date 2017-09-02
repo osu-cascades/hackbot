@@ -1,4 +1,4 @@
-const CommandParser = require('../commands/command-parser');
+const CommandParser = require('../library/command-parser');
 
 describe('CommandParser', () => {
   const messagePrefix = 'FAKE';
@@ -16,7 +16,7 @@ describe('CommandParser', () => {
     });
     context('With an invalid prefix', () => {
       test('it throws an exception', () => {
-        prefixes = [null, undefined, 42, '', '\n  \n\tg'];
+        let prefixes = [null, undefined, 42, '', '\n  \n\tg'];
         expect(() => {
           prefixes.map(prefix => new CommandParser(prefix));
         }).toThrow('Prefix must be a non-empty string');

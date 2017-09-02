@@ -1,15 +1,19 @@
 const superagent = require('superagent');
 const request = require('request');
-const Command = require('./command');
+const Command = require('../library/command');
 
+/**
+ * 
+ * Random collection of useful commands
+ * 
+ * @class UsefulCommand
+ * @extends {Command}
+ */
 class UsefulCommand extends Command {
-  constructor(...args) {
-    super(...args);
-  }
 
-  add(args, msg) {
+  static add(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const numArray = args.map(n => parseInt(n));
     const total = numArray.reduce((p, c) => p + c);
     return channel.sendMessage(total);
@@ -17,7 +21,7 @@ class UsefulCommand extends Command {
 
   gitProfile(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const getGithubProfile = userName => new Promise((resolve, reject) => {
       if (userName === undefined) {
         return reject('Please enter a username.');
@@ -48,7 +52,7 @@ class UsefulCommand extends Command {
 
   lmgtfy(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     return channel.sendMessage(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 
@@ -73,7 +77,7 @@ class UsefulCommand extends Command {
 
   weather(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const getWeather = location => new Promise((resolve, reject) => {
       const encodedLocation = encodeURIComponent(location);
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}

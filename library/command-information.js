@@ -1,11 +1,18 @@
 const Command = require('./command');
-const UsefulCommand = require('./command-useful');
-const FunCommand = require('./command-fun');
+const FunCommand = require('../commands/fun');
+const HelpCommand = require('../commands/help');
+const UsefulCommand = require('../commands/useful');
+const PurgeCommand = require('../commands/purge');
+const RulesCommand = require('../commands/rules');
 
 const command = new Command();
 const usefulCommand = new UsefulCommand();
-const funCommand = new FunCommand();
 
+/**
+ * TODO: 
+ * - Migrate the command, description, and execution into the command files.
+ * - Auto load all commands in the command folder.
+ */
 let commands = [
   {
     command: 'add [Integers]',
@@ -20,7 +27,7 @@ let commands = [
   {
     command: 'help',
     description: 'Displays this message',
-    execution: { help: (args, msg, commands) => command.help(args, msg, commands) },
+    execution: { help: (args, msg, commands) => HelpCommand.help(args, msg, commands) },
   },
   {
     command: 'lmgtfy [Search Term]',
@@ -30,22 +37,22 @@ let commands = [
   {
     command: 'magic8ball [Question]',
     description: 'Ask and you shall recieve... a vague, randomly generated response.',
-    execution: { magic8ball: (args, msg) => funCommand.magic8ball(args, msg) },
+    execution: { magic8ball: (args, msg) => FunCommand.magic8ball(args, msg) },
   },
   {
     command: 'purge',
     description: 'Purges the channel it is called within. Restricted to Board Members and Administrators.',
-    execution: { purge: (args, msg) => command.purge(args, msg) },
+    execution: { purge: (args, msg) => PurgeCommand.purge(args, msg) },
   },
   {
     command: 'rules',
     description: 'List the rules for the CTC Discord server.',
-    execution: { rules: (args, msg) => command.rules(args, msg) },
+    execution: { rules: (args, msg) => RulesCommand.rules(args, msg) },
   },
   {
     command: 'say [Phrase]',
     description: 'Echos back the string passed as arguments.',
-    execution: { say: (args, msg) => funCommand.say(args, msg) },
+    execution: { say: (args, msg) => FunCommand.say(args, msg) },
   },
   {
     command: 'search [Search Term]',
@@ -65,7 +72,7 @@ let commands = [
   {
     command: 'xmas',
     description: 'Merry Christmas, ya filthy animals.',
-    execution: { xmas: (args, msg) => funCommand.xmas(args, msg) },
+    execution: { xmas: (args, msg) => FunCommand.xmas(args, msg) },
   },
 ];
 
