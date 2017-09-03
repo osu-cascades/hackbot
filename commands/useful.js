@@ -1,6 +1,7 @@
 const superagent = require('superagent');
 const request = require('request');
 const Command = require('../library/command');
+const Commands = require('../library/commands');
 
 /**
  * 
@@ -9,7 +10,7 @@ const Command = require('../library/command');
  * @class UsefulCommand
  * @extends {Command}
  */
-class UsefulCommand extends Command {
+class UsefulCommand extends Commands {
 
   static add(args, msg) {
     const { channel } = msg;

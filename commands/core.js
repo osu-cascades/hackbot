@@ -1,4 +1,5 @@
 const Command = require('../library/command');
+const Commands = require('../library/commands');
 
 /**
  * Copy this file as a template to create a new command.
@@ -13,8 +14,15 @@ const Command = require('../library/command');
  * @extends {Command}
  */
 
-class CoreCommand extends Command {
+class CoreCommand extends Commands {
 
+  static commands() {
+    return [
+      new Command('help', 'Displays this message', this.help),
+      new Command('rules', 'List the rules for the CTC Discord server.', this.rules),
+      new Command('source', 'Retrieves the hackBot\'s github repository.', this.source)
+    ];
+  }
 
   static help(args, msg, commands) {
     let helpMsg = 'I am here to help! Well...mostly just make you chuckle at this point, let\'s be honest.\n\n';
@@ -55,7 +63,7 @@ class CoreCommand extends Command {
     return channel.sendMessage('Be nice and don\'t copy each other\'s homework!');
   }
 
-  source(args, msg) {
+  static source(args, msg) {
     return msg.channel.sendMessage('Hack me at https://github.com/osu-cascades/hackbot');
   }
 

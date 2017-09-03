@@ -1,9 +1,11 @@
 require('dotenv').config();
 const Discord = require('discord.js');
+const CommandLoader = require('./library/command-loader');
 const CommandParser = require('./library/command-parser');
 const commands = require('./library/command-information');
 
 const bot = new Discord.Client();
+const commandLoader = new CommandLoader();
 const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
 
 bot.on('ready', () => {
