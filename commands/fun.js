@@ -1,13 +1,16 @@
-const Command = require('./command');
+const Command = require('../library/command');
 
+/**
+ * Collection of random fun commands
+ * 
+ * @class FunCommand
+ * @extends {Command}
+ */
 class FunCommand extends Command {
-  constructor(...args) {
-    super(...args);
-  }
 
-  magic8ball(args, msg) {
+  static magic8ball(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     let response = [ 'It is certain',
       'It is decidedly so',
       'Without a doubt',
@@ -31,14 +34,14 @@ class FunCommand extends Command {
     return channel.sendMessage(response[Math.floor(Math.random()*response.length)]);
   }
 
-  say(args, msg) {
+  static say(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     const saying = args.join(' ');
     return channel.sendMessage(saying);
   }
 
-  xmas(args, msg) {
+  static xmas(args, msg) {
     const { channel } = msg;
     const randomImage = 'https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0';
     channel.sendMessage(randomImage);
