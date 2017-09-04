@@ -16,9 +16,9 @@ describe('CommandParser', () => {
     });
     context('With an invalid prefix', () => {
       test('it throws an exception', () => {
-        let prefixes = [null, undefined, 42, '', '\n  \n\tg'];
+        let invalidPrefixes = [null, undefined, 42, '', '\n  \n\tg'];
         expect(() => {
-          prefixes.map(prefix => new CommandParser(prefix));
+          invalidPrefixes.map(prefix => new CommandParser(prefix));
         }).toThrow('Prefix must be a non-empty string');
       });
     });
@@ -42,8 +42,8 @@ describe('CommandParser', () => {
     });
     context('When the message content is not a String', () => {
       test('it returns undefined', () => {
-        const msg = [{ content: null }, { content: undefined }, { content: 42 }];
-        msg.map(msg => expect(parser.parse(msg)).toBeUndefined());
+        const invalidMessages = [{ content: null }, { content: undefined }, { content: 42 }];
+        invalidMessages.map(msg => expect(parser.parse(msg)).toBeUndefined());
       });
     });
     context('When the message content is not prefixed', () => {
