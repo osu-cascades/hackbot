@@ -1,10 +1,12 @@
 require('dotenv').config();
 const Discord = require('discord.js');
+const CommandLoader = require('./library/command-loader');
 const CommandParser = require('./library/command-parser');
-const commands = require('./library/command-information');
 
 const bot = new Discord.Client();
+const commandLoader = new CommandLoader();
 const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
+const commands = commandLoader.commands;
 
 bot.on('ready', () => {
   console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
