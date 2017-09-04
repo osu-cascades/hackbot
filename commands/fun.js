@@ -1,5 +1,5 @@
 const Command = require('../library/command');
-const Commands = require('../library/commands');
+const CommandPackage = require('../library/command-package');
 
 /**
  * Collection of random fun commands
@@ -7,7 +7,7 @@ const Commands = require('../library/commands');
  * @class FunCommand
  * @extends {Command}
  */
-class FunCommand extends Commands {
+class FunCommand extends CommandPackage {
 
   static magic8ball(args, msg) {
     const { channel } = msg;

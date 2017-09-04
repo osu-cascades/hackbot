@@ -1,5 +1,5 @@
 const Command = require('../library/command');
-const Commands = require('../library/commands');
+const CommandPackage = require('../library/command-package');
 
 /**
  * Provides commands to help administrate the channels.
@@ -7,7 +7,7 @@ const Commands = require('../library/commands');
  * @class AdministrationCommand
  * @extends {Command}
  */
-class AdministrationCommand extends Commands {
+class AdministrationCommand extends CommandPackage {
 
   /**
    * Deletes a channel and then recreates it, 

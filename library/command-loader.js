@@ -13,14 +13,12 @@ class CommandLoader {
 
   getCommandFiles() {
     // All of the files in commands except _template.js
-    return glob.sync('./commands/**/*.js').filter(file => file == './commands/core.js');
-    //return glob.sync('./commands/**/*.js').filter(file => file != './commands/_template.js');
+    return glob.sync('./commands/**/*.js').filter(file => file != './commands/_template.js');
   }
 
   loadCommandClasses() {
     // https://stackoverflow.com/questions/5364928/node-js-require-all-files-in-a-folder
     // Load all commands in the commands folder besides _template.js
-    // +(!(_template)|*)
     this.commandFiles.forEach(function(file) {
       let key = path.basename(file, path.extname(file));
       this.commandClasses[key] = require(path.resolve(file));

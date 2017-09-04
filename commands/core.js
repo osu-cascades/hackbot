@@ -1,5 +1,5 @@
 const Command = require('../library/command');
-const Commands = require('../library/commands');
+const CommandPackage = require('../library/command-package');
 
 /**
  * Copy this file as a template to create a new command.
@@ -14,7 +14,7 @@ const Commands = require('../library/commands');
  * @extends {Command}
  */
 
-class CoreCommand extends Commands {
+class CoreCommand extends CommandPackage {
 
   static commands() {
     return [
