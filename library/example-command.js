@@ -13,6 +13,7 @@ class ExampleCommand {
   }
 
   execute(args) {
+    if (args !== []) throw 'Arguments must be an array';
 
   }
 

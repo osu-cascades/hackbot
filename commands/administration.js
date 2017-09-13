@@ -2,16 +2,16 @@ const Command = require('../library/command');
 
 /**
  * Provides commands to help administrate the channels.
- * 
+ *
  * @class AdministrationCommand
  * @extends {Command}
  */
 class AdministrationCommand extends Command {
 
   /**
-   * Deletes a channel and then recreates it, 
+   * Deletes a channel and then recreates it,
    * giving it a new beginning.
-   * 
+   *
    */
   static purge(args, msg) {
     const { guild } = msg;
