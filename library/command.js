@@ -1,21 +1,19 @@
 /**
- * This is no longer doing anything as far as I know.
- * This should provide the structure that each commands should have.
- * The structure should be based off of the command-information.js
- * After this is implemented we will be able to remove command-information.js
- *
+ * Provides a data structure for commands to abide by.
+ * 
  * @class Command
  */
 class Command {
-  constructor() {
-
+  constructor(name, description, callback, args = []) {
+    this.name = name;
+    this.description = description;
+    this.callback = callback;
+    this.args = args;
   }
 
   static argsErrorMessage() {
     return 'Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.';
   }
-
 }
-
 
 module.exports = Command;
