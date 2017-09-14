@@ -1,15 +1,17 @@
 const Command = require('../library/command');
-const CommandPackage = require('../library/command-package');
 
 /**
- * Collection of random fun commands
- * 
- * @class FunCommand
+ * @class Magic8Ball
  * @extends {Command}
  */
-class FunCommand extends CommandPackage {
 
-  static magic8ball(args, msg) {
+class Magic8Ball extends Command {
+
+  static get description() {
+    return 'Ask and you shall receive... a vague, randomly generated response.';
+  }
+
+  static execute(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
     let response = [ 'It is certain',
@@ -17,7 +19,7 @@ class FunCommand extends CommandPackage {
       'Without a doubt',
       'Yes definitely',
       'You may rely on it',
-      'As I see it\, yes',
+      'As I see it, yes',
       'Most likely',
       'Outlook good',
       'Yes',
@@ -35,18 +37,6 @@ class FunCommand extends CommandPackage {
     return channel.sendMessage(response[Math.floor(Math.random()*response.length)]);
   }
 
-  static say(args, msg) {
-    const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
-    const saying = args.join(' ');
-    return channel.sendMessage(saying);
-  }
-
-  static xmas(args, msg) {
-    const { channel } = msg;
-    const randomImage = 'https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0';
-    channel.sendMessage(randomImage);
-  }
 }
 
-module.exports = FunCommand;
+module.exports = Magic8Ball;

@@ -4,15 +4,11 @@
  * @class Command
  */
 class Command {
-  constructor(name, description, callback, args = []) {
-    this.name = name;
-    this.description = description;
-    this.callback = callback;
-    this.args = args;
-  }
 
-  static argsErrorMessage() {
-    return 'Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.';
+  // Interface
+  static execute() {
+    let className = this.name;//this.constructor.name;
+    throw className == 'Command' ? 'Cannot call execute() directly from the Command class' : `${className} does not implement execute()`;
   }
 }
 

@@ -1,30 +1,23 @@
 const Command = require('../library/command');
-const CommandPackage = require('../library/command-package');
 
 /**
- * Copy this file as a template to create a new command.
- * Update references of CommandNameCommand and commandName 
- * in this file to something unique, ideally related 
- * to the command, or the command itself followed by Command.
- * ie: HelloCommand.
- * 
- * Replace this comment with a description of your command.
- * 
- * @class CoreCommand
+ * @class Help
  * @extends {Command}
  */
 
-class CoreCommand extends CommandPackage {
+class Help extends Command {
 
-  static commands() {
-    return [
-      new Command('help', 'Displays this message', this.help),
-      new Command('rules', 'List the rules for the CTC Discord server.', this.rules),
-      new Command('source', 'Retrieves the hackBot\'s github repository.', this.source)
-    ];
+  static get description() {
+    return 'Displays this message';
   }
 
-  static help(args, msg, commands) {
+  static execute(args, msg) {
+    // TODO: implement method of getting all the commands
+    //  Either access the loader, or read the commands directory.
+
+    //let commands = 
+    throw 'IMPLEMENT MEEEE (commands)';
+
     let helpMsg = 'I am here to help! Well...mostly just make you chuckle at this point, let\'s be honest.\n\n';
     helpMsg += 'Here is a list of the commands that we\'ve got right now:\n';
     helpMsg += '```\n';
@@ -58,15 +51,6 @@ class CoreCommand extends CommandPackage {
     msg.author.sendMessage(helpMsg);
   }
 
-  static rules(args, msg) {
-    const { channel } = msg;
-    return channel.sendMessage('Be nice and don\'t copy each other\'s homework!');
-  }
-
-  static source(args, msg) {
-    return msg.channel.sendMessage('Hack me at https://github.com/osu-cascades/hackbot');
-  }
-
 }
 
-module.exports = CoreCommand;
+module.exports = Help;
