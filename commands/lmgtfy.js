@@ -13,7 +13,7 @@ class Lmgtfy extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
     return channel.sendMessage(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 

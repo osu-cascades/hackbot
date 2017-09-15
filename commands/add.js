@@ -13,7 +13,7 @@ class Add extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
     const numArray = args.map(n => parseInt(n));
     const total = numArray.reduce((p, c) => p + c);
     return channel.sendMessage(total);

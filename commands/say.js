@@ -13,7 +13,7 @@ class Say extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
     const saying = args.join(' ');
     return channel.sendMessage(saying);
   }

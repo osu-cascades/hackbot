@@ -14,7 +14,7 @@ class GitProfile extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage()); }
+    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
     const getGithubProfile = userName => new Promise((resolve, reject) => {
       if (userName === undefined) {
         return reject('Please enter a username.');
