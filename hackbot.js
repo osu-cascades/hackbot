@@ -21,8 +21,7 @@ bot.on('message', msg => {
     let [commandName, args] = cmdParser.parse(msg);
     try {
       if(commands.has(commandName)) {
-        let command = commands.get(commandName);
-        command.execute(args, msg);
+        commands.run(commandName, args, msg);
       }
     } catch( error ) {
       console.log(`Error on command: ${commandName} \n${error}`);
