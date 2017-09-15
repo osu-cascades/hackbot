@@ -1,14 +1,14 @@
 const glob = require('glob');
 const path = require('path');
+const camelCase = require('lodash.camelcase');
 
 class CommandLoader {
 
   constructor() {
-    this.commandClasses = [];
+    this.commandClasses = {};
     this.commandFiles = this.getCommandFiles();
     
     this.loadCommandClasses();
-    console.log(`COMMANDS: ${this.collectCommands()}`);
   }
 
   getCommandFiles() {
@@ -21,17 +21,10 @@ class CommandLoader {
     // Load all commands in the commands folder besides _template.js
     this.commandFiles.forEach(function(file) {
       let key = path.basename(file, path.extname(file));
+      // Convert the kebab file names to camel case
+      key = camelCase(key);
       this.commandClasses[key] = require(path.resolve(file));
     }, this);
-  }
-
-  getCommands(commandClass) {
-    return this.commandClasses[commandClass].commands();
-  }
-
-  collectCommands() {
-    return Object.keys(this.commandClasses)
-      .map(commands => this.getCommands(commands));
   }
 
 }

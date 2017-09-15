@@ -1,12 +1,11 @@
 require('dotenv').config();
 const Discord = require('discord.js');
-const CommandLoader = require('./library/command-loader');
 const CommandParser = require('./library/command-parser');
+const Commands = require('./library/commands');
 
 const bot = new Discord.Client();
-const commandLoader = new CommandLoader();
 const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
-const commands = commandLoader.commands;
+const commands = new Commands();
 
 bot.on('ready', () => {
   console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
@@ -19,16 +18,13 @@ bot.on('message', msg => {
   ) {
     return;
   } else {
-    let [command, args] = cmdParser.parse(msg);
+    let [commandName, args] = cmdParser.parse(msg);
     try {
-      const singleCommandArray = commands.filter(cmd => cmd.execution[command]);
-      if (command === 'help') {
-        singleCommandArray.map(cmd => cmd.execution[command](args, msg, commands))
-      } else {
-        singleCommandArray.map(cmd => cmd.execution[command](args, msg))
+      if(commands.has(commandName)) {
+        commands.run(commandName, args, msg);
       }
     } catch( error ) {
-      console.log(`Error on command: ${command} \n${error}` );
+      console.log(`Error on command: ${commandName} \n${error}`);
       return 'Sorry, I didn\'t get that.';
     }
   }
