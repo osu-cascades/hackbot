@@ -1,4 +1,5 @@
 const Command = require('../library/command');
+const Commands = require('../library/commands');
 
 /**
  * @class Help
@@ -12,38 +13,34 @@ class Help extends Command {
   }
 
   static execute(args, msg) {
-    // TODO: implement method of getting all the commands
-    //  Either access the loader, or read the commands directory.
-
-    //let commands = 
-    throw 'IMPLEMENT MEEEE (commands)';
+    let commands = new Commands();
+    let allCommands = commands.all;
 
     let helpMsg = 'I am here to help! Well...mostly just make you chuckle at this point, let\'s be honest.\n\n';
     helpMsg += 'Here is a list of the commands that we\'ve got right now:\n';
     helpMsg += '```\n';
 
     // Find the longest synopsis
+    // Considered moving this to the Commands class
     let longest = 0;
-    commands.map((info) => {
-      let { command } = info;
-      command = `${process.env.MESSAGE_PREFIX}${command}`;
-      if (command.length > longest) {
-        longest = command.length;
+    commands.names.map((commandName) => {
+      commandName = `${process.env.MESSAGE_PREFIX}${commandName}`;
+      if (commandName.length > longest) {
+        longest = commandName.length;
       }
     });
 
     // Add an extra space
     longest += 1;
-    commands.map((info) => {
-      let { command, description } = info;
-      command = `${process.env.MESSAGE_PREFIX}${command}`;
-      helpMsg += `${command}`;
-      const spaces = longest - command.length;
+    allCommands.map((command) => {
+      command = `${process.env.MESSAGE_PREFIX}${command.name}`;
+      helpMsg += `${command.name}`;
+      const spaces = longest - command.name.length;
       for (let i = 0; i < spaces; i++) {
         helpMsg += ' ';
       }
       helpMsg += '→ ';
-      helpMsg += `${description}\n`;
+      helpMsg += `${command.description}\n`;
     });
     helpMsg += '```';
 
