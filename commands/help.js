@@ -34,6 +34,7 @@ class Help extends Command {
     commands.names.map((commandName) => {
       let command = commands.get(commandName);
       helpMsg += `${process.env.MESSAGE_PREFIX}${commandName}`;
+      // TODO: needs args implemented here after they're part of the magic
       const spaces = longest - commandName.length;
       for (let i = 0; i < spaces; i++) {
         helpMsg += ' ';
