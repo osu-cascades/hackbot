@@ -14,7 +14,6 @@ class Help extends Command {
 
   static execute(args, msg) {
     let commands = new Commands();
-    let allCommands = commands.all;
 
     let helpMsg = 'I am here to help! Well...mostly just make you chuckle at this point, let\'s be honest.\n\n';
     helpMsg += 'Here is a list of the commands that we\'ve got right now:\n';
@@ -32,10 +31,10 @@ class Help extends Command {
 
     // Add an extra space
     longest += 1;
-    allCommands.map((command) => {
-      command = `${process.env.MESSAGE_PREFIX}${command.name}`;
-      helpMsg += `${command.name}`;
-      const spaces = longest - command.name.length;
+    commands.names.map((commandName) => {
+      let command = commands.get(commandName);
+      helpMsg += `${process.env.MESSAGE_PREFIX}${commandName}`;
+      const spaces = longest - commandName.length;
       for (let i = 0; i < spaces; i++) {
         helpMsg += ' ';
       }

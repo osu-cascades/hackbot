@@ -1,4 +1,4 @@
-const CommandLoader = require('command-loader');
+const CommandLoader = require('./command-loader');
 
 let instance;
 
@@ -37,7 +37,7 @@ class Commands {
   run(commandName, args, msg) {
     this.get(commandName).execute(args, msg);
   }
-  
+
 }
 
 module.exports = Commands;
