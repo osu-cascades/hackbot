@@ -15,7 +15,7 @@ describe('CommandLoader', () => {
     });
   });
 
-  context('Command directory empty', () => {
+  context('Command directory empty or undefined', () => {
     test('it should throw an error if array is empty or undefined', () => {
       let fakeFiles = [[], undefined];
       expect(() =>
