@@ -21,6 +21,8 @@
     "cheerio": "^0.22.0",
     "discord.js": "^10.0.1",
     "dotenv": "^4.0.0",
+    "glob": "^7.1.2",
+    "lodash.camelcase": "^4.3.0",
     "request": "^2.81.0",
     "superagent": "^2.3.0"
   },

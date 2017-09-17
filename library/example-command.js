@@ -9,10 +9,11 @@ class ExampleCommand {
 
   constructor() {
     this.keyword = 'example';
-    this.description = 'An example command description.'
+    this.description = 'An example command description.';
   }
 
   execute(args) {
+    if (args !== []) throw 'Arguments must be an array';
 
   }
 

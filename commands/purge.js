@@ -1,19 +1,20 @@
 const Command = require('../library/command');
 
 /**
- * Provides commands to help administrate the channels.
- * 
- * @class AdministrationCommand
+   * Deletes a channel and then recreates it,
+   * giving it a new beginning.
+ *
+ * @class Purge
  * @extends {Command}
  */
-class AdministrationCommand extends Command {
 
-  /**
-   * Deletes a channel and then recreates it, 
-   * giving it a new beginning.
-   * 
-   */
-  static purge(args, msg) {
+class Purge extends Command {
+
+  static get description() {
+    return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
+  }
+
+  static execute(args, msg) {
     const { guild } = msg;
 
     // Make sure the person doing the command is a Board Member
@@ -44,5 +45,4 @@ class AdministrationCommand extends Command {
 
 }
 
-
-module.exports = AdministrationCommand;
+module.exports = Purge;

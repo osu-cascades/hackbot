@@ -19,9 +19,9 @@ describe('ExampleCommand', () => {
     });
     test('it raises an exception when not passed an array', () => {
       let invalidArguments = [null, undefined, 42, '', 'fake'];
-        expect(() => {
-          invalidArguments.map(arg => command.execute(arg));
-        }).toThrow('Arguments must be an array');
+      expect(() => {
+        invalidArguments.map(arg => command.execute(arg));
+      }).toThrow('Arguments must be an array');
     });
   });
 
