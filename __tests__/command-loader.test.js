@@ -20,7 +20,7 @@ describe('CommandLoader', () => {
       let fakeFiles = [[], undefined];
       expect(() =>
         fakeFiles.map(fakeFiles => commandLoader.getCommandFiles(fakeFiles)))
-          .toThrow('Command files could not be found');
+        .toThrow('Command files could not be found');
     });
   });
 
@@ -28,5 +28,5 @@ describe('CommandLoader', () => {
     test('it should be an object with length greater than zero', () => {
       expect(Object.keys(commandLoader.commandClasses).length).toBeGreaterThan(0);
     });
-  })
+  });
 });
