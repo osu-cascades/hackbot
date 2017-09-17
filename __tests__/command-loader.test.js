@@ -29,4 +29,7 @@ describe('CommandLoader', () => {
       expect(Object.keys(commandLoader.commandClasses).length).toBeGreaterThan(0);
     });
   });
+
+  // TODO: check filenames match class names, maybe there's a way to check the export, or just call a `.name` on the class.
+
 });
