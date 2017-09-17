@@ -1,6 +1,6 @@
 # hackbot
 
-A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server.
+A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 
 ## Setup
 
@@ -32,7 +32,14 @@ In all cases, be sure to run the test suite to make sure all tests pass. _All te
 
 You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker.
 
-[Please refer to airbnb's style guide while coding.](https://github.com/airbnb/javascript)
+Please refer to [airbnb's style guide](https://github.com/airbnb/javascript) while coding.
+
+## Commands
+
+To enable hackbot to respond to a new command, all you need to do is:
+
+1. Copy the existing *commands/_template.js* to a new, well-named js file in the _commands_ directory: `cp commands/_template.js commands/foo.js`.
+2. In your new js file, replace occurrences of `CommandName` with your actual command name. Ensure that this js file contains a class definition that extends `Command` and implements the static `description` and `execute` methods. See _add.js_ or _say.js_ for some simple examples.
 
 ## Deploying
 
