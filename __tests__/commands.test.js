@@ -11,7 +11,7 @@ describe('Commands', () => {
   };
 
   context('All commands are valid and properly extend Command class', () => {
-    
+
     // This is a gimme due to how JS works, but can be overridden
     test('Commands have a name', () => {
       commands.names.forEach((commandName) => {
@@ -31,7 +31,7 @@ describe('Commands', () => {
     test('Commands implement execute', () => {
       commands.names.forEach((commandName) => {
         // Todo, check that execute is implemented on the Command class and not just inherited
-        //  I would prefer to go for a reflection'esk way instead of directly calling execute, 
+        //  I would prefer to go for a reflection'esk way instead of directly calling execute,
         //  because that testing should be left up to the command's own tests to call itself.
       });
     });

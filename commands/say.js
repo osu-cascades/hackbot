@@ -1,6 +1,6 @@
 const Command = require('../library/command');
 
-/** * 
+/** *
  * @class Say
  * @extends {Command}
  */

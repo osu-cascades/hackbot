@@ -3,8 +3,8 @@ const CommandLoader = require('./command-loader');
 let instance;
 
 /**
- * 
- * 
+ *
+ *
  * @class Commands
  */
 class Commands {
