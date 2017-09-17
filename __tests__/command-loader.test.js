@@ -23,4 +23,10 @@ describe('CommandLoader', () => {
           .toThrow('Command files could not be found');
     });
   });
+
+  context('commandClasses object has data', () => {
+    test('it should be an object with length greater than zero', () => {
+      expect(Object.keys(commandLoader.commandClasses).length).toBeGreaterThan(0);
+    });
+  })
 });
