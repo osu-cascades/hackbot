@@ -1,18 +1,16 @@
 const CommandLoader = require('./command-loader');
+const glob = require('glob');
 
 let instance;
 
 /**
- *
- *
  * @class Commands
  */
 class Commands {
-
   constructor(forceReload = false) {
     if (!instance || forceReload) {
       instance = this;
-      this.commandLoader = new CommandLoader();
+      this.commandLoader = new CommandLoader(glob.sync('./commands/**/*.js').filter(file => file != './commands/_template.js'));
       this._all = this.commandLoader.commandClasses;
     }
     return instance;

@@ -4,25 +4,19 @@
  *
  * @class Command
  */
-class Command {
 
-  /**
-   * Prevent instantiation.
-   */
+class Command {
+  // Prevent instantiation.
   constructor() {
-    throw 'Do not instantiate a command. Rely on its static methods.'
+    throw 'Do not instantiate a command. Rely on its static methods.';
   }
 
-  /**
-   * A description of the command. Subclasses should implement this property.
-   */
+  // A description of the command. Subclasses should implement this property.
   static get description() {
     throw `Subclass: ${this.name} does not implement description()`;
   }
 
-  /**
-   * Execute the command. Subclasses should implement this method.
-   */
+  // Execute the command. Subclasses should implement this method.
   static execute(args, msg) {
     let className = this.name;
     let directCallException = 'Cannot call execute() directly from the Command class';
@@ -37,7 +31,6 @@ class Command {
   static get argsErrorMessage() {
     return 'Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.';
   }
-
 }
 
 module.exports = Command;
