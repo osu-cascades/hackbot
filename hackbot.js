@@ -30,11 +30,13 @@ bot.on('message', msg => {
   }
 });
 
-bot.on('guildMemberAdd', (member) => {
-  var { username } = member.user;
-  console.log(`New User '${username}' has joined '${member.guild.name}'` );
-  member.guild.defaultChannel.sendMessage(`'${username}' has joined this server`);
-});
+if (process.env.NODE_ENV === 'production') {
+  bot.on('guildMemberAdd', (member) => {
+    var { username } = member.user;
+    console.log(`New User '${username}' has joined '${member.guild.name}'` );
+    member.guild.defaultChannel.sendMessage(`'${username}' has joined this server`);
+  });
+}
 
 bot.on('error', e => { console.error(e); });
 
