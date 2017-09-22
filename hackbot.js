@@ -40,11 +40,8 @@ if (process.env.NODE_ENV === 'production') {
       
     if (general) {
       general.sendMessage(`'${username}' has joined this server`);
-    }
-    else {
-      console.log("This server has no defaultChannel property. (It might be too new.) " +
-                  "If you are running the bot locally, please specify the default " + 
-                  "channel in .env.");
+    } else {
+      console.log("This server has no defaultChannel property. (It might be too new. If you are running the bot locally, please specify the default channel in .env.");
     }
   });
 }
