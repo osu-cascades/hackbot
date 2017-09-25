@@ -16,6 +16,10 @@ class Command {
     throw `Subclass: ${this.name} does not implement description()`;
   }
 
+  static get arguments() {
+    throw `Subclass: ${this.name} does not implement arguments()`;
+  }
+
   // Execute the command. Subclasses should implement this method.
   static execute(args, msg) {
     let className = this.name;

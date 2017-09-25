@@ -11,6 +11,13 @@ class Add extends Command {
     return 'Adds together _integers_ passed as arguments.';
   }
 
+  static get arguments() {
+    return {
+      integers: true,
+      _variable: true
+    };
+  }
+
   static execute(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
