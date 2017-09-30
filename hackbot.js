@@ -34,12 +34,13 @@ if (process.env.NODE_ENV === 'production') {
   bot.on('guildMemberAdd', (member) => {
     var { username } = member.user;
     console.log(`New User '${username}' has joined '${member.guild.name}'`);
-      
-    const general = member.guild.defaultChannel
+
+    const defaultChannel = member.guild.defaultChannel
       || member.guild.channels.find("name", process.env.DEFAULT_CHANNEL);
-      
-    if (general) {
-      general.sendMessage(`'${username}' has joined this server`);
+
+    if (defaultChannel) {
+      defaultChannel.sendMessage(`'${username}' has joined this server`);
+      defaultChannel.sendMessage(`Welcome, @${username} !`);
     } else {
       console.log('This server has no defaultChannel property. (It might be too new.) If you are running the bot locally, please specify the default channel in .env.');
     }
