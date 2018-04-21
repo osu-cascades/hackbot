@@ -9,6 +9,7 @@ const commands = new Commands();
 
 bot.on('ready', () => {
   console.log(`Ready to serve in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
+  console.log(`Servers: ${bot.guilds.map(g=>g.name).join(', ')}`);
 });
 
 bot.on('message', msg => {
@@ -36,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
     console.log(`New User '${username}' has joined '${member.guild.name}'`);
 
     const defaultChannel = member.guild.defaultChannel
-      || member.guild.channels.find("name", process.env.DEFAULT_CHANNEL);
+      || member.guild.channels.find('name', process.env.DEFAULT_CHANNEL);
 
     if (defaultChannel) {
       defaultChannel.sendMessage(`'${username}' has joined this server`);
