@@ -32,4 +32,17 @@ describe('CommandLoader', () => {
       expect(commandClasses).toMatchObject({});
     });
   });
+
+  context('Class names match their file names', () => {
+    test('they match their key name', () => {
+      for (let commandName in commandClasses) {
+        let commandClass = commandClasses[commandName];
+        // Capitalize first character
+        commandName = commandName.replace(/^\w/, (char) => {
+          return char.toUpperCase();
+        });
+        expect(commandName).toEqual(commandClass.name);
+      }
+    });
+  });
 });
