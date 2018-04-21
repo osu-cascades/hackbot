@@ -14,7 +14,7 @@ class Xmas extends Command {
   static execute(args, msg) {
     const { channel } = msg;
     const randomImage = 'https://giphy.com/gifs/foxhomeent-3o7TKLHb0PWRNnoVq0';
-    channel.sendMessage(randomImage);
+    channel.send(randomImage);
   }
 
 }

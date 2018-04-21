@@ -23,8 +23,8 @@ class Search extends Command {
         console.log('superagent error...');
         return msg.reply('Sorry, I don\'t seem to be able to do that...');
       }
-      if (res.body.queries.request[0].totalResults === '0') { return channel.sendMessage('`No results found.`'); }
-      channel.sendMessage(res.body.items[0].link).catch(() => {
+      if (res.body.queries.request[0].totalResults === '0') { return channel.send('`No results found.`'); }
+      channel.send(res.body.items[0].link).catch(() => {
         console.log('response error...');
         return msg.reply('Sorry, I had a problem getting a response from google.');
       });
