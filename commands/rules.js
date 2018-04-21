@@ -13,7 +13,7 @@ class Rules extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    return channel.sendMessage('Be nice and don\'t copy each other\'s homework!');
+    return channel.send('Be nice and don\'t copy each other\'s homework!');
   }
 
 }

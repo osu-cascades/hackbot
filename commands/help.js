@@ -45,7 +45,7 @@ class Help extends Command {
     helpMsg += '```';
 
     msg.reply('sliding into your DMs...');
-    msg.author.sendMessage(helpMsg);
+    msg.author.send(helpMsg);
   }
 
 }

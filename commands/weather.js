@@ -15,7 +15,7 @@ class Weather extends Command {
   // TODO? could be refactored out into more method calls instead of this jumbo method
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     const getWeather = location => new Promise((resolve, reject) => {
       const encodedLocation = encodeURIComponent(location);
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
@@ -42,7 +42,7 @@ class Weather extends Command {
     });
     getWeather(args)
       .then((currentWeather) => {
-        return channel.sendMessage(currentWeather);
+        return channel.send(currentWeather);
       })
       .catch((error) => {
         console.log(error);
