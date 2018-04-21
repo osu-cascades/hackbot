@@ -11,17 +11,18 @@ describe('Commands', () => {
   };
 
   context('All commands are valid and properly extend Command class', () => {
+    const commandNames = commands.names;
 
     // This is a gimme due to how JS works, but can be overridden
     test('Commands have a name', () => {
-      commands.names.forEach((commandName) => {
+      commandNames.forEach((commandName) => {
         expect(typeof commands.get(commandName).name).toMatch('string');
       });
     });
 
     // "Interface" Implementation Validation
     test('Commands implement a description', () => {
-      commands.names.forEach((commandName) => {
+      commandNames.forEach((commandName) => {
         expect(() => {
           commands.get(commandName).description;
         }).not.toThrow();
@@ -29,10 +30,21 @@ describe('Commands', () => {
     });
 
     test('Commands implement execute', () => {
-      commands.names.forEach((commandName) => {
-        // Todo, check that execute is implemented on the Command class and not just inherited
-        //  I would prefer to go for a reflection'esk way instead of directly calling execute,
-        //  because that testing should be left up to the command's own tests to call itself.
+      commandNames.forEach((commandName) => {
+        let command = commands.get(commandName);
+        expect(Object.getOwnPropertyNames(command))
+          .toEqual(expect.arrayContaining(['execute']));
+      });
+    });
+
+    context('Commands are implemented properly', () => {
+      test('they have description, execute, and name properties', () => {
+        let allCommands = commands.all;
+        for (let commandName in allCommands) {
+          let commandClass = allCommands[commandName];
+          expect(Object.getOwnPropertyNames(commandClass))
+            .toEqual(expect.arrayContaining(['description', 'execute', 'name']));
+        }
       });
     });
 
