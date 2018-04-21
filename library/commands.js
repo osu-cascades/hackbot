@@ -10,8 +10,8 @@ class Commands {
   constructor(forceReload = false) {
     if (!instance || forceReload) {
       instance = this;
-      this.commandLoader = new CommandLoader(glob.sync('./commands/**/*.js').filter(file => file != './commands/_template.js'));
-      this._all = this.commandLoader.commandClasses;
+      this.commandFiles = glob.sync('./commands/**/*.js');
+      this._all = CommandLoader.getCommandClasses(this.commandFiles);
     }
     return instance;
   }

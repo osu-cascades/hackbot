@@ -29,7 +29,7 @@
   "devDependencies": {
     "eslint": "^4.5.0",
     "eslint-plugin-import": "^2.7.0",
-    "jest": "^20.0.4",
+    "jest": "^22.4.3",
     "jest-plugin-context": "^1.7.0"
   },
   "jest": {

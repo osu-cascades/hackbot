@@ -12,7 +12,7 @@ class Source extends Command {
   }
 
   static execute(args, msg) {
-    return msg.channel.sendMessage('Hack me at https://github.com/osu-cascades/hackbot');
+    return msg.channel.send('Hack me at https://github.com/osu-cascades/hackbot');
   }
 
 }

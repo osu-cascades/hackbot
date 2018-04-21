@@ -2,22 +2,47 @@ const CommandLoader = require('../library/command-loader');
 const glob = require('glob');
 
 describe('CommandLoader', () => {
-  let commandLoader;
-  beforeEach(() => {
-    commandLoader = new CommandLoader(glob.sync('./commands/**/*.js').filter(file => file != './commands/_template.js'));
-  });
+  let commandClasses;
   const expected = [ expect.stringMatching(/\.\/commands\/\w*\.js/) ];
+  let files = glob.sync('./commands/**/*.js');
+  const templateFile = './commands/_template.js';
+
+  beforeEach(() => {
+    commandClasses = CommandLoader.getCommandClasses(files);
+  });
 
   context('Gets all files from command directory', () => {
+    let commandFiles = CommandLoader._removeTemplateFile(files);
     test('it should return an array of command classes', () => {
-      expect(commandLoader.getCommandFiles())
+      expect(commandFiles)
         .toEqual(expect.arrayContaining(expected));
+    });
+    test('it should have a template file', () => {
+      expect(files)
+        .toEqual(expect.arrayContaining([templateFile]));
+    });
+    test('it should filter the template file', () => {
+      expect(commandFiles)
+        .not.toEqual(expect.arrayContaining([templateFile]));
     });
   });
 
   context('Return type should be an object', () => {
     test('it should return an object', () => {
-      expect(commandLoader.loadCommandClasses()).toMatchObject({});
+      expect(commandClasses).toMatchObject({});
+    });
+  });
+
+  context('Class names match their file names', () => {
+    test('they match their key name', () => {
+      for (let commandName in commandClasses) {
+        let commandClass = commandClasses[commandName];
+        // Capitalize first character
+        commandName = commandName.replace(/^\w/, (char) => {
+          return char.toUpperCase();
+        });
+        expect(commandName).toEqual(commandClass.name);
+      }
     });
   });
 });

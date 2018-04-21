@@ -5,7 +5,7 @@ const Command = require('../library/command');
  * @extends {Command}
  */
 
-class Magic8ball extends Command {
+class Magic8Ball extends Command {
 
   static get description() {
     return 'Ask and you shall receive... a vague, randomly generated response.';
@@ -13,7 +13,7 @@ class Magic8ball extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.sendMessage(this.argsErrorMessage); }
+    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     let response = [ 'It is certain',
       'It is decidedly so',
       'Without a doubt',
@@ -34,9 +34,9 @@ class Magic8ball extends Command {
       'My sources say no',
       'Outlook not so good',
       'Very doubtful' ];
-    return channel.sendMessage(response[Math.floor(Math.random()*response.length)]);
+    return channel.send(response[Math.floor(Math.random()*response.length)]);
   }
 
 }
 
-module.exports = Magic8ball;
+module.exports = Magic8Ball;
