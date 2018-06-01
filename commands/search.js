@@ -1,4 +1,5 @@
 const Command = require('../library/command');
+const config = require('../config/config');
 const superagent = require('superagent');
 
 /**
@@ -13,10 +14,8 @@ class Search extends Command {
   }
 
   static execute(args, msg) {
-    const { key } = process.env.GOOGLE_API_KEY;
-    const { cx } = process.env.GOOGLE_SEARCH_ENGINE_ID;
     const { channel } = msg;
-    const url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
+    const url = `https://www.googleapis.com/customsearch/v1?key=${config.googleApiKey}&cx=${config.googleSearchEngineId}&safe=off&q=${encodeURI(args)}`;
 
     superagent.get(url).end((err, res) => {
       if (err) {

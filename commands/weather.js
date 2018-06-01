@@ -1,3 +1,4 @@
+const config = require('../config/config')
 const Command = require('../library/command');
 const request = require('request');
 
@@ -19,7 +20,7 @@ class Weather extends Command {
     const getWeather = location => new Promise((resolve, reject) => {
       const encodedLocation = encodeURIComponent(location);
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
-                   us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
+                   us&units=imperial&appid=${config.openWeathermapKey}`;
       location.map((location) => {
         const trimmedLocation = (location.trim());
         const isInt = parseInt(trimmedLocation);
