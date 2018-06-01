@@ -1,4 +1,5 @@
 const Command = require('../library/command');
+const config = require('../config/config')
 const { version } = require('../package.json');
 
 /**
@@ -14,7 +15,7 @@ class Version extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    let nodeEnv = process.env.NODE_ENV;
+    let nodeEnv = config.env;
     let runningEnv = nodeEnv ? `${nodeEnv} ` : '';
     return channel.sendMessage(`Hackbot ${runningEnv}is running v${version}`);
   }
