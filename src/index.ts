@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import { Client } from 'discord.js;
+import { Client } from 'discord.js';
 import CommandParser from './library/command-parser';
 import Commands from './library/commands';
 
