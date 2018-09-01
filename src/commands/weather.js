@@ -1,5 +1,5 @@
 const Command = require('../library/command');
-const request = require('request');
+const axios = require('axios');
 
 /**
  * @class Weather
@@ -16,39 +16,30 @@ class Weather extends Command {
   static execute(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.send(this.argsErrorMessage); }
-    const getWeather = location => new Promise((resolve, reject) => {
-      const encodedLocation = encodeURIComponent(location);
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
-                   us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
-      location.map((location) => {
-        const trimmedLocation = (location.trim());
-        const isInt = parseInt(trimmedLocation);
 
-        if (Number.isInteger(isInt)) {
-          return reject('Please provide a location');
-        }
-      });
-      request({
-        url,
-        json: true,
-      }, (error, response, body) => {
-        if (error) {
-          reject('Unable to fetch weather.');
-        } else {
-          const temp = Math.floor(body.main.temp);
-          return resolve(`It's ${temp} degrees in ${body.name}.`);
-        }
-      });
-    });
-    getWeather(args)
-      .then((currentWeather) => {
-        return channel.send(currentWeather);
+    this.getWeather(args)
+      .then((weather) => {
+        const temp = Math.floor(weather.main.temp);
+        return channel.send(`It's ${temp} degrees in ${weather.name}.`);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.error);
   }
 
+  static getWeather(location) {
+    const encodedLocation = encodeURIComponent(location);
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
+                  us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
+    location.map((location) => {
+      const trimmedLocation = (location.trim());
+      const isInt = parseInt(trimmedLocation);
+
+      if (Number.isInteger(isInt)) {
+        return Promise.reject('Please provide a location');
+      }
+    });
+
+    return axios.get(url).catch(err => console.error('Unable to fetch weather.'));
+  }
 }
 
 module.exports = Weather;

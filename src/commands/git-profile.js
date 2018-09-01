@@ -1,5 +1,5 @@
 const Command = require('../library/command');
-const request = require('request');
+const axios = require('axios');
 
 /**
  * @class GitProfile
@@ -15,32 +15,33 @@ class GitProfile extends Command {
   static execute(args, msg) {
     const { channel } = msg;
     if (args.length < 1) { return channel.send(this.argsErrorMessage); }
-    const getGithubProfile = userName => new Promise((resolve, reject) => {
-      if (userName === undefined) {
-        return reject('Please enter a username.');
-      }
-      const url = `https://api.github.com/users/${userName}`;
-      const options = {
-        url,
-        headers: {
-          'User-Agent': 'request',
-        },
-      };
-      request(options, (error, response, body) => {
-        if (error) {
-          return reject(`error: ${error}`);
-        }
-        return resolve(body);
-      });
-    });
-    getGithubProfile(args)
+
+    if (args === undefined) {
+      const message = 'Please enter a username.';
+      console.error(message)
+      return msg.channel.send(message);
+    }
+    else {
+      this.getGithubProfile(args)
       .then((profile) => {
         const parsedProfile = JSON.parse(profile);
         return msg.channel.send(parsedProfile.html_url);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.error);
+    }
+  }
+
+  static getGithubProfile(userName) {
+    const options = {
+      url: `https://api.github.com/users/${userName}`,
+      headers: {
+        'User-Agent': 'request',
+      },
+    };
+
+    return axios.request(options).then(response => {
+      return response.data;
+    });
   }
 
 }
