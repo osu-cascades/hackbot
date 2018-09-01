@@ -1,9 +1,10 @@
-require('dotenv').config();
-const Discord = require('discord.js');
-const CommandParser = require('./library/command-parser');
-const Commands = require('./library/commands');
+import * as dotenv from 'dotenv';
+dotenv.config();
+import { Client } from 'discord.js;
+import CommandParser from './library/command-parser';
+import Commands from './library/commands';
 
-const bot = new Discord.Client();
+const bot = new Client();
 const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
 const commands = new Commands();
 

@@ -34,4 +34,4 @@ class CommandParser {
   }
 }
 
-module.exports = CommandParser;
+export default CommandParser;
