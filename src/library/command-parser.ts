@@ -1,10 +1,15 @@
+import { Message } from "discord.js";
+import ParsedCommand from './parsedCommand';
+
 class CommandParser {
+  prefix: string;
+
   /**
    * Discord users are expected to prefix bot commands with a single character,
    * such as '!cmd foo'. Throw an exception if the prefix is not a string, an
    * empty string, or a string that contains whitespace.
    */
-  constructor(prefix) {
+  constructor(prefix: string) {
     if (typeof prefix != 'string' || prefix.length === 0 || /\s/g.test(prefix))
       throw 'Prefix must be a non-empty string';
     this.prefix = prefix;
@@ -16,11 +21,12 @@ class CommandParser {
    * `{ content: '!multiply 2 4' }` becomes `[ 'multiply', ['2', '4']]`.
    * Returns `undefined` in all invalid cases.
    */
-  parse(msg) {
-    if (!(msg && 'content' in msg)) return;
-    if (!String(msg.content).startsWith(this.prefix)) return;
-    if (msg.content === this.prefix) return;
+  parse(msg: Message): ParsedCommand|false {
     const { content } = msg;
+
+    if (!this.validContent(content)) {
+      return false;
+    }
 
     // Get command
     let cmd = content.split(' ')[0];
@@ -30,7 +36,12 @@ class CommandParser {
 
     // Parse the arguments passed after the command
     const args = content.split(' ').slice(1);
-    return [cmd, args];
+    return new ParsedCommand(cmd, args);
+  }
+
+  validContent(content: string): boolean {
+    return content.startsWith(this.prefix) &&
+      content !== this.prefix;
   }
 }
 

@@ -20,7 +20,7 @@ bot.on('message', msg => {
   ) {
     return;
   } else {
-    let [commandName, args] = cmdParser.parse(msg);
+    const { commandName, args } = cmdParser.parse(msg);
     try {
       if(commands.has(commandName)) {
         commands.run(commandName, args, msg);
