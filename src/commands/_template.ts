@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class CommandName
  * @extends {Command}
  */
 
-class CommandName extends Command {
+export default class CommandName extends Command {
 
   static get description() {
     return 'This is a description of my awesome command.';
@@ -17,5 +17,3 @@ class CommandName extends Command {
   }
 
 }
-
-module.exports = CommandName;

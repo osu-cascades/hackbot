@@ -2,7 +2,6 @@ import { Client } from 'discord.js';
 import CommandParser from './library/command-parser';
 import Commands from './library/commands';
 import config from './config';
-import ParsedCommand from './library/parsedCommand';
 
 const bot = new Client();
 const cmdParser = new CommandParser(config.messagePrefix);

@@ -1,12 +1,12 @@
-const Command = require('../library/command');
-const axios = require('axios');
+import Command from '../library/command';
+import axios from 'axios';
 
 /**
  * @class GitProfile
  * @extends {Command}
  */
 
-class GitProfile extends Command {
+export default class GitProfile extends Command {
 
   static get description() {
     return 'Retrieves any public github profile.';
@@ -45,5 +45,3 @@ class GitProfile extends Command {
   }
 
 }
-
-module.exports = GitProfile;

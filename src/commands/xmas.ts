@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Xmas
  * @extends {Command}
  */
 
-class Xmas extends Command {
+export default class Xmas extends Command {
 
   static get description() {
     return 'Merry Christmas, ya filthy animals.';
@@ -18,5 +18,3 @@ class Xmas extends Command {
   }
 
 }
-
-module.exports = Xmas;

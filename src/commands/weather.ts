@@ -1,14 +1,13 @@
 import config from '../config';
-
-const Command = require('../library/command');
-const axios = require('axios');
+import Command from '../library/command';
+import axios from 'axios';
 
 /**
  * @class Weather
  * @extends {Command}
  */
 
-class Weather extends Command {
+export default class Weather extends Command {
 
   static get description() {
     return 'Provide City and State, or City and Country to get current temperature.';
@@ -47,5 +46,3 @@ class Weather extends Command {
     return axios.get(url).catch(err => console.error('Unable to fetch weather.'));
   }
 }
-
-module.exports = Weather;

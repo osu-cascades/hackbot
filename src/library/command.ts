@@ -5,7 +5,7 @@
  * @class Command
  */
 
-class Command {
+export default class Command {
   // Prevent instantiation.
   constructor() {
     throw 'Do not instantiate a command. Rely on its static methods.';
@@ -32,5 +32,3 @@ class Command {
     return 'Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.';
   }
 }
-
-module.exports = Command;

@@ -1,4 +1,4 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 describe('Command', () => {
 

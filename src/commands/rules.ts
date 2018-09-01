@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Rules
  * @extends {Command}
  */
 
-class Rules extends Command {
+export default class Rules extends Command {
 
   static get description() {
     return 'List the rules for the CTC Discord server.';
@@ -17,5 +17,3 @@ class Rules extends Command {
   }
 
 }
-
-module.exports = Rules;

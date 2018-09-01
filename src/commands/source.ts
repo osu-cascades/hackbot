@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Source
  * @extends {Command}
  */
 
-class Source extends Command {
+export default class Source extends Command {
 
   static get description() {
     return 'Retrieves the hackBot\'s github repository.';
@@ -16,5 +16,3 @@ class Source extends Command {
   }
 
 }
-
-module.exports = Source;

@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Add
  * @extends {Command}
  */
 
-class Add extends Command {
+export default class Add extends Command {
 
   static get description() {
     return 'Adds together _integers_ passed as arguments.';
@@ -20,5 +20,3 @@ class Add extends Command {
   }
 
 }
-
-module.exports = Add;

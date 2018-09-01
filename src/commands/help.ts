@@ -1,14 +1,13 @@
 import config from '../config';
-
-const Command = require('../library/command');
-const Commands = require('../library/commands');
+import Command from '../library/command';
+import Commands from '../library/commands';
 
 /**
  * @class Help
  * @extends {Command}
  */
 
-class Help extends Command {
+export default class Help extends Command {
 
   static get description() {
     return 'Displays this message';
@@ -51,5 +50,3 @@ class Help extends Command {
   }
 
 }
-
-module.exports = Help;

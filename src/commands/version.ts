@@ -1,14 +1,13 @@
 import config from '../config';
-
-const Command = require('../library/command');
-const { version } = require('../package.json');
+import Command from '../library/command';
+import { version } from '../package.json';
 
 /**
  * @class Version
  * @extends {Command}
  */
 
-class Version extends Command {
+export default class Version extends Command {
 
   static get description() {
     return "Gets the bot's current running version from package.json";
@@ -22,5 +21,3 @@ class Version extends Command {
   }
 
 }
-
-module.exports = Version;

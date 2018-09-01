@@ -1,4 +1,4 @@
-const CommandParser = require('../library/command-parser');
+import CommandParser from '../library/command-parser';
 
 describe('CommandParser', () => {
   const messagePrefix = 'FAKE';

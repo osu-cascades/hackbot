@@ -1,14 +1,13 @@
 import config from '../config';
-
-const Command = require('../library/command');
-const axios = require('axios');
+import Command from '../library/command';
+import axios from 'axios';
 
 /**
  * @class Search
  * @extends {Command}
  */
 
-class Search extends Command {
+export default class Search extends Command {
 
   static get description() {
     return 'Searches the web for the passed query and return the top result.';
@@ -34,5 +33,3 @@ class Search extends Command {
   }
 
 }
-
-module.exports = Search;

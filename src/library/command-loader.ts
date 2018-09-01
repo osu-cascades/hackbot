@@ -1,7 +1,7 @@
-const path = require('path');
-const camelCase = require('lodash.camelcase');
+import path from 'path';
+import camelCase from 'lodash.camelcase';
 
-class CommandLoader {
+export default class CommandLoader {
 
   static _removeTemplateFile(files) {
     return files.filter(file => file != './commands/_template.js');
@@ -22,5 +22,3 @@ class CommandLoader {
     }, {});
   }
 }
-
-module.exports = CommandLoader;

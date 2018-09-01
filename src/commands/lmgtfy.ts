@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Lmgtfy
  * @extends {Command}
  */
 
-class Lmgtfy extends Command {
+export default class Lmgtfy extends Command {
 
   static get description() {
     return 'When someone is being...lazy...?';
@@ -18,5 +18,3 @@ class Lmgtfy extends Command {
   }
 
 }
-
-module.exports = Lmgtfy;

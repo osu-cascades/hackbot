@@ -1,4 +1,4 @@
-const Commands = require('../library/commands');
+import Commands from '../library/commands';
 
 describe('Commands', () => {
   let commands = new Commands();

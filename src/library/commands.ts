@@ -1,12 +1,12 @@
-const CommandLoader = require('./command-loader');
-const glob = require('glob');
+import CommandLoader from './command-loader';
+import glob from 'glob';
 
 let instance;
 
 /**
  * @class Commands
  */
-class Commands {
+export default class Commands {
   constructor(forceReload = false) {
     if (!instance || forceReload) {
       instance = this;
@@ -37,5 +37,3 @@ class Commands {
   }
 
 }
-
-export default Commands;

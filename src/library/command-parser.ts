@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import ParsedCommand from './parsedCommand';
 
-class CommandParser {
+export default class CommandParser {
   prefix: string;
 
   /**
@@ -44,5 +44,3 @@ class CommandParser {
       content !== this.prefix;
   }
 }
-
-export default CommandParser;

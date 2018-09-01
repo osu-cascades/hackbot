@@ -1,4 +1,4 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
    * Deletes a channel and then recreates it,
@@ -8,7 +8,7 @@ const Command = require('../library/command');
  * @extends {Command}
  */
 
-class Purge extends Command {
+export default class Purge extends Command {
 
   static get description() {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
@@ -44,5 +44,3 @@ class Purge extends Command {
   }
 
 }
-
-module.exports = Purge;

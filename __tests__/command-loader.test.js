@@ -1,5 +1,5 @@
-const CommandLoader = require('../library/command-loader');
-const glob = require('glob');
+import CommandLoader from '../library/command-loader';
+import glob from 'glob';
 
 describe('CommandLoader', () => {
   let commandClasses;

@@ -1,11 +1,11 @@
-const Command = require('../library/command');
+import Command from '../library/command';
 
 /**
  * @class Magic8ball
  * @extends {Command}
  */
 
-class Magic8Ball extends Command {
+export default class Magic8Ball extends Command {
 
   static get description() {
     return 'Ask and you shall receive... a vague, randomly generated response.';
@@ -38,5 +38,3 @@ class Magic8Ball extends Command {
   }
 
 }
-
-module.exports = Magic8Ball;
