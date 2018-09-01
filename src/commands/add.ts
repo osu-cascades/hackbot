@@ -5,13 +5,15 @@ import Command from '../library/command';
  * @extends {Command}
  */
 
-export default class Add extends Command {
+var Add: Command;
 
-  static get description() {
+export default Add = class Add {
+
+  public static get description():string {
     return 'Adds together _integers_ passed as arguments.';
   }
 
-  static execute(args, msg) {
+  public static execute(args: string[], msg: string) {
     const { channel } = msg;
     if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     const numArray = args.map(n => parseInt(n));
