@@ -1,3 +1,5 @@
+import config from '../config';
+
 const Command = require('../library/command');
 const axios = require('axios');
 
@@ -22,13 +24,17 @@ class Weather extends Command {
         const temp = Math.floor(weather.main.temp);
         return channel.send(`It's ${temp} degrees in ${weather.name}.`);
       })
-      .catch(console.error);
+      .catch(msg.reply);
   }
 
   static getWeather(location) {
+    if (!config.openWeathermapKey) {
+      return Promise.reject('Setup Required: Add OPEN_WEATHERMAP_KEY environment variable.');
+    }
+
     const encodedLocation = encodeURIComponent(location);
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
-                  us&units=imperial&appid=${process.env.OPEN_WEATHERMAP_KEY}`;
+                  us&units=imperial&appid=${config.openWeathermapKey}`;
     location.map((location) => {
       const trimmedLocation = (location.trim());
       const isInt = parseInt(trimmedLocation);

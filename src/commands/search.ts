@@ -1,3 +1,5 @@
+import config from '../config';
+
 const Command = require('../library/command');
 const axios = require('axios');
 
@@ -13,10 +15,11 @@ class Search extends Command {
   }
 
   static execute(args, msg) {
-    const { key } = process.env.GOOGLE_API_KEY;
-    const { cx } = process.env.GOOGLE_SEARCH_ENGINE_ID;
     const { channel } = msg;
-    const url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&safe=off&q=${encodeURI(args)}`;
+    if (!config.googleApiKey || !config.googleSearchEngineId) {
+      msg.reply('Setup Required: Configure Google API keys in the environment variables');
+    }
+    const url = `https://www.googleapis.com/customsearch/v1?key=${config.googleApiKey}&cx=${config.googleSearchEngineId}&safe=off&q=${encodeURI(args)}`;
 
     axios.get(url).then(response => {
       if (response.data.queries.request[0].totalResults === '0') { return channel.send('`No results found.`'); }

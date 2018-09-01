@@ -1,11 +1,11 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
 import { Client } from 'discord.js';
 import CommandParser from './library/command-parser';
 import Commands from './library/commands';
+import config from './config';
+import ParsedCommand from './library/parsedCommand';
 
 const bot = new Client();
-const cmdParser = new CommandParser(process.env.MESSAGE_PREFIX);
+const cmdParser = new CommandParser(config.messagePrefix);
 const commands = new Commands();
 
 bot.on('ready', () => {
@@ -14,31 +14,31 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if (
-    !msg.content.startsWith(process.env.MESSAGE_PREFIX) ||
-    msg.content.length <= process.env.MESSAGE_PREFIX.length
-  ) {
+  const parsedCommand = cmdParser.parse(msg);
+
+  if (!parsedCommand) {
     return;
-  } else {
-    const { commandName, args } = cmdParser.parse(msg);
-    try {
-      if(commands.has(commandName)) {
-        commands.run(commandName, args, msg);
-      }
-    } catch( error ) {
-      console.log(`Error on command: ${commandName} \n${error}`);
-      return 'Sorry, I didn\'t get that.';
+  }
+
+  const { commandName, args } = parsedCommand;
+
+  try {
+    if(commands.has(commandName)) {
+      commands.run(commandName, args, msg);
     }
+  } catch( error ) {
+    console.log(`Error on command: ${commandName} \n${error}`);
+    return "Sorry, I didn't get that.";
   }
 });
 
-if (process.env.NODE_ENV === 'production') {
+if (config.env === 'production') {
   bot.on('guildMemberAdd', (member) => {
     var { username, id } = member.user;
     console.log(`New User '${username}' has joined '${member.guild.name}'`);
 
     const defaultChannel = member.guild.defaultChannel
-      || member.guild.channels.find('name', process.env.DEFAULT_CHANNEL);
+      || member.guild.channels.find('name', config.defaultChannel);
 
     if (defaultChannel) {
       defaultChannel.send(`'${username}' has joined this server`);
@@ -51,4 +51,4 @@ if (process.env.NODE_ENV === 'production') {
 
 bot.on('error', e => { console.error(e); });
 
-bot.login(process.env.DISCORD_APP_TOKEN);
+bot.login(config.discordAppToken);

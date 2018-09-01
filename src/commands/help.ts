@@ -1,3 +1,5 @@
+import config from '../config';
+
 const Command = require('../library/command');
 const Commands = require('../library/commands');
 
@@ -23,7 +25,7 @@ class Help extends Command {
     // Considered moving this to the Commands class
     let longest = 0;
     commands.names.map((commandName) => {
-      commandName = `${process.env.MESSAGE_PREFIX}${commandName}`;
+      commandName = `${config.messagePrefix}${commandName}`;
       if (commandName.length > longest) {
         longest = commandName.length;
       }
@@ -33,7 +35,7 @@ class Help extends Command {
     longest += 1;
     commands.names.map((commandName) => {
       let command = commands.get(commandName);
-      helpMsg += `${process.env.MESSAGE_PREFIX}${commandName}`;
+      helpMsg += `${config.messagePrefix}${commandName}`;
       // TODO: needs args implemented here after they're part of the magic
       const spaces = longest - commandName.length;
       for (let i = 0; i < spaces; i++) {
