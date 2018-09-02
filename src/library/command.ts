@@ -9,5 +9,4 @@ import { Message } from "discord.js";
 export default interface Command {
   readonly description: string;
   execute(args: string[], msg: Message): void;
-  readonly argsErrorMessage?: string;
 }

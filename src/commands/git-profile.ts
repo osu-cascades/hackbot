@@ -1,11 +1,6 @@
 import Command from '../library/command';
 import axios from 'axios';
 
-/**
- * @class GitProfile
- * @extends {Command}
- */
-
 export default class GitProfile extends Command {
 
   static get description() {
@@ -14,7 +9,6 @@ export default class GitProfile extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
 
     if (args === undefined) {
       const message = 'Please enter a username.';

@@ -13,7 +13,6 @@ export default class Magic8Ball extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     let response = [ 'It is certain',
       'It is decidedly so',
       'Without a doubt',

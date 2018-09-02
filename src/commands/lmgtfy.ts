@@ -13,7 +13,6 @@ export default class Lmgtfy extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     return channel.send(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 

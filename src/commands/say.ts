@@ -13,7 +13,6 @@ export default class Say extends Command {
 
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     const saying = args.join(' ');
     return channel.send(saying);
   }

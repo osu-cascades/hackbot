@@ -26,10 +26,4 @@ describe('Command', () => {
     });
   });
 
-  describe('argsErrorMessage', () => {
-    test('should be an error message', () => {
-      expect(Command.argsErrorMessage).toMatch('Arguments are missing.\nRefer to `!help` or ask an Administrator if this error occurs.');
-    });
-  });
-
 });

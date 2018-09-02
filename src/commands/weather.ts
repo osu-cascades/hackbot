@@ -16,7 +16,6 @@ export default class Weather extends Command {
   // TODO? could be refactored out into more method calls instead of this jumbo method
   static execute(args, msg) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
 
     this.getWeather(args)
       .then((weather) => {
