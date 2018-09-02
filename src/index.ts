@@ -20,14 +20,21 @@ bot.on('message', msg => {
   }
 
   const { commandName, args } = parsedCommand;
+  const { channel } = msg;
 
   try {
-    if(commands.has(commandName)) {
-      commands.run(commandName, args, msg);
+    if (args.length < 1) {
+      return channel.send('Arguments are missing.\nRefer to `!help`');
     }
-  } catch( error ) {
-    console.log(`Error on command: ${commandName} \n${error}`);
-    return "Sorry, I didn't get that.";
+    else if(commands.has(commandName)) {
+      return commands.run(commandName, args, msg);
+    }
+    else {
+      return channel.send(`Command not found: ${commandName}`);
+    }
+  }
+  catch( error ) {
+    console.error(`Error on command: ${commandName} \n${error}`);
   }
 });
 
@@ -43,7 +50,7 @@ if (config.env === 'production') {
       defaultChannel.send(`'${username}' has joined this server`);
       defaultChannel.send(`Welcome, <@${id}> !`);
     } else {
-      console.log('This server has no defaultChannel property. (It might be too new.) If you are running the bot locally, please specify the default channel in .env.');
+      console.warn('This server has no defaultChannel property. (It might be too new.) If you are running the bot locally, please specify the default channel in .env.');
     }
   });
 }

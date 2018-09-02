@@ -1,6 +1,7 @@
 import Command from '../library/command';
 import { Message } from 'discord.js';
 
+// Hack for implementing with static properties/methods
 let CommandName: Command;
 export default CommandName = class {
 
