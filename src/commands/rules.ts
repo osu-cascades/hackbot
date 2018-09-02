@@ -1,14 +1,17 @@
 import Command from '../library/command';
+import { Message } from 'discord.js';
 
-export default class Rules extends Command {
+let Rules: Command;
 
-  static get description() {
+export default Rules = class {
+
+  static get description():string {
     return 'List the rules for the CTC Discord server.';
   }
 
-  static execute(args, msg) {
+  static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    return channel.send('Be nice and don\'t copy each other\'s homework!');
+    return channel.send("Be nice and don't copy each other's homework!");
   }
 
 }

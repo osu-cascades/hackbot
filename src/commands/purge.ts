@@ -5,11 +5,11 @@ let Purge: Command;
 
 export default Purge = class {
 
-  public static get description():string {
+  static get description():string {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  public static execute(args: string[], msg: Message, bot: Client) {
+  static execute(args: string[], msg: Message, bot: Client) {
     const { guild } = msg;
 
     // Make sure the person doing the command is a Board Member

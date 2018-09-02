@@ -7,11 +7,11 @@ let Help: Command;
 
 export default Help = class {
 
-  public static get description():string {
+  static get description():string {
     return 'Displays this message';
   }
 
-  public static execute(args: string[], msg: Message) {
+  static execute(args: string[], msg: Message) {
     let commands = new Commands();
 
     let helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n";

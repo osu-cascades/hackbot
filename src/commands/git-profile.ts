@@ -6,11 +6,11 @@ let GitProfile: Command;
 
 export default GitProfile = class {
 
-  public static get description():string {
+  static get description():string {
     return 'Retrieves any public github profile.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  static execute(args: string[], msg: Message) {
     const { channel } = msg;
 
     if (args === undefined) {
@@ -28,7 +28,7 @@ export default GitProfile = class {
     }
   }
 
-  static getGithubProfile(userName: string): Promise<string> {
+  private static getGithubProfile(userName: string): Promise<string> {
     const options = {
       url: `https://api.github.com/users/${userName}`,
       headers: {

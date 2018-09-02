@@ -5,11 +5,11 @@ let Magic8Ball: Command;
 
 export default Magic8Ball = class {
 
-  public static get description():string {
+  static get description():string {
     return 'Ask and you shall receive... a vague, randomly generated response.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  static execute(args: string[], msg: Message) {
     const { channel } = msg;
     let response = [ 'It is certain',
       'It is decidedly so',

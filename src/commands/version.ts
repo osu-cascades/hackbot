@@ -1,14 +1,17 @@
 import config from '../config';
 import Command from '../library/command';
 import { version } from '../package.json';
+import { Message } from 'discord.js';
 
-export default class Version extends Command {
+let Version: Command;
 
-  static get description() {
+export default Version = class {
+
+  static get description():string {
     return "Gets the bot's current running version from package.json";
   }
 
-  static execute(args, msg) {
+  static execute(args: string[], msg: Message) {
     const { channel } = msg;
     let nodeEnv = config.env;
     let runningEnv = nodeEnv ? `${nodeEnv} ` : '';
