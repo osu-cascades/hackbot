@@ -1,10 +1,5 @@
 import Command from '../library/command';
 
-/**
- * @class Rules
- * @extends {Command}
- */
-
 export default class Rules extends Command {
 
   static get description() {

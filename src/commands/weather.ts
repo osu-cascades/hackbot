@@ -2,11 +2,6 @@ import config from '../config';
 import Command from '../library/command';
 import axios from 'axios';
 
-/**
- * @class Weather
- * @extends {Command}
- */
-
 export default class Weather extends Command {
 
   static get description() {

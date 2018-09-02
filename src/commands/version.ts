@@ -2,11 +2,6 @@ import config from '../config';
 import Command from '../library/command';
 import { version } from '../package.json';
 
-/**
- * @class Version
- * @extends {Command}
- */
-
 export default class Version extends Command {
 
   static get description() {

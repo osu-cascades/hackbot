@@ -2,11 +2,6 @@ import config from '../config';
 import Command from '../library/command';
 import axios from 'axios';
 
-/**
- * @class Search
- * @extends {Command}
- */
-
 export default class Search extends Command {
 
   static get description() {

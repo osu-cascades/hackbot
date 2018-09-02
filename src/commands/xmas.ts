@@ -1,10 +1,5 @@
 import Command from '../library/command';
 
-/**
- * @class Xmas
- * @extends {Command}
- */
-
 export default class Xmas extends Command {
 
   static get description() {

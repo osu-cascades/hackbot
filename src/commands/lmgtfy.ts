@@ -1,10 +1,5 @@
 import Command from '../library/command';
 
-/**
- * @class Lmgtfy
- * @extends {Command}
- */
-
 export default class Lmgtfy extends Command {
 
   static get description() {

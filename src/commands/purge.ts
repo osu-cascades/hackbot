@@ -1,13 +1,5 @@
 import Command from '../library/command';
 
-/**
-   * Deletes a channel and then recreates it,
-   * giving it a new beginning.
- *
- * @class Purge
- * @extends {Command}
- */
-
 export default class Purge extends Command {
 
   static get description() {

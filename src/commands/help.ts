@@ -2,11 +2,6 @@ import config from '../config';
 import Command from '../library/command';
 import Commands from '../library/commands';
 
-/**
- * @class Help
- * @extends {Command}
- */
-
 export default class Help extends Command {
 
   static get description() {

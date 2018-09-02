@@ -1,10 +1,5 @@
 import Command from '../library/command';
 
-/**
- * @class Source
- * @extends {Command}
- */
-
 export default class Source extends Command {
 
   static get description() {
