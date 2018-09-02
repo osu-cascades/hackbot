@@ -1,21 +1,16 @@
-import Command from '../library/command';
+import Command from "../library/command";
+import { Message } from "discord.js";
 
-/**
- * @class Add
- * @extends {Command}
- */
+let Add: Command;
 
-var Add: Command;
-
-export default Add = class Add {
+export default Add = class {
 
   public static get description():string {
     return 'Adds together _integers_ passed as arguments.';
   }
 
-  public static execute(args: string[], msg: string) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    if (args.length < 1) { return channel.send(this.argsErrorMessage); }
     const numArray = args.map(n => parseInt(n));
     const total = numArray.reduce((p, c) => p + c);
     return channel.send(total);
