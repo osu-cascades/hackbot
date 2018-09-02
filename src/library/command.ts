@@ -1,3 +1,5 @@
+import { Message } from "discord.js";
+
 /**
  * An interface for all commands to extend, representing the API that all
  * subclasses should implement.
@@ -6,6 +8,6 @@
  */
 export default interface Command {
   readonly description: string;
-  execute(args: string[], msg: string): void;
+  execute(args: string[], msg: Message): void;
   readonly argsErrorMessage?: string;
 }
