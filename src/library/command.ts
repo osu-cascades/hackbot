@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Client } from "discord.js";
 
 /**
  * An interface for all commands to extend, representing the API that all
@@ -8,5 +8,5 @@ import { Message } from "discord.js";
  */
 export default interface Command {
   readonly description: string;
-  execute(args: string[], msg: Message): void;
+  execute(args: string[], msg: Message, client?: Client): void;
 }

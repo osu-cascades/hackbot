@@ -32,8 +32,8 @@ export default class Commands {
     return this.all[commandName];
   }
 
-  run(commandName, args, msg) {
-    this.get(commandName).execute(args, msg);
+  run(commandName, args, msg, client) {
+    this.get(commandName).execute(args, msg, client);
   }
 
 }

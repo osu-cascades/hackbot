@@ -1,31 +1,34 @@
 import Command from '../library/command';
 import axios from 'axios';
+import { Message } from 'discord.js';
 
-export default class GitProfile extends Command {
+let GitProfile: Command;
 
-  static get description() {
+export default GitProfile = class {
+
+  public static get description():string {
     return 'Retrieves any public github profile.';
   }
 
-  static execute(args, msg) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
 
     if (args === undefined) {
       const message = 'Please enter a username.';
       console.error(message)
-      return msg.channel.send(message);
+      return channel.send(message);
     }
     else {
-      this.getGithubProfile(args)
-      .then((profile) => {
+      this.getGithubProfile(args[0])
+      .then((profile: string) => {
         const parsedProfile = JSON.parse(profile);
-        return msg.channel.send(parsedProfile.html_url);
+        return channel.send(parsedProfile.html_url);
       })
       .catch(console.error);
     }
   }
 
-  static getGithubProfile(userName) {
+  static getGithubProfile(userName: string): Promise<string> {
     const options = {
       url: `https://api.github.com/users/${userName}`,
       headers: {

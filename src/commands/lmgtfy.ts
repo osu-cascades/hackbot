@@ -1,12 +1,15 @@
 import Command from '../library/command';
+import { Message } from 'discord.js';
 
-export default class Lmgtfy extends Command {
+let Lmgtfy: Command;
 
-  static get description() {
+export default Lmgtfy = class {
+
+  public static get description():string {
     return 'When someone is being...lazy...?';
   }
 
-  static execute(args, msg) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
     return channel.send(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }

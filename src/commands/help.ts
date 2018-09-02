@@ -1,18 +1,21 @@
 import config from '../config';
 import Command from '../library/command';
 import Commands from '../library/commands';
+import { Message } from 'discord.js';
 
-export default class Help extends Command {
+let Help: Command;
 
-  static get description() {
+export default Help = class {
+
+  public static get description():string {
     return 'Displays this message';
   }
 
-  static execute(args, msg) {
+  public static execute(args: string[], msg: Message) {
     let commands = new Commands();
 
-    let helpMsg = 'I am here to help! Well...mostly just make you chuckle at this point, let\'s be honest.\n\n';
-    helpMsg += 'Here is a list of the commands that we\'ve got right now:\n';
+    let helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n";
+    helpMsg += "Here is a list of the commands that we've got right now:\n";
     helpMsg += '```\n';
 
     // Find the longest synopsis
@@ -27,6 +30,7 @@ export default class Help extends Command {
 
     // Add an extra space
     longest += 1;
+
     commands.names.map((commandName) => {
       let command = commands.get(commandName);
       helpMsg += `${config.messagePrefix}${commandName}`;
@@ -38,6 +42,7 @@ export default class Help extends Command {
       helpMsg += '→ ';
       helpMsg += `${command.description}\n`;
     });
+
     helpMsg += '```';
 
     msg.reply('sliding into your DMs...');

@@ -27,7 +27,7 @@ bot.on('message', msg => {
       return channel.send('Arguments are missing.\nRefer to `!help`');
     }
     else if(commands.has(commandName)) {
-      return commands.run(commandName, args, msg);
+      return commands.run(commandName, args, msg, bot);
     }
     else {
       return channel.send(`Command not found: ${commandName}`);

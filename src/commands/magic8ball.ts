@@ -1,12 +1,15 @@
 import Command from '../library/command';
+import { Message } from 'discord.js';
 
-export default class Magic8Ball extends Command {
+let Magic8Ball: Command;
 
-  static get description() {
+export default Magic8Ball = class {
+
+  public static get description():string {
     return 'Ask and you shall receive... a vague, randomly generated response.';
   }
 
-  static execute(args, msg) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
     let response = [ 'It is certain',
       'It is decidedly so',
