@@ -29,6 +29,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/dotenv": "^4.0.3",
+    "@types/glob": "^5.0.35",
     "@types/jest": "^23.3.1",
     "@types/lodash.camelcase": "^4.3.4",
     "@types/node": "^10.9.4",

@@ -1,6 +1,6 @@
 import config from '../config';
 import Command from '../library/command';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
 
 let Weather: Command;
@@ -20,10 +20,11 @@ export default Weather = class {
         const temp = Math.floor(weather.main.temp);
         return channel.send(`It's ${temp} degrees in ${weather.name}.`);
       })
-      .catch(msg.reply);
+      .catch(() => msg.reply('Unable to fetch weather.'));
   }
 
-  static getWeather(location: string[]) {
+  static getWeather(locationArgs: string[]): Promise<{main: {temp: number}, name: string}> {
+    const location = locationArgs[0];
     if (!config.openWeathermapKey) {
       return Promise.reject('Setup Required: Add OPEN_WEATHERMAP_KEY environment variable.');
     }
@@ -31,15 +32,19 @@ export default Weather = class {
     const encodedLocation = encodeURIComponent(location);
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}
                   us&units=imperial&appid=${config.openWeathermapKey}`;
-    location.map((location) => {
-      const trimmedLocation = (location.trim());
-      const isInt = parseInt(trimmedLocation);
 
-      if (Number.isInteger(isInt)) {
-        return Promise.reject('Please provide a location');
-      }
+    const trimmedLocation = (location.trim());
+    const isInt = parseInt(trimmedLocation);
+
+    if (Number.isInteger(isInt)) {
+      return Promise.reject('Please provide a location');
+    }
+    
+    return axios.get(url).then((response: AxiosResponse) => {
+      return {
+        main: {temp: response.data.main.temp}, 
+        name: response.data.name
+      };
     });
-
-    return axios.get(url).catch(err => console.error('Unable to fetch weather.'));
   }
 }
