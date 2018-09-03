@@ -12,5 +12,8 @@ module.exports = {
     "jsx",
     "json",
     "node"
+  ],
+  setupFiles: [
+    "jest-plugin-context/setup"
   ]
 };
