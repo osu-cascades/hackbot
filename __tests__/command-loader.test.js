@@ -1,4 +1,4 @@
-import CommandLoader from '../library/command-loader';
+import CommandLoader from '../src/library/command-loader';
 import glob from 'glob';
 
 describe('CommandLoader', () => {

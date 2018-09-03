@@ -1,4 +1,4 @@
-import Commands from '../library/commands';
+import Commands from '../src/library/commands';
 
 describe('Commands', () => {
   let commands = new Commands();

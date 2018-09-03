@@ -1,4 +1,4 @@
-import Command from '../library/command';
+import Command from '../src/library/command';
 
 describe('Command', () => {
 
