@@ -1,6 +1,5 @@
 import CommandParser from '../src/library/command-parser';
 import context from 'jest-plugin-context';
-import { Message, Channel, Client, TextChannel, Guild } from 'discord.js';
 
 describe('CommandParser', () => {
   const messagePrefix = 'FAKE';

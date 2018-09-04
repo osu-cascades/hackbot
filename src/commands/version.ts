@@ -1,6 +1,6 @@
 import config from '../config';
 import Command from '../library/command';
-import { version } from '../package.json';
+import { version } from '../../package.json';
 import { Message } from 'discord.js';
 
 let Version: Command;

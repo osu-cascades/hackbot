@@ -13,7 +13,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  const parsedCommand = cmdParser.parse(msg);
+  const parsedCommand = cmdParser.parse(msg.content);
 
   if (!parsedCommand) {
     return;

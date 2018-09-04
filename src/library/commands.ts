@@ -1,4 +1,4 @@
-import CommandLoader from './command-loader';
+import CommandLoader, { CommandClasses } from './command-loader';
 import glob from 'glob';
 import Command from './command';
 import { Message, Client } from 'discord.js';
@@ -9,7 +9,7 @@ import { Message, Client } from 'discord.js';
 export default class Commands {
 
   commandFiles: string[];
-  private _all: {[key: string]: Command};
+  private _all: CommandClasses;
 
   constructor() {
     this.commandFiles = glob.sync('./commands/**/*.js');
