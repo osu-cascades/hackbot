@@ -1,5 +1,10 @@
 # hackbot
 
+|branch|build status|
+|---|---|
+|master|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=master)](https://travis-ci.org/osu-cascades/hackbot)|  |
+|staging|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=staging)](https://travis-ci.org/osu-cascades/hackbot)|
+
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 
 ## Setup
