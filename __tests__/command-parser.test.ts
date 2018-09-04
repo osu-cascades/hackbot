@@ -19,8 +19,8 @@ describe('CommandParser', () => {
     context('With an invalid prefix', () => {
       test('it throws an exception', () => {
         const thrown = 'Prefix must be a non-empty string';
-        expect(new CommandParser('')).toThrow(thrown);
-        expect(new CommandParser('\n  \n\tg')).toThrow(thrown);
+        expect(() => new CommandParser('')).toThrow(thrown);
+        expect(() => new CommandParser('\n  \n\tg')).toThrow(thrown);
       });
     });
   });
