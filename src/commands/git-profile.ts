@@ -1,6 +1,7 @@
 import Command from '../library/command';
 import axios from 'axios';
 import { Message } from 'discord.js';
+import moment from 'moment';
 
 let GitProfile: Command;
 
@@ -21,7 +22,18 @@ export default GitProfile = class {
     else {
       this.getGithubProfile(args[0])
       .then((profile: GitProfileResponse) => {
-        return channel.send(profile.html_url);
+        const joinedDate =  moment(profile.created_at).fromNow() + ' ' + moment(profile.created_at).calendar();
+        const name = profile.name || '';
+        const company = profile.company ? ` at ${profile.company}` : '';
+        const location = profile.location ? ` hacking in ${profile.location}` : '';
+        let firstLine = `${name}${company}${location}`;
+        if (firstLine !== '') {
+          firstLine += '\n';
+        }
+        return channel.send(`[${profile.type}] ${firstLine}` +
+          `with ${profile.public_repos} public repos, ${profile.public_gists} public gists, ` +
+          `${profile.followers} followers, and following ${profile.following}`+
+          `\nJoined ${joinedDate} ${profile.html_url}`);
       })
       .catch(console.error);
     }
@@ -31,7 +43,7 @@ export default GitProfile = class {
     const options = {
       url: `https://api.github.com/users/${userName}`,
       headers: {
-        'User-Agent': 'request',
+        'User-Agent': 'request'
       },
     };
 
@@ -61,12 +73,12 @@ export type GitProfileResponse = {
   received_events_url: string,
   type: string,
   site_admin: boolean,
-  name: string,
-  company: string,
+  name: string|null,
+  company: string|null,
   blog: string,
-  location: string,
+  location: string|null,
   email: string|null,
-  hireable: boolean,
+  hireable: boolean|null,
   bio: string|null,
   public_repos: number,
   public_gists: number,

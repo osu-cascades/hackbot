@@ -12,8 +12,13 @@ export default Purge = class {
   static execute(args: string[], msg: Message, bot: Client) {
     const { guild } = msg;
 
+    /* global bot */
+    if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
+      return msg.reply("Bot doesn't have manage channels permissions.");
+    }
+
     // Make sure the person doing the command is a Board Member
-    const boardRole = guild.roles.find('name', 'Board Member');
+    const boardRole = guild.roles.find(role => role.name == 'Board Member' || role.name == 'Admin');
     if (msg.member.roles.has(boardRole.id)) {
       const { channel } = msg;
 
@@ -39,11 +44,7 @@ export default Purge = class {
         .then(newChannelName => console.log(`Created new channel ${newChannelName}`))
         .catch(console.error);
     } else {
-      return msg.reply('sorry m8, you\'re not authorized to use that command.');
-    }
-    /* global bot */
-    if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
-      return msg.reply('sorry m8, you\'re not authorized to use that command.');
+      return msg.reply("Sorry m8, you're not authorized to use that command.");
     }
   }
 
