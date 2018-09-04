@@ -23,10 +23,11 @@ bot.on('message', msg => {
   const { channel } = msg;
 
   try {
-    if (args.length < 1) {
+    // This needs to be done on the command level or they need more meta description to auto handle this
+    /*if (args.length < 1) {
       return channel.send('Arguments are missing.\nRefer to `!help`');
     }
-    else if(commands.has(commandName)) {
+    else*/ if(commands.has(commandName)) {
       return commands.run(commandName, args, msg, bot);
     }
     else {

@@ -8,14 +8,14 @@
   },
   "main": "hackbot.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node build/index.js",
+    "start": "ts-node src/index.ts",
+    "start:dev": "ts-node src/index.ts --type-check",
+    "bs": "npm run build && npm start",
     "watch": "nodemon build/hackbot.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "tslint src/**/*.ts",
-    "lint-fix": "tslint --fix src/**/*.ts",
-    "postinstall": "npm run build"
+    "lint-fix": "tslint --fix src/**/*.ts"
   },
   "author": "osu-cascades",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "jest": "^22.4.4",
     "jest-plugin-context": "^1.8.3",
     "ts-jest": "^23.1.4",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   }

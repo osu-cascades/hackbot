@@ -12,7 +12,7 @@ export default class Commands {
   private _all: CommandClasses;
 
   constructor() {
-    this.commandFiles = glob.sync('./commands/**/*.js');
+    this.commandFiles = glob.sync('./src/commands/**/*.ts');
     this._all = CommandLoader.getCommandClasses(this.commandFiles);
   }
 
