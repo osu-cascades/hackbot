@@ -1,8 +1,9 @@
 import CommandLoader from '../src/library/command-loader';
 import glob from 'glob';
+import context from 'jest-plugin-context';
 
 describe('CommandLoader', () => {
-  let commandClasses;
+  let commandClasses: {[key: string]: {name: string}};
   const expected = [ expect.stringMatching(/\.\/commands\/\w*\.js/) ];
   let files = glob.sync('./commands/**/*.js');
   const templateFile = './commands/_template.js';

@@ -1,4 +1,5 @@
 import Commands from '../src/library/commands';
+import context from 'jest-plugin-context';
 
 describe('Commands', () => {
   let commands = new Commands();

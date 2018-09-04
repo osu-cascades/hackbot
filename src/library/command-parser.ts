@@ -21,21 +21,19 @@ export default class CommandParser {
    * `{ content: '!multiply 2 4' }` becomes `[ 'multiply', ['2', '4']]`.
    * Returns `undefined` in all invalid cases.
    */
-  parse(msg: Message): ParsedCommand|false {
-    const { content } = msg;
-
-    if (!this.validContent(content)) {
+  parse(message: string): ParsedCommand|false {
+    if (!this.validContent(message)) {
       return false;
     }
 
     // Get command
-    let cmd = content.split(' ')[0];
+    let cmd = message.split(' ')[0];
 
     // Remove command prefix
     cmd = cmd.slice(this.prefix.length);
 
     // Parse the arguments passed after the command
-    const args = content.split(' ').slice(1);
+    const args = message.split(' ').slice(1);
     return new ParsedCommand(cmd, args);
   }
 
