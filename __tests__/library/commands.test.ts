@@ -3,13 +3,6 @@ import context from 'jest-plugin-context';
 
 describe('Commands', () => {
   let commands = new Commands();
-  // TODO: These should surely be in their own mock file that can be reused.
-  //  I'm just not sure of best practice yet in Jest.
-  // Edit: it may be best that each command handle this in its own tests.
-  let mockData = {
-    args: ['hello', 'world'],
-    msg: {}
-  };
 
   context('All commands are valid and properly extend Command class', () => {
     const commandNames = commands.names;
