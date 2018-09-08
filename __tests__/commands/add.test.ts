@@ -1,22 +1,10 @@
 import Add from '../../src/commands/add';
-import { Message, TextChannel, Guild, Client } from 'discord.js';
+import { message as mockMessage } from '../mocks/discord';
 
-jest.mock('discord.js');
-
-const client = new Client();
-const guild = new Guild(client, {});
-const textChannel = new TextChannel(guild, {});
-const message = new Message(textChannel, false, client);
-
-let sendMock, mockMessage: Message;
+let sendMock;
 beforeEach(() => {
   sendMock = jest.fn();
-  // @ts-ignore
-  mockMessage = { channel: { send: sendMock } };
-
-  message.channel = textChannel;
-  message.channel.send = sendMock;
-  mockMessage = message;
+  mockMessage.channel.send = sendMock;
 });
 
 describe('Add Command', () => {
