@@ -1,4 +1,4 @@
-import CommandParser from '../src/library/command-parser';
+import CommandParser from '../../src/library/command-parser';
 import context from 'jest-plugin-context';
 
 describe('CommandParser', () => {

@@ -1,4 +1,4 @@
-import CommandLoader, { CommandClasses } from '../src/library/command-loader';
+import CommandLoader, { CommandClasses } from '../../src/library/command-loader';
 import glob from 'glob';
 import context from 'jest-plugin-context';
 
