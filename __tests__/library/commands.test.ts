@@ -1,10 +1,9 @@
 import Commands from '../../src/library/commands';
-import context from 'jest-plugin-context';
 
 describe('Commands', () => {
   let commands = new Commands();
 
-  context('All commands are valid and properly extend Command class', () => {
+  describe('All commands are valid and properly extend Command class', () => {
     const commandNames = commands.names;
 
     // This is a gimme due to how JS works, but can be overridden
@@ -31,7 +30,7 @@ describe('Commands', () => {
       });
     });
 
-    context('Commands are implemented properly', () => {
+    describe('Commands are implemented properly', () => {
       test('they have description, execute, and name properties', () => {
         let allCommands = commands.all;
         for (let commandName in allCommands) {

@@ -1,5 +1,4 @@
 import CommandParser from '../../src/library/command-parser';
-import context from 'jest-plugin-context';
 
 describe('CommandParser', () => {
   const messagePrefix = 'FAKE';
@@ -10,12 +9,12 @@ describe('CommandParser', () => {
   });
 
   describe('Instantiation', () => {
-    context('With a valid prefix', () => {
+    describe('With a valid prefix', () => {
       test('it is valid', () => {
         expect(parser.prefix).toMatch(messagePrefix);
       });
     });
-    context('With an invalid prefix', () => {
+    describe('With an invalid prefix', () => {
       test('it throws an exception', () => {
         const thrown = 'Prefix must be a non-empty string';
         expect(() => new CommandParser('')).toThrow(thrown);
@@ -26,13 +25,13 @@ describe('CommandParser', () => {
 
   describe('Parsing messages', () => {
 
-    context('When the message content is not prefixed', () => {
+    describe('When the message content is not prefixed', () => {
       test('it returns undefined', () => {
         expect(parser.parse('An ignorable message')).toEqual(false);
       });
     });
-    context('When the message content is prefixed', () => {
-      context('and the content has many space-separated words', () => {
+    describe('When the message content is prefixed', () => {
+      describe('and the content has many space-separated words', () => {
         test('it returns a command and the words as an array of arguments', () => {
           let expectedObject = {
             commandName: 'cmd',
@@ -41,7 +40,7 @@ describe('CommandParser', () => {
           expect(parser.parse(`${messagePrefix}cmd fee fi fo funk`)).toMatchObject(expectedObject);
         });
       });
-      context('and the content has no additional words', () => {
+      describe('and the content has no additional words', () => {
         test('it returns a command and an empty arguments array', () => {
           let expectedObject = {
             commandName: 'cmd',
@@ -50,7 +49,7 @@ describe('CommandParser', () => {
           expect(parser.parse(`${messagePrefix}cmd`)).toMatchObject(expectedObject);
         });
       });
-      context('but the message content only contains the prefix', () => {
+      describe('but the message content only contains the prefix', () => {
         test('it returns undefined', () => {
           expect(parser.parse(messagePrefix)).toEqual(false);
         });

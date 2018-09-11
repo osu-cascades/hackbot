@@ -1,6 +1,5 @@
 import CommandLoader, { CommandClasses } from '../../src/library/command-loader';
 import glob from 'glob';
-import context from 'jest-plugin-context';
 
 describe('CommandLoader', () => {
   let commandClasses: CommandClasses;
@@ -12,7 +11,7 @@ describe('CommandLoader', () => {
     commandClasses = CommandLoader.getCommandClasses(files);
   });
 
-  context('Gets all files from command directory', () => {
+  describe('Gets all files from command directory', () => {
     let commandFiles = CommandLoader._removeTemplateFile(files);
     test('it should return an array of command classes', () => {
       expect(commandFiles)
@@ -28,13 +27,13 @@ describe('CommandLoader', () => {
     });
   });
 
-  context('Return type should be an object', () => {
+  describe('Return type should be an object', () => {
     test('it should return an object', () => {
       expect(commandClasses).toMatchObject({});
     });
   });
 
-  context('Class names match their file names', () => {
+  describe('Class names match their file names', () => {
     test('they match their key name', () => {
       for (let commandName in commandClasses) {
         let commandClass = commandClasses[commandName];
