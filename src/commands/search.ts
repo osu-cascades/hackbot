@@ -1,24 +1,24 @@
+import axios, { AxiosResponse } from 'axios';
+import { Message } from 'discord.js';
 import config from '../config';
 import Command from '../library/command';
-import axios, { AxiosResponse } from 'axios';
-import { Message, Channel } from 'discord.js';
 
 let Search: Command;
 
 export default Search = class {
 
-  static get description():string {
+  static get description(): string {
     return 'Searches the web for the passed query and return the top result.';
   }
 
-  static execute(args: string[], msg: Message) {
-    
+  public static execute(args: string[], msg: Message) {
     if (!config.googleApiKey || !config.googleSearchEngineId) {
       msg.reply('Setup Required: Configure Google API keys in the environment variables');
     }
 
     const { channel } = msg;
-    const url = `https://www.googleapis.com/customsearch/v1?key=${config.googleApiKey}&cx=${config.googleSearchEngineId}&safe=off&q=${encodeURI(args[0])}`;
+    const parameters = `key=${config.googleApiKey}&cx=${config.googleSearchEngineId}&safe=off&q=${encodeURI(args[0])}`;
+    const url = `https://www.googleapis.com/customsearch/v1?${parameters}`;
 
     axios.get(url).then((response: AxiosResponse) => {
       console.log(response.data);
@@ -28,7 +28,7 @@ export default Search = class {
       else {
         channel.send(response.data.items[0].link).catch(() => {
           console.log('response error...');
-          //return msg.reply('Sorry, I had a problem getting a response from google.');
+          // return msg.reply('Sorry, I had a problem getting a response from google.');
         });
       }
     }).catch((err: string) => {
@@ -37,4 +37,4 @@ export default Search = class {
     });
   }
 
-}
+};

@@ -1,18 +1,18 @@
-import config from '../config';
-import Command from '../library/command';
 import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
+import config from '../config';
+import Command from '../library/command';
 
 let Weather: Command;
 
 export default Weather = class {
 
-  static get description():string {
+  static get description(): string {
     return 'Provide City and State, or City and Country to get current temperature.';
   }
 
   // TODO? could be refactored out into more method calls instead of this jumbo method
-  static execute(args: string[], msg: Message) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
 
     this.getWeather(args)
@@ -23,7 +23,7 @@ export default Weather = class {
       .catch(() => msg.reply('Unable to fetch weather.'));
   }
 
-  static getWeather(locationArgs: string[]): Promise<{main: {temp: number}, name: string}> {
+  private static getWeather(locationArgs: string[]): Promise<{main: {temp: number}, name: string}> {
     const location = locationArgs[0];
     if (!config.openWeathermapKey) {
       return Promise.reject('Setup Required: Add OPEN_WEATHERMAP_KEY environment variable.');
@@ -39,12 +39,12 @@ export default Weather = class {
     if (Number.isInteger(isInt)) {
       return Promise.reject('Please provide a location');
     }
-    
+
     return axios.get(url).then((response: AxiosResponse) => {
       return {
-        main: {temp: response.data.main.temp}, 
+        main: {temp: response.data.main.temp},
         name: response.data.name
       };
     });
   }
-}
+};

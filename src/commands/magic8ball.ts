@@ -1,17 +1,17 @@
-import Command from '../library/command';
 import { Message } from 'discord.js';
+import Command from '../library/command';
 
 let Magic8Ball: Command;
 
 export default Magic8Ball = class {
 
-  static get description():string {
+  static get description(): string {
     return 'Ask and you shall receive... a vague, randomly generated response.';
   }
 
-  static execute(args: string[], msg: Message) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    let response = [ 'It is certain',
+    const response = [ 'It is certain',
       'It is decidedly so',
       'Without a doubt',
       'Yes definitely',
@@ -31,7 +31,7 @@ export default Magic8Ball = class {
       'My sources say no',
       'Outlook not so good',
       'Very doubtful' ];
-    return channel.send(response[Math.floor(Math.random()*response.length)]);
+    return channel.send(response[Math.floor(Math.random() * response.length)]);
   }
 
-}
+};

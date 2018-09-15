@@ -1,4 +1,4 @@
-import { Message, Client } from "discord.js";
+import { Client, Message } from "discord.js";
 
 /**
  * An interface for all commands to extend, representing the API that all
@@ -6,7 +6,7 @@ import { Message, Client } from "discord.js";
  *
  * @class Command
  */
-export default interface Command {
+export default interface ICommand {
   readonly name: string;
   readonly description: string;
   execute(args: string[], msg: Message, client?: Client): void;

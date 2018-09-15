@@ -1,15 +1,15 @@
+import { Client, DMChannel, Message } from 'discord.js';
 import Command from '../library/command';
-import { Message, DMChannel, Client } from 'discord.js';
 
 let Purge: Command;
 
 export default Purge = class {
 
-  static get description():string {
+  static get description(): string {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  static execute(args: string[], msg: Message, bot: Client) {
+  public static execute(args: string[], msg: Message, bot: Client) {
     const { guild } = msg;
 
     /* global bot */
@@ -18,7 +18,7 @@ export default Purge = class {
     }
 
     // Make sure the person doing the command is a Board Member
-    const boardRole = guild.roles.find(role => role.name == 'Board Member' || role.name == 'Admin');
+    const boardRole = guild.roles.find(role => role.name === 'Board Member' || role.name === 'Admin');
     if (msg.member.roles.has(boardRole.id)) {
       const { channel } = msg;
 
@@ -30,7 +30,7 @@ export default Purge = class {
       const chanName = channel.name;
       const chanType = channel.type || 'text';
 
-      if (chanType == 'dm' || chanType == 'group') {
+      if (chanType === 'dm' || chanType === 'group') {
         return;
       }
 
@@ -48,4 +48,4 @@ export default Purge = class {
     }
   }
 
-}
+};

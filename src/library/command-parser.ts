@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import ParsedCommand from './parsedCommand';
 
 export default class CommandParser {
-  prefix: string;
+  private prefix: string;
 
   /**
    * Discord users are expected to prefix bot commands with a single character,
@@ -10,8 +10,9 @@ export default class CommandParser {
    * empty string, or a string that contains whitespace.
    */
   constructor(prefix: string) {
-    if (typeof prefix != 'string' || prefix.length === 0 || /\s/g.test(prefix))
-      throw 'Prefix must be a non-empty string';
+    if (typeof prefix !== 'string' || prefix.length === 0 || /\s/g.test(prefix)) {
+      throw new Error('Prefix must be a non-empty string');
+    }
     this.prefix = prefix;
   }
 
@@ -21,7 +22,7 @@ export default class CommandParser {
    * `{ content: '!multiply 2 4' }` becomes `[ 'multiply', ['2', '4']]`.
    * Returns `undefined` in all invalid cases.
    */
-  parse(message: string): ParsedCommand|false {
+  public parse(message: string): ParsedCommand|false {
     if (!this.validContent(message)) {
       return false;
     }
@@ -37,7 +38,7 @@ export default class CommandParser {
     return new ParsedCommand(cmd, args);
   }
 
-  validContent(content: string): boolean {
+  private validContent(content: string): boolean {
     return content.startsWith(this.prefix) &&
       content !== this.prefix;
   }

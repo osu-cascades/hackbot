@@ -1,21 +1,21 @@
+import { Message } from 'discord.js';
+import { version } from '../../package.json';
 import config from '../config';
 import Command from '../library/command';
-import { version } from '../../package.json';
-import { Message } from 'discord.js';
 
 let Version: Command;
 
 export default Version = class {
 
-  static get description():string {
+  static get description(): string {
     return "Gets the bot's current running version from package.json";
   }
 
-  static execute(args: string[], msg: Message) {
+  public static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    let nodeEnv = config.env;
-    let runningEnv = nodeEnv ? `${nodeEnv} ` : '';
+    const nodeEnv = config.env;
+    const runningEnv = nodeEnv ? `${nodeEnv} ` : '';
     return channel.sendMessage(`Hackbot ${runningEnv}is running v${version}`);
   }
 
-}
+};

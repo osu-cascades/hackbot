@@ -1,18 +1,18 @@
+import { Message } from 'discord.js';
 import config from '../config';
 import Command from '../library/command';
 import Commands from '../library/commands';
-import { Message } from 'discord.js';
 
 let Help: Command;
 
 export default Help = class {
 
-  static get description():string {
+  static get description(): string {
     return 'Displays this message';
   }
 
-  static execute(args: string[], msg: Message) {
-    let commands = new Commands();
+  public static execute(args: string[], msg: Message) {
+    const commands = new Commands();
 
     let helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n";
     helpMsg += "Here is a list of the commands that we've got right now:\n";
@@ -32,7 +32,7 @@ export default Help = class {
     longest += 1;
 
     commands.names.map((commandName) => {
-      let command = commands.get(commandName);
+      const command = commands.get(commandName);
       helpMsg += `${config.messagePrefix}${commandName}`;
       // TODO: needs args implemented here after they're part of the magic
       const spaces = longest - commandName.length;
@@ -49,4 +49,4 @@ export default Help = class {
     msg.author.send(helpMsg);
   }
 
-}
+};

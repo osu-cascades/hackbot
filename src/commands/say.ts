@@ -1,11 +1,11 @@
-import Command from '../library/command';
 import { Message } from 'discord.js';
+import Command from '../library/command';
 
 let Say: Command;
 
 export default Say = class {
 
-  public static get description():string {
+  public static get description(): string {
     return 'Echos back the string passed as arguments.';
   }
 
@@ -15,4 +15,4 @@ export default Say = class {
     return channel.send(saying);
   }
 
-}
+};
