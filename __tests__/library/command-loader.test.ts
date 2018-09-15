@@ -3,9 +3,7 @@ import CommandLoader, { ICommandClasses } from '../../src/library/command-loader
 
 describe('CommandLoader', () => {
   let commandClasses: ICommandClasses;
-  const expected = [ expect.stringMatching(/\.\/src\/commands\/\w*\.ts/) ];
   const files = glob.sync('./src/commands/**/*.ts');
-  const templateFile = './src/commands/_template.ts';
 
   beforeEach(() => {
     commandClasses = CommandLoader.getCommandClasses(files);
