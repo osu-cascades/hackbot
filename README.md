@@ -1,5 +1,7 @@
 # hackbot
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/)
+
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 
 ## Setup
