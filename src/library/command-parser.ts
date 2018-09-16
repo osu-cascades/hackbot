@@ -1,8 +1,7 @@
-import { Message } from "discord.js";
 import ParsedCommand from './parsedCommand';
 
 export default class CommandParser {
-  private prefix: string;
+  public readonly prefix: string;
 
   /**
    * Discord users are expected to prefix bot commands with a single character,

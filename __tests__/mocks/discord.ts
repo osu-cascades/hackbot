@@ -1,4 +1,4 @@
-import { Message, TextChannel, Guild, Client } from 'discord.js';
+import { Client, Guild, Message, TextChannel } from 'discord.js';
 
 jest.mock('discord.js');
 

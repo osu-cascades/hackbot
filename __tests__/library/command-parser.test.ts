@@ -33,19 +33,19 @@ describe('CommandParser', () => {
     describe('When the message content is prefixed', () => {
       describe('and the content has many space-separated words', () => {
         test('it returns a command and the words as an array of arguments', () => {
-          let expectedObject = {
+          const expectedObject = {
             commandName: 'cmd',
             args: ['fee', 'fi', 'fo', 'funk']
-          }
+          };
           expect(parser.parse(`${messagePrefix}cmd fee fi fo funk`)).toMatchObject(expectedObject);
         });
       });
       describe('and the content has no additional words', () => {
         test('it returns a command and an empty arguments array', () => {
-          let expectedObject = {
+          const expectedObject = {
             commandName: 'cmd',
             args: []
-          }
+          };
           expect(parser.parse(`${messagePrefix}cmd`)).toMatchObject(expectedObject);
         });
       });
