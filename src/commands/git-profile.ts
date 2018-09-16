@@ -14,9 +14,8 @@ export default GitProfile = class {
   public static execute(args: string[], msg: Message) {
     const { channel } = msg;
 
-    if (args === undefined) {
+    if (args.length === 0) {
       const message = 'Please enter a username.';
-      console.error(message);
       return channel.send(message);
     }
     else {
