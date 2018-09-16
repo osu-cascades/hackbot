@@ -1,15 +1,15 @@
-import { Client, Message } from 'discord.js';
 import glob from 'glob';
 import Command from './command';
 import CommandLoader, { ICommandClasses } from './command-loader';
 
+// TODO: debateable whether we even need this wrapper class
 /**
  * @class Commands
  */
 export default class Commands {
 
+  public readonly all: ICommandClasses;
   private commandFiles: string[];
-  private readonly all: ICommandClasses;
 
   constructor() {
     this.commandFiles = glob.sync('./src/commands/**/*.ts');
@@ -20,16 +20,8 @@ export default class Commands {
     return Object.keys(this.all);
   }
 
-  public has(commandName: string) {
-    return this.names.indexOf(commandName) > -1;
-  }
-
   public get(commandName: string): Command {
     return this.all[commandName];
-  }
-
-  public run(commandName: string, args: string[], msg: Message, client: Client) {
-    this.get(commandName).execute(args, msg, client);
   }
 
 }
