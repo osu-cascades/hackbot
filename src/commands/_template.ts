@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
 // Hack for implementing with static properties/methods
-let CommandName: Command;
+let CommandName: ICommand;
 export default CommandName = class {
 
   static get description(): string {

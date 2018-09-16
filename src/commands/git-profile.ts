@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Message } from 'discord.js';
 import moment from 'moment';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let GitProfile: Command;
+let GitProfile: ICommand;
 
 export default GitProfile = class {
 

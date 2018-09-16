@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Rules: Command;
+let Rules: ICommand;
 
 export default Rules = class {
 

@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Magic8Ball: Command;
+let Magic8Ball: ICommand;
 
 export default Magic8Ball = class {
 

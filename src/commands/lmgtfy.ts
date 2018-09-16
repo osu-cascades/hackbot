@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Lmgtfy: Command;
+let Lmgtfy: ICommand;
 
 export default Lmgtfy = class {
 

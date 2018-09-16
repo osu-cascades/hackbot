@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 import config from '../config';
-import Command from '../library/command';
 import Commands from '../library/commands';
+import ICommand from '../library/iCommand';
 
-let Help: Command;
+let Help: ICommand;
 
 export default Help = class {
 

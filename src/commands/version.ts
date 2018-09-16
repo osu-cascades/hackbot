@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 import { version } from '../../package.json';
 import config from '../config';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Version: Command;
+let Version: ICommand;
 
 export default Version = class {
 

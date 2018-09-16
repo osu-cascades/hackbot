@@ -1,7 +1,7 @@
 import { Client, DMChannel, Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Purge: Command;
+let Purge: ICommand;
 
 export default Purge = class {
 

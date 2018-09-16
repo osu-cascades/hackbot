@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Xmas: Command;
+let Xmas: ICommand;
 
 export default Xmas = class {
 

@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
 import config from '../config';
-import Command from '../library/command';
+import ICommand from '../library/iCommand';
 
-let Weather: Command;
+let Weather: ICommand;
 
 export default Weather = class {
 
