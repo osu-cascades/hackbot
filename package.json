@@ -14,7 +14,7 @@
     "watch": "nodemon build/hackbot.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint src/**/*.ts __tests__/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts"
   },
   "author": "osu-cascades",
