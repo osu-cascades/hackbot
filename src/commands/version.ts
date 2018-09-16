@@ -13,8 +13,7 @@ export default Version = class {
 
   public static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    const nodeEnv = config.env;
-    const runningEnv = nodeEnv ? `${nodeEnv} ` : '';
+    const runningEnv = config.env ? `${config.env} ` : '';
     return channel.sendMessage(`Hackbot ${runningEnv}is running v${version}`);
   }
 
