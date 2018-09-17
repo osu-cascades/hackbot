@@ -11,8 +11,7 @@ export default Lmgtfy = class {
   }
 
   public static execute(args: string[], msg: Message) {
-    const { channel } = msg;
-    return channel.send(`<http://lmgtfy.com/?q=${args.join('+')}>`);
+    return msg.channel.send(`<http://lmgtfy.com/?q=${args.join('+')}>`);
   }
 
 };
