@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+/* istanbul ignore next */
+// Quite a pain to test for the defaults with dotenv so not worth the effort
 const defaults = {
   defaultChannel: process.env.DEFAULT_CHANNEL,
   discordAppToken: process.env.DISCORD_APP_TOKEN,
