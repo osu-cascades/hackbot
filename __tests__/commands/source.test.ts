@@ -9,7 +9,7 @@ beforeEach(() => {
 
 describe('Source Command', () => {
   describe('Execute', () => {
-    test('Notifies with github link', () => {
+    test('Sends message with github link', () => {
       Source.execute([], mockMessage);
       expect(sendMock.mock.calls[0][0]).toContain('github.com/osu-cascades/hackbot');
     });
