@@ -11,9 +11,8 @@ export default Say = class {
   }
 
   public static execute(args: string[], msg: Message) {
-    const { channel } = msg;
     const saying = args.join(' ');
-    return channel.send(saying);
+    return msg.channel.send(saying);
   }
 
 };
