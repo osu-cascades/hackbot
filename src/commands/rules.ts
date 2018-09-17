@@ -11,8 +11,7 @@ export default Rules = class {
   }
 
   public static execute(args: string[], msg: Message) {
-    const { channel } = msg;
-    return channel.send("Be nice and don't copy each other's homework!");
+    return msg.channel.send("Be nice and don't copy each other's homework!");
   }
 
 };
