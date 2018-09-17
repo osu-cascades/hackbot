@@ -18,9 +18,7 @@ export default class CommandLoader {
       key = camelCase(key);
 
       const required = require(path.resolve(file));
-      if (required.default) {
-        prev[key] = required.default;
-      }
+      prev[key] = required.default;
 
       return prev;
     }, {});
