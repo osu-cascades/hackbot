@@ -1,4 +1,5 @@
 import glob from 'glob';
+import config from '../config';
 import CommandLoader, { ICommandClasses } from './command-loader';
 import Command from './iCommand';
 
@@ -22,6 +23,17 @@ export default class Commands {
 
   public get(commandName: string): Command {
     return this.all[commandName];
+  }
+
+  public longestName() {
+    // Find the longest synopsis
+    return this.names.reduce((max, commandName) => {
+      commandName = `${config.messagePrefix}${commandName}`;
+      if (commandName.length + 1 > max) {
+        max = commandName.length + 1;
+      }
+      return max;
+    }, 0);
   }
 
 }

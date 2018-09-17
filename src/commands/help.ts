@@ -14,34 +14,19 @@ export default Help = class {
 
   public static execute(args: string[], msg: Message) {
     const commands = new Commands();
+    const longest = commands.longestName();
 
     let helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n";
     helpMsg += "Here is a list of the commands that we've got right now:\n";
     helpMsg += '```\n';
 
-    // Find the longest synopsis
-    // Considered moving this to the Commands class
-    let longest = 0;
-    commands.names.map((commandName) => {
-      commandName = `${config.messagePrefix}${commandName}`;
-      if (commandName.length > longest) {
-        longest = commandName.length;
-      }
-    });
-
-    // Add an extra space
-    longest += 1;
-
     commands.names.map((commandName) => {
       const command = commands.get(commandName);
+      const amountOfSpaces = longest - commandName.length;
       helpMsg += `${config.messagePrefix}${commandName}`;
       // TODO: needs args implemented here after they're part of the magic
-      const spaces = longest - commandName.length;
-      for (let i = 0; i < spaces; i++) {
-        helpMsg += ' ';
-      }
-      helpMsg += '→ ';
-      helpMsg += `${command.description}\n`;
+      helpMsg += ' '.repeat(amountOfSpaces);
+      helpMsg += `→ ${command.description}\n`;
     });
 
     helpMsg += '```';
@@ -49,5 +34,4 @@ export default Help = class {
     msg.reply('sliding into your DMs...');
     msg.author.send(helpMsg);
   }
-
 };

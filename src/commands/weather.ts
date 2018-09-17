@@ -21,7 +21,7 @@ export default Weather = class {
         const temp = Math.floor(weather.main.temp);
         return channel.send(`It's ${temp} degrees in ${weather.name}.`);
       })
-      .catch(() => msg.reply('Unable to fetch weather.'));
+      .catch(() => msg.reply('Unable to fetch the weather.'));
   }
 
   private static getWeather(locationArgs: string[]): Promise<{main: {temp: number}, name: string}> {
