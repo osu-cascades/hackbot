@@ -20,7 +20,7 @@ export default GitProfile = class {
       return channel.send(message);
     }
     else {
-      this.getGithubProfile(args[0])
+      return this.getGithubProfile(args[0])
       .then((profile: IGitProfileResponse) => {
         const joinedDate =  moment(profile.created_at).fromNow() + ' ' + moment(profile.created_at).calendar();
         const name = profile.name || '';
@@ -44,7 +44,7 @@ export default GitProfile = class {
       url: `https://api.github.com/users/${userName}`,
       headers: {
         'User-Agent': 'request'
-      },
+      }
     };
 
     return axios.request(options).then(response => {
