@@ -11,8 +11,13 @@ export default Magic8Ball = class {
   }
 
   public static execute(args: string[], msg: Message) {
-    const { channel } = msg;
-    const response = [ 'It is certain',
+    const answer = this.responses[Math.floor(Math.random() * this.responses.length)];
+    return msg.channel.send(answer);
+  }
+
+  public static get responses(): string[] {
+    return [
+      'It is certain',
       'It is decidedly so',
       'Without a doubt',
       'Yes definitely',
@@ -31,8 +36,8 @@ export default Magic8Ball = class {
       'My reply is no',
       'My sources say no',
       'Outlook not so good',
-      'Very doubtful' ];
-    return channel.send(response[Math.floor(Math.random() * response.length)]);
+      'Very doubtful'
+    ];
   }
 
 };
