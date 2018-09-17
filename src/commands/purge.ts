@@ -5,6 +5,7 @@ let Purge: ICommand;
 
 export default Purge = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }

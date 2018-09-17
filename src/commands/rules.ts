@@ -5,6 +5,7 @@ let Rules: ICommand;
 
 export default Rules = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'List the rules for the CTC Discord server.';
   }

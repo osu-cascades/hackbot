@@ -5,6 +5,7 @@ let Magic8Ball: ICommand;
 
 export default Magic8Ball = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Ask and you shall receive... a vague, randomly generated response.';
   }

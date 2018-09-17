@@ -5,6 +5,7 @@ let Xmas: ICommand;
 
 export default Xmas = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Merry Christmas, ya filthy animals.';
   }

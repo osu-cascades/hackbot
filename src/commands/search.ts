@@ -7,6 +7,7 @@ let Search: ICommand;
 
 export default Search = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Searches the web for the passed query and return the top result.';
   }

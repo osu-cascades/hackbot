@@ -5,6 +5,7 @@ let Say: ICommand;
 
 export default Say = class {
 
+  /* istanbul ignore next */
   public static get description(): string {
     return 'Echos back the string passed as arguments.';
   }

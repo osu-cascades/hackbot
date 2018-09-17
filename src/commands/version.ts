@@ -7,6 +7,7 @@ let Version: ICommand;
 
 export default Version = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return "Gets the bot's current running version from package.json";
   }

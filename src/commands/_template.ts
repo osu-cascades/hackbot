@@ -5,6 +5,7 @@ import ICommand from '../library/iCommand';
 let CommandName: ICommand;
 export default CommandName = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'This is a description of my awesome command.';
   }

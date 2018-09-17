@@ -5,6 +5,7 @@ let Lmgtfy: ICommand;
 
 export default Lmgtfy = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'When someone is being...lazy...?';
   }

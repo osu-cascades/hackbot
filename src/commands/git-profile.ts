@@ -7,6 +7,7 @@ let GitProfile: ICommand;
 
 export default GitProfile = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Retrieves any public github profile.';
   }

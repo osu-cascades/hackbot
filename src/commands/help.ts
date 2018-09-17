@@ -7,6 +7,7 @@ let Help: ICommand;
 
 export default Help = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Displays this message';
   }

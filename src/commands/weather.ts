@@ -7,6 +7,7 @@ let Weather: ICommand;
 
 export default Weather = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Provide City and State, or City and Country to get current temperature.';
   }

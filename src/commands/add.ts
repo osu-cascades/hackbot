@@ -5,6 +5,7 @@ let Add: ICommand;
 
 export default Add = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return 'Adds together _integers_ passed as arguments.';
   }

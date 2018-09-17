@@ -5,6 +5,7 @@ let Source: ICommand;
 
 export default Source = class {
 
+  /* istanbul ignore next */
   static get description(): string {
     return "Retrieves the hackBot's github repository.";
   }
