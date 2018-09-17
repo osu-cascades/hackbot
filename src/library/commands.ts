@@ -1,6 +1,6 @@
 import glob from 'glob';
 import config from '../config';
-import CommandLoader, { ICommandClasses } from './command-loader';
+import CommandLoader, { ICommandClasses } from './commandLoader';
 import Command from './iCommand';
 
 // TODO: debateable whether we even need this wrapper class

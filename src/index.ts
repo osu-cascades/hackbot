@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 import config from './config';
-import CommandParser from './library/command-parser';
+import CommandParser from './library/commandParser';
 import Commands from './library/commands';
 
 const bot = new Client();
