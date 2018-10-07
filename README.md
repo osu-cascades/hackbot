@@ -38,7 +38,7 @@ In a nutshell, work in the [dev](https://github.com/osu-cascades/hackbot/tree/de
 
 In all cases, be sure to run the test suite to make sure all tests pass. _All tests should be passing before you merge dev to master_.
 
-You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker. Look at `__tests__/commands/add.test.ts` for an example of how to test commands and their channel messages.
+You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker. Look at `__tests__/commands/add.test.ts` for an example of how to test commands and their channel messages. If you use VSCode for your IDE there's a Jest extension that will run a watcher and give you inline updates on your tests, as well as a few other awesome features!
 
 Please refer to [airbnb's style guide](https://github.com/airbnb/javascript) while coding.
 
