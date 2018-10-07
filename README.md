@@ -1,6 +1,10 @@
 # hackbot
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/)
+|branch|build status|bots|
+|---|---|---|
+|master|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=master)](https://travis-ci.org/osu-cascades/hackbot)| [![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/) |
+|staging|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=staging)](https://travis-ci.org/osu-cascades/hackbot)|
+
 
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 
@@ -32,15 +36,17 @@ In a nutshell, work in the [dev](https://github.com/osu-cascades/hackbot/tree/de
 
 In all cases, be sure to run the test suite to make sure all tests pass. _All tests should be passing before you merge dev to master_.
 
-You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker.
+You should embrace testing. _hackbot_ uses the [Jest](https://facebook.github.io/jest/) test framework. Have two console panes open: one for running and watching the test suite, and the other for everything else you need to do. You can run the test suite once with `npm test`. Once you get tired of running `npm test` manually, use the watcher by running `npm run test:watch`. It is sweet and people will think you are a super hacker. Look at `__tests__/commands/add.test.ts` for an example of how to test commands and their channel messages.
 
 Please refer to [airbnb's style guide](https://github.com/airbnb/javascript) while coding.
+
+For now try to keep the linter happy. You can see any lint issues by running `npm run lint`. Some issues can be auto-fixed with `npm run lint:fix`
 
 ## Commands
 
 To enable hackbot to respond to a new command, all you need to do is:
 
-1. Copy the existing *commands/_template.js* to a new, well-named js file in the _commands_ directory: `cp commands/_template.js commands/foo.js`.
+1. Copy the existing *src/commands/_template.js* to a new, well-named js file in the _commands_ directory: `cp src/commands/_template.ts src/commands/foo.ts`.
 2. In your new js file, replace occurrences of `CommandName` with your actual command name. Ensure that this js file contains a class definition that extends `Command` and implements the static `description` and `execute` methods. See _add.js_ or _say.js_ for some simple examples.
 
 ## Deploying
@@ -69,4 +75,6 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 * [discord.js Documentation](https://discord.js.org)
 
 ___
-(c) 2017 [Justin Tappert](https://github.com/JWTappert), [Adam DuQuette](https://github.com/DukeOfEtiquette), [Steven Harding](https://github.com/Otis0620). All rights reserved.
+©2018 All rights reserved.
+
+Thanks to our [contributors](https://github.com/osu-cascades/hackbot/graphs/contributors)!

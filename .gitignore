@@ -2,3 +2,5 @@
 config.json
 node_modules/
 .env
+build
+coverage/
