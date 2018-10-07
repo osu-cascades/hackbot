@@ -13,7 +13,9 @@
     "bs": "npm run build && npm start",
     "watch": "nodemon build/hackbot.js",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
+    "test:watch:coverage": "jest --watch --coverage",
     "lint": "tslint src/**/*.ts __tests__/**/*.ts",
     "lint:fix": "tslint --fix src/**/*.ts __tests__/**/*.ts"
   },

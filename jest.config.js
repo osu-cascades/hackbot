@@ -12,6 +12,5 @@ module.exports = {
     "jsx",
     "json",
     "node"
-  ],
-  collectCoverage: true
+  ]
 };
