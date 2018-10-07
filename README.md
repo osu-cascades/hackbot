@@ -1,9 +1,12 @@
 # hackbot
 
-|branch|build status|bots|
-|---|---|---|
-|master|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=master)](https://travis-ci.org/osu-cascades/hackbot)| [![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/) |
-|staging|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=staging)](https://travis-ci.org/osu-cascades/hackbot)|
+|What|Badge|
+|---|---|
+|Master Build|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=master)](https://travis-ci.org/osu-cascades/hackbot)|
+|Staging Build|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=dev)](https://travis-ci.org/osu-cascades/hackbot)|
+|Maintainability|[![Maintainability](https://api.codeclimate.com/v1/badges/96320fe592c30381915f/maintainability)](https://codeclimate.com/github/osu-cascades/hackbot)|
+|Test Coverage|[![Test Coverage](https://api.codeclimate.com/v1/badges/96320fe592c30381915f/test_coverage)](https://codeclimate.com/github/osu-cascades/hackbot)|
+|GreenKeeper|[![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/)|
 
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 
