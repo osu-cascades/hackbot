@@ -10,7 +10,7 @@ let sendMock: MockedMessage;
 beforeEach(() => {
   jest.resetModules();
   sendMock = jest.fn();
-  mockMessage.channel.send = sendMock as any;
+  mockMessage.channel.send = sendMock;
 });
 
 describe('GitProfile Command', () => {
