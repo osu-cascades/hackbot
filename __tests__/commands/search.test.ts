@@ -42,4 +42,9 @@ describe('Search Command', async () => {
     await Search.execute(['dingusy'], mockMessage);
     expect(sendMock).lastCalledWith(results.items[0].link);
   });
+  test('Malformed Response', async () => {
+    mocked(axios.get).mockResolvedValue({ data: {} });
+    await Search.execute(['NOPE'], mockMessage);
+    expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
+  });
 });
