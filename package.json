@@ -38,8 +38,16 @@
     "typescript": "^3.0.3"
   },
   "devDependencies": {
-    "jest": "^22.4.4",
-    "ts-jest": "^23.1.4",
-    "tslint": "^5.11.0"
+    "@types/axios": "^0.14.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/glob": "^7.1.1",
+    "@types/jest": "^23.3.9",
+    "@types/lodash.camelcase": "^4.3.4",
+    "@types/node": "^10.12.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
   }
 }

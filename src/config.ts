@@ -8,7 +8,8 @@ const defaults = {
   discordAppToken: process.env.DISCORD_APP_TOKEN,
   env: process.env.NODE_ENV || 'production',
   messagePrefix: process.env.MESSAGE_PREFIX || '!',
-  production: process.env.NODE_ENV === 'production'
+  production: process.env.NODE_ENV === 'production',
+  get welcomeChannel() { return process.env.WELCOME_CHANNEL || this.defaultChannel; }
 };
 
 const plugins = {
