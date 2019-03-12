@@ -1,7 +1,7 @@
 import { message as mockMessage } from '../mocks/discord';
 import Source from './../../src/commands/source';
 
-let sendMock;
+let sendMock: jest.Mock<any, any>;
 beforeEach(() => {
   sendMock = jest.fn();
   mockMessage.channel.send = sendMock;

@@ -2,7 +2,7 @@ import Rules from '../../src/commands/rules';
 
 import { message as mockMessage } from '../mocks/discord';
 
-let sendMock;
+let sendMock: jest.Mock<any, any>;
 beforeEach(() => {
   sendMock = jest.fn();
   mockMessage.channel.send = sendMock;

@@ -6,7 +6,7 @@ import { message as mockMessage } from '../mocks/discord';
 
 jest.mock('axios');
 
-let sendMock;
+let sendMock: jest.Mock<any, any>;
 beforeEach(() => {
   jest.resetModules();
   sendMock = jest.fn();
