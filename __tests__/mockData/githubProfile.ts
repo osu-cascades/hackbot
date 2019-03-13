@@ -1,3 +1,4 @@
+import { IGitProfileResponse } from "../../src/commands/gitProfile";
 
 export default {
   login: "ctsstc",
@@ -31,4 +32,4 @@ export default {
   following: 131,
   created_at: "2010-09-26T21:31:50Z",
   updated_at: "2018-09-05T16:21:19Z"
-};
+} as IGitProfileResponse;
