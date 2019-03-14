@@ -22,7 +22,14 @@ export default Search = class {
     const url = `https://www.googleapis.com/customsearch/v1?${parameters}`;
 
     return axios.get(url).then((response: AxiosResponse): Promise<Message|Message[]> => {
-      if (response.data.queries.request[0].totalResults === 0) {
+      const hasQueries = 'queries' in response.data;
+      if (!hasQueries) {
+        const jsonData = JSON.stringify(response.data);
+        const errorMessage = `Malformed Google Search Response: ${jsonData}`;
+        channel.send(errorMessage);
+        return Promise.reject(errorMessage);
+      }
+      else if (response.data.queries.request[0].totalResults === 0) {
         return channel.send('`No results found.`');
       }
       else {

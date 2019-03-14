@@ -1,5 +1,5 @@
 
-interface IGithubProfile {
+export default interface IGithubProfile {
   login: string;
   id: number;
   node_id: string;

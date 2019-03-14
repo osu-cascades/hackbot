@@ -1,9 +1,10 @@
 import glob from 'glob';
 import CommandLoader, { ICommandClasses } from '../../src/library/commandLoader';
+import { COMMANDS_PATH_GLOB } from './../../src/library/commands';
 
 describe('CommandLoader', () => {
   let commandClasses: ICommandClasses;
-  const files = glob.sync('./src/commands/**/*.ts');
+  const files = glob.sync(COMMANDS_PATH_GLOB);
 
   beforeEach(() => {
     commandClasses = CommandLoader.getCommandClasses(files);
@@ -23,6 +24,7 @@ describe('CommandLoader', () => {
         commandName = commandName.replace(/^\w/, (char) => {
           return char.toUpperCase();
         });
+        expect(commandClass).toBeDefined();
         expect(commandName).toEqual(commandClass.name);
       }
     });

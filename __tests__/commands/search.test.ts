@@ -1,7 +1,6 @@
-import axios from 'axios';
 import Search from '../../src/commands/search';
 import config from '../../src/config';
-import mocked from '../helpers/mocked';
+import axiosMock from '../__mocks__/axios';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 import { noResults, results } from './../mockData/search';
 
@@ -19,7 +18,7 @@ beforeEach(() => {
 
 const setupRequiredMessage = 'Setup Required: Configure Google API keys in the environment variables';
 
-describe('Search Command', async () => {
+describe('Search Command', () => {
   describe('Environment Variables', () => {
     test('Setup message when missing Google API Key ENV Var', async () => {
       config.googleApiKey = undefined;
@@ -33,17 +32,20 @@ describe('Search Command', async () => {
     });
   });
   test('With no results', async () => {
-    mocked(axios.get).mockResolvedValue({ data: noResults });
+    const mockedData = Promise.resolve({ data: noResults });
+    axiosMock.get.mockResolvedValueOnce(mockedData);
     await Search.execute(['Nothing here'], mockMessage);
     expect(sendMock).lastCalledWith('`No results found.`');
   });
   test('With results', async () => {
-    mocked(axios.get).mockResolvedValue({ data: results });
+    const mockedData = Promise.resolve({ data: results });
+    axiosMock.get.mockResolvedValueOnce(mockedData);
     await Search.execute(['dingusy'], mockMessage);
     expect(sendMock).lastCalledWith(results.items[0].link);
   });
   test('Malformed Response', async () => {
-    mocked(axios.get).mockResolvedValue({ data: {} });
+    const mockedData = Promise.resolve({ data: {} });
+    axiosMock.get.mockResolvedValueOnce(mockedData);
     await Search.execute(['NOPE'], mockMessage);
     expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
   });
