@@ -1,7 +1,5 @@
-import axios from 'axios';
 import GitProfile from '../../src/commands/gitProfile';
-import IGithubProfile from '../../src/commands/interfaces/iGithubProfile';
-import mocked from '../helpers/mocked';
+import axiosMock from '../__mocks__/axios';
 import mockGithubProfile from '../mockData/githubProfile';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
@@ -15,12 +13,14 @@ beforeEach(() => {
 });
 
 describe('GitProfile Command', () => {
+  beforeEach(() => {
+    axiosMock.request.mockResolvedValueOnce({data: mockGithubProfile});
+  });
   test('No username specified', () => {
     GitProfile.execute([], mockMessage);
     expect(sendMock).lastCalledWith('Please enter a username.');
   });
   test('Responds with profile information', async () => {
-    mocked<any, IGithubProfile>(axios.request).mockResolvedValue({data: mockGithubProfile});
     await GitProfile.execute(['ctsstc'], mockMessage);
     const sentMessage = sendMock.mock.calls[0][0];
     expect(sentMessage).toContain(`[${mockGithubProfile.type}]`);
@@ -38,14 +38,13 @@ describe('GitProfile Command', () => {
     mockGithubProfile.name = null;
     mockGithubProfile.company = null;
     mockGithubProfile.location = null;
-    mocked<any, IGithubProfile>(axios.request).mockResolvedValue({data: mockGithubProfile});
     await GitProfile.execute(['ctsstc'], mockMessage);
     const sentMessage = sendMock.mock.calls[0][0];
     expect(sentMessage.startsWith(`[${mockGithubProfile.type}] with`));
   });
   test('Requests API using username', async () => {
     await GitProfile.execute(['ctsstc'], mockMessage);
-    const requestOptions = mocked<any, IGithubProfile>(axios.request).mock.calls[0][0];
+    const requestOptions = axiosMock.request.mock.calls[0][0];
     expect(requestOptions.url).toContain('api.github.com/users/ctsstc');
   });
 });
