@@ -3,6 +3,8 @@ import config from '../config';
 import CommandLoader, { ICommandClasses } from './commandLoader';
 import Command from './iCommand';
 
+export const COMMANDS_PATH_GLOB = './src/commands/*.ts';
+
 // TODO: debateable whether we even need this wrapper class
 /**
  * @class Commands
@@ -13,7 +15,7 @@ export default class Commands {
   private commandFiles: string[];
 
   constructor() {
-    this.commandFiles = glob.sync('./src/commands/**/*.ts');
+    this.commandFiles = glob.sync(COMMANDS_PATH_GLOB);
     this.all = CommandLoader.getCommandClasses(this.commandFiles);
   }
 
