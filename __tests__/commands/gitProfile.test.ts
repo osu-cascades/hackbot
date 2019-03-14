@@ -14,7 +14,8 @@ beforeEach(() => {
 
 describe('GitProfile Command', () => {
   beforeEach(() => {
-    axiosMock.request.mockResolvedValueOnce({data: mockGithubProfile});
+    const resolvedData = Promise.resolve({data: mockGithubProfile});
+    axiosMock.request.mockResolvedValueOnce(resolvedData);
   });
   test('No username specified', () => {
     GitProfile.execute([], mockMessage);
