@@ -19,6 +19,12 @@ beforeEach(() => {
 const setupRequiredMessage = 'Setup Required: Configure Google API keys in the environment variables';
 
 describe('Search Command', () => {
+  const mockedConsoleError = jest.spyOn(console, 'error').mockImplementation(() => { return; });
+
+  afterEach(() => {
+    mockedConsoleError.mockReset();
+  });
+
   describe('Environment Variables', () => {
     test('Setup message when missing Google API Key ENV Var', async () => {
       config.googleApiKey = undefined;
@@ -31,22 +37,33 @@ describe('Search Command', () => {
       expect(sendMock).lastCalledWith(setupRequiredMessage);
     });
   });
+
   test('With no results', async () => {
     const mockedData = Promise.resolve({ data: noResults });
     axiosMock.get.mockResolvedValueOnce(mockedData);
     await Search.execute(['Nothing here'], mockMessage);
     expect(sendMock).lastCalledWith('`No results found.`');
   });
+
   test('With results', async () => {
     const mockedData = Promise.resolve({ data: results });
     axiosMock.get.mockResolvedValueOnce(mockedData);
     await Search.execute(['dingusy'], mockMessage);
     expect(sendMock).lastCalledWith(results.items[0].link);
   });
-  test('Malformed Response', async () => {
+
+  describe('Malformed Response', async () => {
     const mockedData = Promise.resolve({ data: {} });
-    axiosMock.get.mockResolvedValueOnce(mockedData);
-    await Search.execute(['NOPE'], mockMessage);
-    expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
+    beforeEach(async () => {
+      axiosMock.get.mockResolvedValueOnce(mockedData);
+      await Search.execute(['NOPE'], mockMessage);
+    });
+
+    test('it sends error message', () => {
+      expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
+    });
+    test('it logs an error message', () => {
+      expect(mockedConsoleError).lastCalledWith('Malformed Google Search Response: {}');
+    });
   });
 });
