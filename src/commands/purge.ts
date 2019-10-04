@@ -1,7 +1,8 @@
-import { Client, DMChannel, Message } from 'discord.js';
+import { Client, DMChannel, GroupDMChannel, Guild, Message, TextChannel } from 'discord.js';
 import ICommand from '../library/iCommand';
 
 let Purge: ICommand;
+type channelTypes = 'dm' | 'group' | 'text' | 'voice' | 'category' | 'text';
 
 export default Purge = class {
 
@@ -11,42 +12,54 @@ export default Purge = class {
   }
 
   public static execute(args: string[], msg: Message, bot: Client) {
-    const { guild } = msg;
-
-    /* global bot */
-    if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
-      return msg.reply("Bot doesn't have manage channels permissions.");
+    const { guild, channel } = msg;
+    if (!this.canManageChannels(guild, bot)) { return this.cannotManageChannelReply(msg); }
+    if (!this.userHasAccess(guild, msg)) { return this.unauthorizedReply(msg); }
+    if (channel instanceof DMChannel || channel instanceof GroupDMChannel) {
+      return this.invalidChannelType(msg);
     }
 
-    // Make sure the person doing the command is a Board Member
-    const boardRole = guild.roles.find(role => role.name === 'Board Member' || role.name === 'Admin');
-    if (msg.member.roles.has(boardRole.id)) {
-      const { channel } = msg;
-
-      if (channel instanceof DMChannel) {
-        return;
-      }
-
-      // Grab the channels info
-      const chanName = channel.name;
-      const chanType = channel.type || 'text';
-
-      if (chanType === 'dm' || chanType === 'group') {
-        return;
-      }
-
-      // Delete the channel
-      channel.delete()
-        .then()
-        .catch(console.error);
-
-      // Now re-create the channel with the same name and type
-      guild.createChannel(chanName, chanType)
-        .then(newChannelName => console.log(`Created new channel ${newChannelName}`))
-        .catch(console.error);
-    } else {
-      return msg.reply("Sorry m8, you're not authorized to use that command.");
-    }
+    const safeChannel: TextChannel = channel;
+    return this.recreateChannel(guild, safeChannel, msg);
   }
 
+  private static canManageChannels(guild: Guild, bot: Client) {
+    return guild.member(bot.user).hasPermission('MANAGE_CHANNELS');
+  }
+
+  private static userHasAccess(guild: Guild, msg: Message) {
+    const validRoles = ['Board Member', 'Admin'];
+    const boardRole = guild.roles.find(role => validRoles.includes(role.name));
+    return msg.member.roles.has(boardRole.id);
+  }
+
+  private static getChannelType(channel: TextChannel): channelTypes {
+    return channel.type || 'text';
+  }
+
+  private static recreateChannel(guild: Guild, channel: TextChannel, msg: Message) {
+    const chanName = channel.name;
+    const channelType = this.getChannelType(channel);
+    if (channelType === 'dm' || channelType === 'group') { return this.invalidChannelType(msg); }
+
+    channel.delete()
+      .then()
+      .catch(console.error);
+
+    return guild.createChannel(chanName, channelType)
+      .then(newChannelName => console.log(`Created new channel ${newChannelName}`))
+      .catch(console.error);
+  }
+
+  private static cannotManageChannelReply(msg: Message) {
+    return msg.reply("Bot doesn't have manage channels permissions.");
+  }
+
+  private static unauthorizedReply(msg: Message) {
+    return msg.reply("Sorry m8, you're not authorized to use that command.");
+  }
+
+  private static invalidChannelType(msg: Message) {
+    return msg.reply("Invalid channel type.");
+  }
 };
