@@ -52,7 +52,7 @@ describe('Search Command', () => {
     expect(sendMock).lastCalledWith(results.items[0].link);
   });
 
-  describe('Malformed Response', async () => {
+  describe('Malformed Response', () => {
     const mockedData = Promise.resolve({ data: {} });
     beforeEach(async () => {
       axiosMock.get.mockResolvedValueOnce(mockedData);
