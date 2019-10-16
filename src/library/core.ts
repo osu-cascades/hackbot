@@ -52,7 +52,8 @@ export default class Core {
 
     if (defaultChannel && defaultChannel instanceof TextChannel) {
       defaultChannel.send(`'${username}' has joined this server`);
-      defaultChannel.send(`Welcome, <@${id}> !`);
+      defaultChannel.send(`Welcome, <@${id}> ! Please request a role with the command !role.
+      Use !role help for more information.`);
     }
     else {
       console.warn('This server has no defaultChannel property. (It might be too new.) ' +
