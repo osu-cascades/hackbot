@@ -16,6 +16,7 @@ export default Role = class {
     const roleRequest = msg.guild.roles.find(r => r.name === args[1]); // Finds role based on input
 
     if (command === "request") {
+      if (!roleRequest) { return channel.send("Please enter a valid role. Try !role help"); } // If role is null
       assignRoleHelper(roleRequest, msg.member, msg);
     } else if (command === "help") {
       getHelp(msg);
