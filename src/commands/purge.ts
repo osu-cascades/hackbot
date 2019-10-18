@@ -1,5 +1,6 @@
-import { Client, DMChannel, Message } from 'discord.js';
+import { Channel, Client, DMChannel, GroupDMChannel, Guild, Message, TextChannel } from 'discord.js';
 import ICommand from '../library/iCommand';
+import { botHasPermissions, memberIsBoardMember } from './helpers/permissions';
 
 let Purge: ICommand;
 
@@ -10,43 +11,59 @@ export default Purge = class {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  public static execute(args: string[], msg: Message, bot: Client) {
-    const { guild } = msg;
+  public static execute(args: string[], msg: Message, client: Client) {
+    const { channel, guild, member, reply } = msg;
 
-    /* global bot */
-    if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
-      return msg.reply("Bot doesn't have manage channels permissions.");
+    if (!botHasPermissions(client, guild)) {
+      return reply("Bot doesn't have manage channels permissions.");
     }
 
-    // Make sure the person doing the command is a Board Member
-    const boardRole = guild.roles.find(role => role.name === 'Board Member' || role.name === 'Admin');
-    if (msg.member.roles.has(boardRole.id)) {
-      const { channel } = msg;
-
-      if (channel instanceof DMChannel) {
-        return;
-      }
-
-      // Grab the channels info
-      const chanName = channel.name;
-      const chanType = channel.type || 'text';
-
-      if (chanType === 'dm' || chanType === 'group') {
-        return;
-      }
-
-      // Delete the channel
-      channel.delete()
-        .then()
-        .catch(console.error);
-
-      // Now re-create the channel with the same name and type
-      guild.createChannel(chanName, chanType)
-        .then(newChannelName => console.log(`Created new channel ${newChannelName}`))
-        .catch(console.error);
-    } else {
-      return msg.reply("Sorry m8, you're not authorized to use that command.");
+    if (!memberIsBoardMember(member, guild)) {
+      return reply("Sorry m8, you're not authorized to use that command.");
     }
+
+    this.recreateChannel(guild, channel);
+  }
+
+  private static recreateChannel(guild: Guild, channel: DMChannel | TextChannel | GroupDMChannel) {
+    // Grab the channels info
+    const channelName = this.channelName(channel);
+    const channelType = this.channelType(channel);
+
+    if (!channelName || channelType === 'dm' || channelType === 'group') {
+      return;
+    }
+
+    // Delete the channel
+    this.deleteChannel(channel);
+
+    // Now re-create the channel with the same name and type
+    this.createChannel(guild, channelName, channelType);
+  }
+
+  private static channelName(channel: DMChannel | TextChannel | GroupDMChannel) {
+    if (channel instanceof DMChannel) {
+      return false;
+    }
+    else {
+      return channel.name;
+    }
+  }
+
+  private static channelType(channel: Channel) {
+    return channel.type || 'text';
+  }
+
+  private static deleteChannel(channel: Channel) {
+    channel.delete()
+    .then()
+    .catch(console.error);
+  }
+
+  private static createChannel(guild: Guild, name: string, type: "category" | "text" | "voice") {
+    guild.createChannel(name, type)
+      .then(newName => console.log(`Created new channel ${newName}`))
+      .catch(console.error);
   }
 
 };
