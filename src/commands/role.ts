@@ -1,4 +1,4 @@
-import {GuildMember, Message} from 'discord.js';
+import { GuildMember, Message, Role as DiscordRole, Collection } from 'discord.js';
 import ICommand from '../library/iCommand';
 
 // Hack for implementing with static properties/methods
@@ -12,48 +12,80 @@ export default Role = class {
 
   public static execute(args: string[], msg: Message) {
     const { channel } = msg;
-    const command = args[0];
-    const roleRequest = msg.guild.roles.find(r => r.name === args[1]); // Finds role based on input
+    const commandName = args[0];
 
-    if (command === "request") {
-      if (!roleRequest) { return channel.send("Please enter a valid role. Try !role help"); } // If role is null
-      assignRoleHelper(roleRequest, msg.member, msg);
-    } else if (command === "help") {
-      getHelp(msg);
+    const validCommands:Map<string, ()=>void> = new Map([
+      ['request', () => { requestCommand(args, msg) }],
+      ['help', () => { helpCommand(msg) }]
+    ]);
+
+    const command = validCommands.get(commandName);
+
+    if (command) {
+      command();
     }
     else {
-      return channel.send("Role command unknown. Use 'role request [rolename]' to request a role.");
+      return channel.send(`Role command "${command}" unknown. Use "role request [rolename]" to request a role, or "role help" for more information.`);
     }
   }
-
 };
 
-const assignRoleHelper = (role: any, author: GuildMember, msg: Message) => {
-  // Constants for each possible role
-  const freshman = msg.guild.roles.find(r => r.name === "Freshman");
-  const sophomore = msg.guild.roles.find(r => r.name === "Sophomore");
-  const junior = msg.guild.roles.find(r => r.name === "Junior");
-  const senior = msg.guild.roles.find(r => r.name === "Senior");
+const yearRoleNames = [
+  'Freshman',
+  'Sophomore',
+  'Junior',
+  'Senior'
+];
 
-  // Does the user already have this role?
-  if (msg.member.roles.has(role.id)) {
-    return msg.channel.send(`Request cancelled: user already has ${role}`);
-  } else {
-    // Remove all possible roles and ignore errors
-    author.removeRole(freshman).catch();
-    author.removeRole(sophomore).catch();
-    author.removeRole(junior).catch();
-    author.removeRole(senior).catch();
-    // Add new role
-    author.addRole(role).catch(console.error);
-    return msg.channel.send(`Role ${role} added!`);
+const requestCommand = (args: string[], msg: Message) => {
+  const { channel } = msg;
+  const lowerCaseName = args[1].toLowerCase();
+  const foundRole = msg.guild.roles.find(r => r.name.toLowerCase() === lowerCaseName);
+  const validRole = yearRoleNames.includes(foundRole.name);
+
+  if (!foundRole) {
+    return channel.send("Please enter a valid role. Try !role help");
+  } // If role is null
+  if (!validRole) {
+    const validRolesString = yearRoleNames.join(', ');
+    return channel.send(`You do not have permission to add role: "${foundRole}".\n
+    Please add one of the following: ${validRolesString}`)
   }
+
+  assignRoleHelper(foundRole, msg.member, msg);
 };
 
-const getHelp = (msg: Message) => {
-  msg.reply('sliding into your DMs...').catch();
-  return msg.author.send(`[ROLE HELP]: \n Automatically request a class standing role: \n
+const helpCommand = (msg: Message) => {
+  msg.reply('Sliding into your DMs...').catch();
+  return msg.author.send(`[ROLE HELP]: \n
+  Automatically request a class standing role: \n
   Use command: *!role request role* \n
   Roles include: Freshman, Sophomore, Junior, Senior. These are case sensitive. \n
   Note: Requesting a role will remove you current role.`);
 };
+
+const assignRoleHelper = (role: any, author: GuildMember, msg: Message) => {
+  const userAlreadyHasRole = msg.member.roles.has(role.id);
+  if (userAlreadyHasRole) {
+    return msg.channel.send(`Request cancelled: user already has role: ${role.name}`);
+  }
+
+  const userYearRoles = msg.guild.roles.filter(role => yearRoleNames.includes(role.name));
+  const removeRolePromises = removeRoles(userYearRoles, author);
+
+  Promise.all(removeRolePromises).then(() => {
+    return author.addRole(role).then(() => {
+      return msg.channel.send(`Role ${role} added!`);
+    });
+  }).catch(console.error);
+};
+
+const removeRoles = (roles:Collection<String, DiscordRole>, user: GuildMember):Array<Promise<GuildMember>>  => {
+  const removeRolePromises:Array<Promise<GuildMember>> = [];
+
+  roles.forEach(role => {
+    removeRolePromises.push(user.removeRole(role));
+  });
+
+  return removeRolePromises;
+}
