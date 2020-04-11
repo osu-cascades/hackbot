@@ -1,5 +1,4 @@
 import glob from 'glob';
-import config from '../../src/config';
 import CommandLoader, { ICommandClasses } from '../../src/library/commandLoader';
 
 describe('CommandLoader', () => {
