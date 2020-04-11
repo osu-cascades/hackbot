@@ -34,7 +34,7 @@ describe('Commands', () => {
 
   test('Can fetch a command', () => {
     const helloCommand = commands.get('hello');
-    expect(helloCommand).toEqual(mockHelloCommand);
+    expect(helloCommand).toBe(mockHelloCommand);
   });
 
   test('Finds the longest name', () => {
