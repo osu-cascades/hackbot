@@ -2,7 +2,7 @@ import Help from '../../src/commands/help';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 import Commands from '../../src/library/commands';
 
-// TODO: These should be in a factor/mock
+// TODO: These should be in a factory/mock
 const oneCommand = {
   name: 'one',
   description: 'I am number one.',
