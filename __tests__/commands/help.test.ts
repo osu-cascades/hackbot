@@ -76,6 +76,10 @@ describe('Help Command', () => {
         expect(lastLine).toEqual('```');
       });
 
+      test('it still looks the same', () => {
+        expect(message).toMatchSnapshot();
+      });
+
       describe('Commands', () => {
         test('one command', () => {
           expect(message).toContain('!one');

@@ -38,7 +38,7 @@ export default Help = class {
       return message += `${config.messagePrefix}${commandName}` +
       // TODO: needs args implemented here after they're part of the magic
         ' '.repeat(amountOfSpaces) +
-        `→ ${command.description}\n`;
+        `  → ${command.description}\n`;
     }, '');
   }
 };
