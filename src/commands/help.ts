@@ -13,7 +13,7 @@ export default Help = class {
   }
 
   public static execute(
-    _args: string[],
+    args: string[],
     msg: Message,
     { commands }: { commands: Commands }
   ) {

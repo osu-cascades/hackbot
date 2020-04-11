@@ -11,7 +11,7 @@ export default Purge = class {
   }
 
   public static execute(
-    _args: string[],
+    args: string[],
     msg: Message,
     { client: bot }: { client: Client }
   ) {
