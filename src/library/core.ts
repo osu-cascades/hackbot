@@ -6,8 +6,8 @@ import CommandParser from './commandParser';
 import Commands from './commands';
 
 const cmdParser = new CommandParser(config.messagePrefix);
-
-const commandFiles = glob.sync(config.commandsPathGlob);
+const commandsPathGlob = './src/commands/*.ts';
+const commandFiles = glob.sync(commandsPathGlob);
 const commandClasses = CommandLoader.getCommandClasses(commandFiles);
 const commands = new Commands(commandClasses);
 

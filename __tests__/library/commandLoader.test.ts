@@ -4,7 +4,8 @@ import config from '../../src/config';
 
 describe('CommandLoader', () => {
   let commandClasses: ICommandClasses;
-  const files = glob.sync(config.commandsPathGlob);
+  const commandsPathGlob = './src/commands/*.ts';
+  const files = glob.sync(commandsPathGlob);
 
   beforeEach(() => {
     commandClasses = CommandLoader.getCommandClasses(files);

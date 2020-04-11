@@ -4,13 +4,11 @@ dotenv.config();
 /* istanbul ignore next */
 // Quite a pain to test for the defaults with dotenv so not worth the effort
 const defaults = {
-  commandsPathGlob: './src/commands/*.ts',
   defaultChannel: process.env.DEFAULT_CHANNEL,
   discordAppToken: process.env.DISCORD_APP_TOKEN,
   env: process.env.NODE_ENV || 'production',
   messagePrefix: process.env.MESSAGE_PREFIX || '!',
   production: process.env.NODE_ENV === 'production',
-  commandTemplateFile: './src/commands/_template.ts',
   get welcomeChannel() { return process.env.WELCOME_CHANNEL || this.defaultChannel; },
 };
 
