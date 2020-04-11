@@ -10,7 +10,7 @@ import Commands from "./commands";
 export default interface ICommand {
   readonly name: string;
   readonly description: string;
-  execute(args: string[], msg: Message, extra?:{
+  execute(args: string[], msg: Message, extra?: {
     client?: Client,
     commands?: Commands
   }): void;

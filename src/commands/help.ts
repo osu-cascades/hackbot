@@ -20,7 +20,7 @@ export default Help = class {
     const helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n" +
       "Here is a list of the commands that we've got right now:\n" +
       '```\n' +
-      this.commandsAndDescriptions(commands)+
+      this.commandsAndDescriptions(commands) +
       '```';
 
     msg.reply('sliding into your DMs...');

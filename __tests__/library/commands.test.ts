@@ -1,6 +1,6 @@
+import { ICommandClasses } from '../../src/library/commandLoader';
 import Commands from '../../src/library/commands';
 import ICommand from '../../src/library/iCommand';
-import { ICommandClasses } from '../../src/library/commandLoader';
 
 describe('Commands', () => {
   let mockHelloCommand: ICommand;
@@ -19,16 +19,16 @@ describe('Commands', () => {
       name: 'YAC',
       description: 'Yet Another Command!',
       execute: jest.fn()
-    }
+    };
     mockCommands = {
       hello: mockHelloCommand,
       yac: mockYetAnotherCommand
-    }
+    };
     commands = new Commands(mockCommands);
   });
 
   test('.names returns command names', () => {
-    const commandNames = ['hello', 'yac']
+    const commandNames = ['hello', 'yac'];
     expect(commands.names).toEqual(commandNames);
   });
 

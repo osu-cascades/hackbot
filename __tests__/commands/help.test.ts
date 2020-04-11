@@ -1,6 +1,6 @@
 import Help from '../../src/commands/help';
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
 import Commands from '../../src/library/commands';
+import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 // TODO: These should be in a factory/mock
 const oneCommand = {
@@ -13,7 +13,7 @@ const twoCommand = {
   name: 'two',
   description: 'Two is not just a number.',
   execute: jest.fn()
-}
+};
 
 const blueFishCommand = {
   name: 'blueFish',
@@ -36,7 +36,7 @@ beforeEach(() => {
   // @ts-ignore
   mockMessage.author = {
     send: authorSend
-  }
+  };
 });
 
 describe('Help Command', () => {
@@ -86,7 +86,7 @@ describe('Help Command', () => {
         });
 
         test('one description', () => {
-          expect(message).toContain(oneCommand.description)
+          expect(message).toContain(oneCommand.description);
         });
 
         test('two command', () => {
