@@ -1,22 +1,30 @@
 import Help from '../../src/commands/help';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
+import Commands from '../../src/library/commands';
 
-const commands:{[key: string]: {[key: string]: string}} = {
-  One: { description: 'I am number one.' },
-  Two: { description: 'Two is not just a number.' },
-  BlueFish: { description: 'Not a red fish.' }
+// TODO: These should be in a factor/mock
+const oneCommand = {
+  name: 'one',
+  description: 'I am number one.',
+  execute: jest.fn()
 };
 
-jest.mock('../../src/library/commands', () => {
-  return function() {
-    return {
-      longestName: jest.fn(() => 42),
-      names: Object.keys(commands),
-      get: jest.fn((name) => {
-        return commands[name];
-      })
-    };
-  }
+const twoCommand = {
+  name: 'two',
+  description: 'Two is not just a number.',
+  execute: jest.fn()
+}
+
+const blueFishCommand = {
+  name: 'blueFish',
+  description: 'Not a red fish.',
+  execute: jest.fn()
+};
+
+const commands = new Commands({
+  one: oneCommand,
+  two: twoCommand,
+  blueFish: blueFishCommand
 });
 
 let sendMock: MockedMessage;
@@ -34,7 +42,7 @@ beforeEach(() => {
 describe('Help Command', () => {
   describe('Execute', () => {
     beforeEach(() => {
-      Help.execute([], mockMessage);
+      Help.execute([], mockMessage, { commands });
     });
 
     test('Lets you know to check your DMs', () => {
@@ -69,28 +77,28 @@ describe('Help Command', () => {
       });
 
       describe('Commands', () => {
-        test('One command', () => {
-          expect(message).toContain('!One');
+        test('one command', () => {
+          expect(message).toContain('!one');
         });
-  
-        test('One description', () => {
-          expect(message).toContain(commands.One.description)
+
+        test('one description', () => {
+          expect(message).toContain(oneCommand.description)
         });
-  
-        test('Two command', () => {
-          expect(message).toContain('!Two');
+
+        test('two command', () => {
+          expect(message).toContain('!two');
         });
-  
-        test('Two description', () => {
-          expect(message).toContain(commands.Two.description);
+
+        test('two description', () => {
+          expect(message).toContain(twoCommand.description);
         });
-  
-        test('BlueFish command', () => {
-          expect(message).toContain('!BlueFish');
+
+        test('blueFish command', () => {
+          expect(message).toContain('!blueFish');
         });
-  
+
         test('BlueFish description', () => {
-          expect(message).toContain(commands.BlueFish.description);
+          expect(message).toContain(blueFishCommand.description);
         });
       });
     });

@@ -10,7 +10,11 @@ export default Purge = class {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  public static execute(args: string[], msg: Message, bot: Client) {
+  public static execute(
+    _args: string[],
+    msg: Message,
+    { client: bot }: { client: Client }
+  ) {
     const { guild } = msg;
 
     /* global bot */
