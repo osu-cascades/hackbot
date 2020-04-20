@@ -21,6 +21,9 @@
   },
   "author": "osu-cascades",
   "license": "MIT",
+  "engines": {
+    "node": "13.7.2"
+  },
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/dotenv": "^6.1.0",
