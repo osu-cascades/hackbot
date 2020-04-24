@@ -41,7 +41,8 @@ export default Purge = class {
 
       // Delete the channel
       channel.delete()
-        .then()
+        // @ts-ignore
+        .then(console.log)
         .catch(console.error);
 
       // Now re-create the channel with the same name and type
