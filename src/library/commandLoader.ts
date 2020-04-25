@@ -25,6 +25,7 @@ export default class CommandLoader {
   }
 
   private static removeTemplateFile(files: string[]) {
-    return files.filter(file => file !== './src/commands/_template.ts');
+    const commandTemplateFile = './src/commands/_template.ts';
+    return files.filter(file => file !== commandTemplateFile);
   }
 }

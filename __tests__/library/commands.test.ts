@@ -1,16 +1,43 @@
+import { ICommandClasses } from '../../src/library/commandLoader';
 import Commands from '../../src/library/commands';
+import ICommand from '../../src/library/iCommand';
 
-// TODO: I feel like this class is too basic to test,
-//  and ultimately a wrapper for other classes that have been tested
-//  Might just remove it some day
 describe('Commands', () => {
-  const commands = new Commands();
-  test('Has a command', () => {
-    expect(Object.keys(commands.all).length).toBeGreaterThan(0);
-    expect(commands.names.length).toBeGreaterThan(0);
+  let mockHelloCommand: ICommand;
+  let mockYetAnotherCommand: ICommand;
+  let mockCommands: ICommandClasses;
+  let commands: Commands;
+
+  beforeEach(() => {
+    // TODO: these should probably go into a factory/mock
+    mockHelloCommand = {
+      name: 'Hello',
+      description: 'Hello World',
+      execute: jest.fn()
+    };
+    mockYetAnotherCommand = {
+      name: 'YAC',
+      description: 'Yet Another Command!',
+      execute: jest.fn()
+    };
+    mockCommands = {
+      hello: mockHelloCommand,
+      yac: mockYetAnotherCommand
+    };
+    commands = new Commands(mockCommands);
   });
+
+  test('.names returns command names', () => {
+    const commandNames = ['hello', 'yac'];
+    expect(commands.names).toEqual(commandNames);
+  });
+
   test('Can fetch a command', () => {
-    const first = commands.names[0];
-    expect(commands.get(first)).not.toBeUndefined();
+    const helloCommand = commands.get('hello');
+    expect(helloCommand).toBe(mockHelloCommand);
+  });
+
+  test('Finds the longest name', () => {
+    expect(commands.longestNameLength()).toEqual(5);
   });
 });

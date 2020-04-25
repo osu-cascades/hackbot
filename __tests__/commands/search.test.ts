@@ -43,10 +43,24 @@ describe('Search Command', () => {
     await Search.execute(['dingusy'], mockMessage);
     expect(sendMock).lastCalledWith(results.items[0].link);
   });
-  test('Malformed Response', async () => {
-    const mockedData = Promise.resolve({ data: {} });
-    axiosMock.get.mockResolvedValueOnce(mockedData);
-    await Search.execute(['NOPE'], mockMessage);
-    expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
+  describe('Malformed Response', () => {
+    let consoleErrorMock: jest.SpyInstance<void, any>;
+    beforeEach(async () => {
+      const mockedData = Promise.resolve({ data: {} });
+      axiosMock.get.mockResolvedValueOnce(mockedData);
+      consoleErrorMock = jest.spyOn(console, 'error')
+        .mockImplementation(() => undefined); // Prevent it from spewing into the test results
+      await Search.execute(['NOPE'], mockMessage);
+    });
+    afterEach(() => {
+      consoleErrorMock.mockRestore();
+    });
+    test('Responds with error message', async () => {
+      expect(sendMock).lastCalledWith("I'm Sorry Dave, I'm afraid I can't do that...");
+    });
+    test('Console logs an error', () => {
+      const errorMessage = "Malformed Google Search Response: {}";
+      expect(consoleErrorMock).lastCalledWith(errorMessage);
+    });
   });
 });
