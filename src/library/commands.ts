@@ -1,5 +1,5 @@
 import { ICommandClasses } from './commandLoader';
-import Command from './iCommand';
+import Command from './interfaces/iCommand';
 
 // TODO: debateable whether we even need this wrapper class
 /**

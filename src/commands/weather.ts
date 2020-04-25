@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
 import config from '../config';
-import ICommand from '../library/iCommand';
+import ICommand from '../library/interfaces/iCommand';
 
 let Weather: ICommand;
 
