@@ -6,7 +6,6 @@ let sendMock: MockedMessage;
 beforeEach(() => {
   sendMock = jest.fn();
   mockMessage.channel.send = sendMock;
-  mockMessage.channel.sendMessage = sendMock;
 });
 
 describe('Version Command', () => {
