@@ -1,13 +1,13 @@
 import Search from '../../src/commands/search';
 import config from '../../src/config';
 import axiosMock from '../__mocks__/axios';
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
+import { mockMessage, MockMessage } from '../mocks/discord';
 import { noResults, results } from './../mockData/search';
 
 jest.mock('axios');
 jest.mock('../../src/config.ts');
 
-let sendMock: MockedMessage;
+let sendMock: MockMessage;
 beforeEach(() => {
   sendMock = jest.fn();
   mockMessage.channel.send = sendMock;

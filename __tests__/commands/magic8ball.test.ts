@@ -1,7 +1,7 @@
 import Magic8Ball from '../../src/commands/magic8ball';
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
+import { mockMessage, MockMessage } from '../mocks/discord';
 
-let sendMock: MockedMessage;
+let sendMock: MockMessage;
 beforeEach(() => {
   sendMock = jest.fn();
   mockMessage.channel.send = sendMock;

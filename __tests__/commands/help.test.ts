@@ -1,6 +1,6 @@
 import Help from '../../src/commands/help';
 import Commands from '../../src/library/commands';
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
+import { mockMessage, MockMessage } from '../mocks/discord';
 
 // TODO: These should be in a factory/mock
 const oneCommand = {
@@ -27,16 +27,15 @@ const commands = new Commands({
   blueFish: blueFishCommand
 });
 
-let sendMock: MockedMessage;
-let authorSend: MockedMessage;
+let sendMock: MockMessage;
+let authorSend: MockMessage;
+
 beforeEach(() => {
   sendMock = jest.fn();
-  mockMessage.reply = sendMock;
   authorSend = jest.fn();
-  // @ts-ignore
-  mockMessage.author = {
-    send: authorSend
-  };
+
+  mockMessage.reply = sendMock;
+  mockMessage.author.send = authorSend;
 });
 
 describe('Help Command', () => {

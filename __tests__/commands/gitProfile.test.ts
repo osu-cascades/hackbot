@@ -1,11 +1,11 @@
 import GitProfile from '../../src/commands/gitProfile';
 import axiosMock from '../__mocks__/axios';
 import mockGithubProfile from '../mockData/githubProfile';
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
+import { mockMessage, MockMessage } from '../mocks/discord';
 
 jest.mock('axios');
 
-let sendMock: MockedMessage;
+let sendMock: MockMessage;
 beforeEach(() => {
   jest.resetModules();
   sendMock = jest.fn();
