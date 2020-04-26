@@ -1,5 +1,4 @@
-import { Client, Message } from "discord.js";
-import Commands from "@/commands";
+import CommandContext from "../commandContext";
 
 /**
  * An interface for all commands to extend, representing the API that all
@@ -10,8 +9,5 @@ import Commands from "@/commands";
 export default interface ICommand {
   readonly name: string;
   readonly description: string;
-  execute(args: string[], msg: Message, extra?: {
-    client?: Client,
-    commands?: Commands
-  }): void;
+  execute(ctx: CommandContext): void;
 }

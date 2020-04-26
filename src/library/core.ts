@@ -1,6 +1,7 @@
 import config from '@/config';
 import { Client, GuildMember, Message, TextChannel } from 'discord.js';
 import glob from 'glob';
+import CommandContext from './commandContext';
 import CommandLoader from './commandLoader';
 import CommandParser from './commandParser';
 import Commands from './commands';
@@ -36,10 +37,14 @@ export default class Core {
     try {
       const command = commands.get(commandName);
       if (command) {
-        return command.execute(args, msg, {
-          client: this.client,
-          commands
-        });
+        return command.execute(
+          new CommandContext(
+            args,
+            msg,
+            this.client,
+            commands
+          )
+        );
       }
       else {
         return channel.send(`Command not found: ${commandName}`);
