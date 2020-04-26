@@ -5,7 +5,7 @@ import { Client } from 'discord.js';
 const client = new Client();
 const core = new Core(client);
 
-client.on('ready', () => core.ready);
+client.on('ready', () => core.ready());
 
 client.on('message', core.message);
 
