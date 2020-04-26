@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import config from '../config';
-import Commands from '../library/commands';
-import ICommand from '../library/interfaces/iCommand';
+import config from '@/config';
+import Commands from '@/library/commands';
+import ICommand from '@/library/interfaces/iCommand';
 
 let Help: ICommand;
 

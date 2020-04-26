@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import ICommand from '../library/interfaces/iCommand';
+import ICommand from '@/library/interfaces/iCommand';
 
 // Hack for implementing with static properties/methods
 let Format: ICommand;
