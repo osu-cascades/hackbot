@@ -1,5 +1,6 @@
 import ICommand from '@/library/interfaces/iCommand';
-import { Client, DMChannel, Message } from 'discord.js';
+import { DMChannel } from 'discord.js';
+import CommandContext from '../library/commandContext';
 
 let Purge: ICommand;
 
@@ -10,14 +11,9 @@ export default Purge = class {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  public static execute(
-    args: string[],
-    msg: Message,
-    { client: bot }: { client: Client }
-  ) {
+  public static execute({ msg, client: bot}: CommandContext) {
     const { guild } = msg;
 
-    /* global bot */
     if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
       return msg.reply("Bot doesn't have manage channels permissions.");
     }
