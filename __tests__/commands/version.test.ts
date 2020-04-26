@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
-import Version from './../../src/commands/version';
+import Version from '@/commands/version';
 
 let sendMock: MockedMessage;
 beforeEach(() => {

@@ -1,5 +1,5 @@
-import Help from '../../src/commands/help';
-import Commands from '../../src/library/commands';
+import Help from '@/commands/help';
+import Commands from '@/library/commands';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 // TODO: These should be in a factory/mock

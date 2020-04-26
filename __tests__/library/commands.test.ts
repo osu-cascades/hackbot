@@ -1,6 +1,6 @@
-import { ICommandClasses } from '../../src/library/commandLoader';
-import Commands from '../../src/library/commands';
-import ICommand from '../../src/library/iCommand';
+import { ICommandClasses } from '@/library/commandLoader';
+import Commands from '@/library/commands';
+import ICommand from '@/library/interfaces/iCommand';
 
 describe('Commands', () => {
   let mockHelloCommand: ICommand;

@@ -1,4 +1,4 @@
-import Lmgtfy from '../../src/commands/lmgtfy';
+import Lmgtfy from '@/commands/lmgtfy';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 let sendMock: MockedMessage;
