@@ -1,7 +1,7 @@
+import config from '@/config';
+import ICommand from '@/library/interfaces/iCommand';
 import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
-import config from '../config';
-import ICommand from '../library/iCommand';
 
 let Search: ICommand;
 

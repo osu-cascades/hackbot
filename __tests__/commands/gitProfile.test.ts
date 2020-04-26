@@ -1,4 +1,4 @@
-import GitProfile from '../../src/commands/gitProfile';
+import GitProfile from '@/commands/gitProfile';
 import axiosMock from '../__mocks__/axios';
 import mockGithubProfile from '../mockData/githubProfile';
 import { mockMessage, MockMessage } from '../mocks/discord';

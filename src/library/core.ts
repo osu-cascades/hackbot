@@ -1,6 +1,6 @@
+import config from '@/config';
 import { Client, GuildMember, Message, TextChannel } from 'discord.js';
 import glob from 'glob';
-import config from '../config';
 import CommandLoader from './commandLoader';
 import CommandParser from './commandParser';
 import Commands from './commands';

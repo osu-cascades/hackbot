@@ -1,4 +1,4 @@
-import Format from '../../src/commands/format';
+import Format from '@/commands/format';
 import { mockMessage, MockMessage } from '../mocks/discord';
 
 let sendMock: MockMessage;

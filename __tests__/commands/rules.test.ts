@@ -1,4 +1,5 @@
-import Rules from '../../src/commands/rules';
+
+import Rules from '@/commands/rules';
 import { mockMessage, MockMessage } from '../mocks/discord';
 
 let sendMock: MockMessage;

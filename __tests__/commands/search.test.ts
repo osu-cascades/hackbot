@@ -1,11 +1,11 @@
-import Search from '../../src/commands/search';
-import config from '../../src/config';
+import Search from '@/commands/search';
+import config from '@/config';
 import axiosMock from '../__mocks__/axios';
 import { mockMessage, MockMessage } from '../mocks/discord';
 import { noResults, results } from './../mockData/search';
 
 jest.mock('axios');
-jest.mock('../../src/config.ts');
+jest.mock('@/config.ts');
 
 let sendMock: MockMessage;
 beforeEach(() => {

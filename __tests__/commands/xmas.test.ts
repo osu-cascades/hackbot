@@ -1,5 +1,5 @@
-import Xmas from '../../src/commands/xmas';
-import { mockMessage, MockMessage } from '../mocks/discord';
+import Xmas from '@/commands/xmas';
+import { mockMessage, MockMessage } from '../mocks/discord'
 
 let sendMock: MockMessage;
 beforeEach(() => {

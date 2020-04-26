@@ -1,5 +1,5 @@
+import Version from '@/commands/version';
 import { mockMessage, MockMessage } from '../mocks/discord';
-import Version from './../../src/commands/version';
 
 let sendMock: MockMessage;
 beforeEach(() => {

@@ -1,4 +1,4 @@
-import Magic8Ball from '../../src/commands/magic8ball';
+import Magic8Ball from '@/commands/magic8ball';
 import { mockMessage, MockMessage } from '../mocks/discord';
 
 let sendMock: MockMessage;
