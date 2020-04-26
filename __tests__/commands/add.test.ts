@@ -1,4 +1,4 @@
-import Add from '../../src/commands/add';
+import Add from '@/commands/add';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 let sendMock: MockedMessage;

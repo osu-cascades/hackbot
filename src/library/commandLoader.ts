@@ -1,6 +1,6 @@
 import camelCase from 'lodash.camelcase';
 import path from 'path';
-import Command from './iCommand';
+import Command from './interfaces/iCommand';
 
 export interface ICommandClasses { [key: string]: Command; }
 

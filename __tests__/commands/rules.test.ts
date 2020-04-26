@@ -1,4 +1,4 @@
-import Rules from '../../src/commands/rules';
+import Rules from '@/commands/rules';
 
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 

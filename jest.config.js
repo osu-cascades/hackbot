@@ -12,5 +12,9 @@ module.exports = {
     "jsx",
     "json",
     "node"
-  ]
+  ],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '@root/(.*)$': '<rootDir>/$1'
+  }
 };

@@ -1,5 +1,5 @@
+import ICommand from '@/library/interfaces/iCommand';
 import { Client, DMChannel, Message } from 'discord.js';
-import ICommand from '../library/iCommand';
 
 let Purge: ICommand;
 

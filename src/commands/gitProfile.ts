@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Message } from 'discord.js';
 import moment from 'moment';
-import ICommand from '../library/iCommand';
+import ICommand from '@/library/interfaces/iCommand';
 import IGithubProfile from './interfaces/iGithubProfile';
 
 let GitProfile: ICommand;

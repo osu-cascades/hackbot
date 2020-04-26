@@ -1,5 +1,5 @@
 import glob from 'glob';
-import CommandLoader, { ICommandClasses } from '../../src/library/commandLoader';
+import CommandLoader, { ICommandClasses } from '@/library/commandLoader';
 
 describe('CommandLoader', () => {
   let commandClasses: ICommandClasses;

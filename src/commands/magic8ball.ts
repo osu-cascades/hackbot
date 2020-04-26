@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import ICommand from '../library/iCommand';
+import ICommand from '@/library/interfaces/iCommand';
 
 let Magic8Ball: ICommand;
 
