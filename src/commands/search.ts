@@ -1,4 +1,5 @@
 import config from '@/config';
+import CommandContext from '@/library/commandContext';
 import ICommand from '@/library/interfaces/iCommand';
 import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
@@ -12,7 +13,7 @@ export default Search = class {
     return 'Searches the web for the passed query and return the top result.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  public static execute({ args, msg }: CommandContext) {
     if (!config.googleApiKey || !config.googleSearchEngineId) {
       return msg.reply('Setup Required: Configure Google API keys in the environment variables');
     }

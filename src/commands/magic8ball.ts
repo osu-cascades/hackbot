@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import CommandContext from '@/library/commandContext';
 import ICommand from '@/library/interfaces/iCommand';
 
 let Magic8Ball: ICommand;
@@ -10,7 +10,7 @@ export default Magic8Ball = class {
     return 'Ask and you shall receive... a vague, randomly generated response.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  public static execute({ msg }: CommandContext) {
     const answer = this.responses[Math.floor(Math.random() * this.responses.length)];
     return msg.channel.send(answer);
   }

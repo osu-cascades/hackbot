@@ -14,6 +14,16 @@ export default Purge = class {
   public static execute({ msg, client: bot}: CommandContext) {
     const { guild } = msg;
 
+    if (guild === null) { return; }
+
+    if (!guild || guild === null) {
+      return msg.reply("Cannot find Guild");
+    }
+
+    if (!bot.user) {
+      return msg.reply('Bot User not defined');
+    }
+
     if (!guild.member(bot.user).hasPermission('MANAGE_CHANNELS')) {
       return msg.reply("Bot doesn't have manage channels permissions.");
     }
@@ -29,11 +39,7 @@ export default Purge = class {
 
       // Grab the channels info
       const chanName = channel.name;
-      const chanType = channel.type || 'text';
-
-      if (chanType === 'dm' || chanType === 'group') {
-        return;
-      }
+      const chanType = channel.type;
 
       // Delete the channel
       channel.delete()

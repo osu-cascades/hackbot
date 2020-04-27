@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import CommandContext from '@/library/commandContext';
 import ICommand from '@/library/interfaces/iCommand';
 
 // Hack for implementing with static properties/methods
@@ -9,7 +9,7 @@ export default Format = class {
     return 'Helps users format code blocks.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  public static execute({ msg }: CommandContext) {
     msg.channel.send(
       'To format code snippets on discord, use triple-backticks and a language name.\n' +
         'For example:\n' +

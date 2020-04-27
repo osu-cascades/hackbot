@@ -1,5 +1,5 @@
-import { Message } from 'discord.js';
 import config from '@/config';
+import CommandContext from '@/library/commandContext';
 import Commands from '@/library/commands';
 import ICommand from '@/library/interfaces/iCommand';
 
@@ -12,11 +12,7 @@ export default Help = class {
     return 'Displays this message';
   }
 
-  public static execute(
-    args: string[],
-    msg: Message,
-    { commands }: { commands: Commands }
-  ) {
+  public static execute({ msg, commands }: CommandContext) {
     const helpMsg = "I am here to help! Well...mostly just make you chuckle at this point, let's be honest.\n\n" +
       "Here is a list of the commands that we've got right now:\n" +
       '```\n' +

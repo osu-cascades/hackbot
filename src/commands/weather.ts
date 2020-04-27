@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
-import { Message } from 'discord.js';
 import config from '@/config';
+import CommandContext from '@/library/commandContext';
 import ICommand from '@/library/interfaces/iCommand';
+import axios, { AxiosResponse } from 'axios';
 
 let Weather: ICommand;
 
@@ -13,7 +13,7 @@ export default Weather = class {
   }
 
   // TODO? could be refactored out into more method calls instead of this jumbo method
-  public static execute(args: string[], msg: Message) {
+  public static execute({ args, msg }: CommandContext) {
     const { channel } = msg;
 
     this.getWeather(args)

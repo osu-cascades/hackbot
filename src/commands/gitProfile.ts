@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { Message } from 'discord.js';
-import moment from 'moment';
+import CommandContext from '@/library/commandContext';
 import ICommand from '@/library/interfaces/iCommand';
+import axios from 'axios';
+import moment from 'moment';
 import IGithubProfile from './interfaces/iGithubProfile';
 
 let GitProfile: ICommand;
@@ -13,7 +13,7 @@ export default GitProfile = class {
     return 'Retrieves any public github profile.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  public static execute({ args, msg }: CommandContext) {
     const { channel } = msg;
 
     if (args.length === 0) {

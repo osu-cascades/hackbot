@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import CommandContext from "@/library/commandContext";
 import ICommand from "@/library/interfaces/iCommand";
 
 let Add: ICommand;
@@ -10,7 +10,7 @@ export default Add = class {
     return 'Adds together _integers_ passed as arguments.';
   }
 
-  public static execute(args: string[], msg: Message) {
+  public static execute({ args, msg }: CommandContext) {
     const { channel } = msg;
     const numArray = args.map(n => parseInt(n));
     const total = numArray.reduce((p, c) => p + c);
