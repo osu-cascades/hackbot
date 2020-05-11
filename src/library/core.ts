@@ -4,12 +4,19 @@ import glob from 'glob';
 import CommandLoader from './commandLoader';
 import CommandParser from './commandParser';
 import Commands from './commands';
+import LanguageLoader from './languageLoader';
+import Languages from './languages';
 
 const cmdParser = new CommandParser(config.messagePrefix);
 const commandsPathGlob = './src/commands/*.ts';
 const commandFiles = glob.sync(commandsPathGlob);
 const commandClasses = CommandLoader.getCommandClasses(commandFiles);
 const commands = new Commands(commandClasses);
+
+const languagesPathGlob = './src/runners/*.ts';
+const languageRunnerFiles = glob.sync(languagesPathGlob);
+const languageRunners = LanguageLoader.getLanguageClasses(languageRunnerFiles);
+const languages = new Languages(languageRunners);
 
 export default class Core {
 
@@ -38,7 +45,8 @@ export default class Core {
       if (command) {
         return command.execute(args, msg, {
           client: this.client,
-          commands
+          commands,
+          languages
         });
       }
       else {
