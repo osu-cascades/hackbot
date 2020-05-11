@@ -5,8 +5,8 @@ import { Message } from 'discord.js';
 import { parse } from 'querystring';
 
 // Hack for implementing with static properties/methods
-let CodeRunner: ICommand;
-export default CodeRunner = class {
+let Run: ICommand;
+export default Run = class {
 
   /* istanbul ignore next */
   static get description(): string {
