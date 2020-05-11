@@ -1,5 +1,5 @@
-import { ILanguageRunners } from './languageLoader';
 import LanguageRunner from './interfaces/iRunner';
+import { ILanguageRunners } from './languageLoader';
 
 export default class Commands {
     public readonly all: ILanguageRunners;

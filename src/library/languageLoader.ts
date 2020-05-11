@@ -2,7 +2,7 @@ import camelCase from 'lodash.camelcase';
 import path from 'path';
 import Runner from './interfaces/iRunner';
 
-export interface ILanguageRunners { [key: string]: Runner };
+export interface ILanguageRunners { [key: string]: Runner; }
 
 export default class LanguageLoader {
     public static getLanguageClasses(commandClassFiles: string[]): ILanguageRunners {

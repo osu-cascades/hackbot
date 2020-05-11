@@ -17,12 +17,12 @@ export default Rust = class {
             });
     }
 
-    //Sends code to the rust playground for execution
+    // Sends code to the rust playground for execution
     private static runCode(code: string): Promise<{ success: boolean, stdout: string, stderr: string }> {
         const url = "https://play.rust-lang.org/execute";
         return axios.post(url, {
             channel: "stable",
-            code: code,
+            code,
             crateType: "bin",
             edition: "2018",
             mode: "debug",
@@ -32,7 +32,7 @@ export default Rust = class {
                 success: response.data.success,
                 stdout: response.data.stdout,
                 stderr: response.data.stderr
-            }
-        })
+            };
+        });
     }
-}
+};

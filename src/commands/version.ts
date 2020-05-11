@@ -1,7 +1,7 @@
 import config from '@/config';
+import ICommand from '@/library/interfaces/iCommand';
 import { version } from '@root/package.json';
 import { Message } from 'discord.js';
-import ICommand from '@/library/interfaces/iCommand';
 
 let Version: ICommand;
 
