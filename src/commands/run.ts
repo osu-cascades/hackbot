@@ -4,6 +4,8 @@ import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
 import { parse } from 'querystring';
 
+const languages = new Languages();
+
 // Hack for implementing with static properties/methods
 let Run: ICommand;
 export default Run = class {
@@ -13,15 +15,13 @@ export default Run = class {
     return 'Executes provided code using a LanguageRunner';
   }
 
-  public static execute(args: string[], msg: Message, extra: {
-    languages: Languages
-  }) {
+  public static execute(args: string[], msg: Message) {
 
     let parseResponse;
 
     try {
       parseResponse = this.parseCode(msg.content);
-      if (!extra.languages.get(parseResponse.language)) {
+      if (!languages.get(parseResponse.language)) {
         msg.channel.send(`Unknown language: ${parseResponse.language}`);
         return;
       }
@@ -30,9 +30,9 @@ export default Run = class {
       return;
     }
 
-    const codeRunnerResponse = extra.languages.get(parseResponse.language).execute(parseResponse.code);
+    const codeRunnerResponse = languages.get(parseResponse.language).execute(parseResponse.code);
 
-    codeRunnerResponse.then(response => {
+    codeRunnerResponse.then((response: { success: any; output: string; }) => {
       if (response.success) {
         msg.channel.send("```" + response.output + "```");
       } else {

@@ -1,10 +1,16 @@
 import LanguageRunner from './interfaces/iRunner';
 import { ILanguageRunners } from './languageLoader';
+import glob from 'glob';
+import LanguageLoader from './languageLoader';
 
-export default class Commands {
+
+export default class Languages {
     public readonly all: ILanguageRunners;
 
-    constructor(languageRunners: ILanguageRunners) {
+    constructor() {
+        const languagesPathGlob = './src/runners/*.ts';
+        const languageRunnerFiles = glob.sync(languagesPathGlob);
+        const languageRunners = LanguageLoader.getLanguageClasses(languageRunnerFiles);
         this.all = languageRunners;
     }
 
@@ -23,3 +29,5 @@ export default class Commands {
     }
 
 }
+
+
