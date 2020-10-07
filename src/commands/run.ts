@@ -7,7 +7,7 @@ const languages = new Languages();
 // Hack for implementing with static properties/methods
 let Run: ICommand;
 export default Run = class {
-  
+
 
   /* istanbul ignore next */
   static get description(): string {
@@ -24,8 +24,8 @@ export default Run = class {
         msg.channel.send(`Unknown language: ${parseResponse.language}`);
         return;
       }
-    } catch {
-      msg.channel.send("Sorry, I wasn't able to understand your formatting. Please try again.");
+    } catch (e) {
+      msg.channel.send("Sorry, I ran into some problems understanding your message. Here is the error stopping me.\n" + e);
       return;
     }
 
