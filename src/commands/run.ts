@@ -7,6 +7,7 @@ const languages = new Languages();
 // Hack for implementing with static properties/methods
 let Run: ICommand;
 export default Run = class {
+  
 
   /* istanbul ignore next */
   static get description(): string {
