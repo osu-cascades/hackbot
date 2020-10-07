@@ -1,8 +1,6 @@
 import ICommand from '@/library/interfaces/iCommand';
 import Languages from '@/library/languages';
-import axios, { AxiosResponse } from 'axios';
 import { Message } from 'discord.js';
-import { parse } from 'querystring';
 
 const languages = new Languages();
 
