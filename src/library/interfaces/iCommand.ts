@@ -1,5 +1,6 @@
 import { Client, Message } from "discord.js";
-import Commands from "@/commands";
+import Commands from "@/library/commands";
+
 
 /**
  * An interface for all commands to extend, representing the API that all

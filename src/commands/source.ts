@@ -1,5 +1,5 @@
-import { Message } from 'discord.js';
 import ICommand from '@/library/interfaces/iCommand';
+import { Message } from 'discord.js';
 
 let Source: ICommand;
 
