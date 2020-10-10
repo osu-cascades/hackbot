@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "jest": "^25.1.0",
-    "ts-jest": "^25.1.0",
+    "ts-jest": "^26.0.0",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.11.0"
   }
