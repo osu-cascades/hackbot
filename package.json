@@ -1,6 +1,6 @@
 {
   "name": "hackbot",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Discord bot for the Cascades Tech Club Discord server.",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "author": "osu-cascades",
   "license": "MIT",
   "engines": {
-    "node": "13.7.x"
+    "node": "14.13.x"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
