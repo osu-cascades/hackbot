@@ -22,7 +22,7 @@
   "author": "osu-cascades",
   "license": "MIT",
   "engines": {
-    "node": "13.7.x"
+    "node": "14.13.x"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
