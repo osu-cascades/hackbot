@@ -1,6 +1,19 @@
 import Run from '@/commands/run';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
+jest.mock('@/library/languages', () => {
+    // Create a Language wrapper that forces our mocked instantiation
+    // Might have been easier to just mock out LanguageLoader.getLanguageClasses ?
+    //  but I like this crafty wrapper method
+    return class {
+        constructor() {
+            const { default: RealLanguage } = jest.requireActual('@/library/languages');
+            const { default: languageRunners } = jest.requireActual('../__mocks__/languageRunners');
+            return new RealLanguage(languageRunners);
+        }
+    };
+});
+
 let sendMock: MockedMessage;
 beforeEach(() => {
     sendMock = jest.fn();
@@ -17,5 +30,5 @@ test('Malformed message', () => {
 test('Unknown language', () => {
     mockMessage.content = "```invalidLanguage\nblahblahblah```";
     Run.execute([], mockMessage);
-    expect(sendMock).lastCalledWith("Unknown language: invalidLanguage")
+    expect(sendMock).lastCalledWith("Unknown language: invalidLanguage\nTry one of these: testLang, hipRunner");
 });
