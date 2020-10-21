@@ -10,26 +10,26 @@ test('valid code', async () => {
             log: "Hello world\n"
         }
     };
-    let mockResponse = Promise.resolve(response);
+    const mockResponse = Promise.resolve(response);
     axiosMock.post.mockResolvedValueOnce(mockResponse);
-    let result = await Nim.execute("code");
+    const result = await Nim.execute("code");
     expect(result).toEqual({ success: true, output: "Hello world\n" });
 });
 
 test('invalid code', async () => {
     const response = { data: { compileLog: "Hint: used config file '/playground/nim/config/nim.cfg' [Conf]\nHint: used config file '/playground/nim/config/config.nims' [Conf]\n....\n/usercode/in.nim(1, 1) Error: undeclared identifier: 'ejkfladso'\n", log: "\n" } };
     const errorResult = "Error: undeclared identifier: 'ejkfladso'";
-    let mockResponse = Promise.resolve(response);
+    const mockResponse = Promise.resolve(response);
     axiosMock.post.mockResolvedValueOnce(mockResponse);
-    let result = await Nim.execute("code");
+    const result = await Nim.execute("code");
     expect(result).toEqual({ success: false, output: errorResult });
 });
 
 test('invalid response', async () => {
     const response = { data: { error: "Server error" } };
     const errorResult = "Nim LanguageRunner encountered an internal error";
-    let mockResponse = Promise.resolve(response);
+    const mockResponse = Promise.resolve(response);
     axiosMock.post.mockResolvedValueOnce(mockResponse);
-    let result = await Nim.execute("code");
+    const result = await Nim.execute("code");
     expect(result).toEqual({ success: false, output: errorResult });
-})
+});
