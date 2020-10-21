@@ -1,6 +1,6 @@
 {
   "name": "hackbot",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Discord bot for the Cascades Tech Club Discord server.",
   "repository": {
     "type": "git",
@@ -38,12 +38,12 @@
     "lodash.camelcase": "^4.3.0",
     "moment": "^2.22.2",
     "ts-node": "^8.1.0",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.1.6"
   },
   "devDependencies": {
     "jest": "^25.1.0",
     "ts-jest": "^25.1.0",
-    "tsconfig-paths": "^3.9.0",
     "tslint": "^5.11.0"
   }
 }
