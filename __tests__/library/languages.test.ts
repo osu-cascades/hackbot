@@ -1,31 +1,20 @@
 import Languages from '@/library/languages';
-import IRunner from '@/library/interfaces/iRunner';
-import { ILanguageRunners } from '@/library/languageLoader';
+import languageRunners from '../__mocks__/languageRunners';
 
 describe('Languages', () => {
-    let mockLanguageRunner: IRunner;
-    let languageRunners: ILanguageRunners;
     let languages: Languages;
 
     beforeEach(() => {
-        mockLanguageRunner = {
-            execute: jest.fn()
-        };
-
-        languageRunners = {
-            testLang: mockLanguageRunner,
-        };
-
         languages = new Languages(languageRunners);
     });
 
     test('.names returns language names', () => {
-        const languageNames = ['testLang'];
+        const languageNames = ['testLang', 'hipRunner'];
         expect(languages.names).toEqual(languageNames);
     });
 
     test('Can fetch a command', () => {
         const testLang = languages.get('testLang');
-        expect(testLang).toBe(mockLanguageRunner);
+        expect(testLang).toBe(languageRunners.testLang);
     });
 })
