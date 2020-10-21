@@ -6,7 +6,9 @@
 |Staging Build|[![Build Status](https://travis-ci.org/osu-cascades/hackbot.svg?branch=dev)](https://travis-ci.org/osu-cascades/hackbot)|
 |Maintainability|[![Maintainability](https://api.codeclimate.com/v1/badges/96320fe592c30381915f/maintainability)](https://codeclimate.com/github/osu-cascades/hackbot)|
 |Test Coverage|[![Test Coverage](https://api.codeclimate.com/v1/badges/96320fe592c30381915f/test_coverage)](https://codeclimate.com/github/osu-cascades/hackbot)|
-|GreenKeeper|[![Greenkeeper badge](https://badges.greenkeeper.io/osu-cascades/hackbot.svg)](https://greenkeeper.io/)|
+|Snyk|[![Known Vulnerabilities](https://snyk.io/test/github/osu-cascades/hackbot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/osu-cascades/hackbot?targetFile=package.json)|
+
+
 
 A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server. To add a command, see the [Commands](#commands) section below.
 

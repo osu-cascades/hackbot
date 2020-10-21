@@ -7,11 +7,8 @@ import LanguageLoader from './languageLoader';
 export default class Languages {
     public readonly all: ILanguageRunners;
 
-    constructor() {
-        const languagesPathGlob = './src/runners/*.ts';
-        const languageRunnerFiles = glob.sync(languagesPathGlob);
-        const languageRunners = LanguageLoader.getLanguageClasses(languageRunnerFiles);
-        this.all = languageRunners;
+    constructor(languages?: ILanguageRunners) {
+        this.all = languages || this.fetchLanguages();
     }
 
     get names() {
@@ -26,6 +23,12 @@ export default class Languages {
         // Find the longest synopsis
         const longest = this.names.sort((a, b) => b.length - a.length)[0];
         return longest.length;
+    }
+
+    private fetchLanguages(): ILanguageRunners {
+        const languagesPathGlob = './src/runners/*.ts';
+        const languageRunnerFiles = glob.sync(languagesPathGlob);
+        return LanguageLoader.getLanguageClasses(languageRunnerFiles);
     }
 
 }
