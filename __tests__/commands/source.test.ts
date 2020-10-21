@@ -1,5 +1,5 @@
-import { message as mockMessage, MockedMessage } from '../mocks/discord';
 import Source from '@/commands/source';
+import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 let sendMock: MockedMessage;
 beforeEach(() => {
