@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Help Command Execute DMs commands with prefix and descriptions it still looks the same 1`] = `
+"I am here to help! Well...mostly just make you chuckle at this point, let's be honest.
+
+Here is a list of the commands that we've got right now:
+\`\`\`
+!one       → I am number one.
+!two       → Two is not just a number.
+!blueFish  → Not a red fish.
+\`\`\`"
+`;

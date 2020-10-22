@@ -1,7 +1,7 @@
+import config from '@/config';
+import ICommand from '@/library/interfaces/iCommand';
+import { version } from '@root/package.json';
 import { Message } from 'discord.js';
-import { version } from '../../package.json';
-import config from '../config';
-import ICommand from '../library/iCommand';
 
 let Version: ICommand;
 
@@ -13,7 +13,7 @@ export default Version = class {
   }
 
   public static execute(args: string[], msg: Message) {
-    return msg.channel.sendMessage(`Hackbot ${config.env} is running v${version}`);
+    return msg.channel.send(`Hackbot ${config.env} is running v${version}`);
   }
 
 };

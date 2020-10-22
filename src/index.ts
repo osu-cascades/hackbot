@@ -1,11 +1,11 @@
+import config from '@/config';
+import Core from '@/library/core';
 import { Client } from 'discord.js';
-import config from './config';
-import Core from './library/core';
 
 const client = new Client();
 const core = new Core(client);
 
-client.on('ready', () => core.ready);
+client.on('ready', () => core.ready());
 
 client.on('message', core.message);
 

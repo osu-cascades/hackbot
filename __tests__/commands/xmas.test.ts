@@ -1,4 +1,4 @@
-import Xmas from '../../src/commands/xmas';
+import Xmas from '@/commands/xmas';
 import { message as mockMessage, MockedMessage } from '../mocks/discord';
 
 let sendMock: MockedMessage;

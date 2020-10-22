@@ -1,5 +1,5 @@
+import ICommand from '@/library/interfaces/iCommand';
 import { Client, DMChannel, Message } from 'discord.js';
-import ICommand from '../library/iCommand';
 
 let Purge: ICommand;
 
@@ -10,7 +10,11 @@ export default Purge = class {
     return 'Purges the channel it is called within. Restricted to Board Members and Administrators.';
   }
 
-  public static execute(args: string[], msg: Message, bot: Client) {
+  public static execute(
+    args: string[],
+    msg: Message,
+    { client: bot }: { client: Client }
+  ) {
     const { guild } = msg;
 
     /* global bot */
@@ -37,7 +41,8 @@ export default Purge = class {
 
       // Delete the channel
       channel.delete()
-        .then()
+        // @ts-ignore
+        .then(console.log)
         .catch(console.error);
 
       // Now re-create the channel with the same name and type

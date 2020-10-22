@@ -1,4 +1,4 @@
-import IGithubProfile from "../../src/commands/interfaces/iGithubProfile";
+import IGithubProfile from '@/commands/interfaces/iGithubProfile';
 
 export default {
   login: "ctsstc",

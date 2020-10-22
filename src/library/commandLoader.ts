@@ -1,6 +1,6 @@
 import camelCase from 'lodash.camelcase';
 import path from 'path';
-import Command from './iCommand';
+import Command from './interfaces/iCommand';
 
 export interface ICommandClasses { [key: string]: Command; }
 
@@ -25,6 +25,7 @@ export default class CommandLoader {
   }
 
   private static removeTemplateFile(files: string[]) {
-    return files.filter(file => file !== './src/commands/_template.ts');
+    const commandTemplateFile = './src/commands/_template.ts';
+    return files.filter(file => file !== commandTemplateFile);
   }
 }
