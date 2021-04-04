@@ -17,7 +17,7 @@ A Discord bot for the Cascades Tech Club [Discord](http://discordapp.com) server
 To work on _hackbot_, you should:
 
 1. Clone this repository: `git clone https://github.com/osu-cascades/hackbot.git`
-2. Install the latest [node.js](https://nodejs.org).
+2. Install the latest [node.js](https://nodejs.org). Or run `asdf install` if you're using asdf version manager.
 3. Install the dependencies: `cd hackbot && npm install`
 4. Log in to Discord, visit the Developer resources interface, and navigate to [the _My Apps_ screen](https://discordapp.com/developers/applications/me).
 5. Add a new app and give it a name, eg. _hackbot-myname-dev_.
