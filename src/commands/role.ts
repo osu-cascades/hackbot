@@ -1,5 +1,5 @@
 import { GuildMember, Message, Role as DiscordRole, Collection } from 'discord.js';
-import ICommand from '../library/iCommand';
+import ICommand from '@/library/interfaces/iCommand';
 
 // Hack for implementing with static properties/methods
 let Role: ICommand;
