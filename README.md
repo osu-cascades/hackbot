@@ -79,6 +79,6 @@ can try it out. This bot is always named _hackbot-staging_. Once you're happy, y
 * [discord.js Documentation](https://discord.js.org)
 
 ___
-©2018 All rights reserved.
+©2021 All rights reserved.
 
 Thanks to our [contributors](https://github.com/osu-cascades/hackbot/graphs/contributors)!
