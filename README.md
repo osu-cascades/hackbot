@@ -25,9 +25,10 @@ To work on _hackbot_, you should:
 7. Notice the Client ID, reveal your app's Token, and record them both for later.
 8. Visit [https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0](https://discordapp.com/oauth2/authorize?client_id=INSERT_CLIENT_ID_HERE&scope=bot&permissions=0), replacing the placeholder with your real Client ID.
 9. Select the server that you want the bot to join.
-10. Copy the hidden **.env-example** file to **.env**, and replace the placeholder values with your own.[1]
-11. Run the bot from the command line: `npm start`
-12. Hack...
+10. Copy the hidden **.env-example** file to **.env**, and replace the placeholder values with your own.
+11. At minimum you will need to copy your token from the Discord Application -> Settings -> Bot -> Token. Enter this in your **.env** for `DISCORD_APP_TOKEN`.
+12. Run the bot from the command line: `npm start`
+13. Hack...
 
 [1] _The !search command requires a Google API key from the [Google API Console](https://console.developers.google.com) and the !weather command requires an API key from [OpenWeather.org](https://openweathermap.org/)_
 
