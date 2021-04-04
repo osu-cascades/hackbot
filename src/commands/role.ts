@@ -25,7 +25,7 @@ export default Role = class {
       command();
     }
     else {
-      return channel.send(`Role command "${command}" unknown. Use "role request [rolename]" to request a role, or "role help" for more information.`);
+      return channel.send(`Role command "${commandName}" unknown. Use "role request [rolename]" to request a role, or "role help" for more information.`);
     }
   }
 };
