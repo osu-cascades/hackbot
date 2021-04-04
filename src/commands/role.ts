@@ -14,6 +14,13 @@ export default Role = class {
     const { channel } = msg;
     const commandName = args[0];
 
+    // Todo? Verify channel type to avoid DMs
+    // Likely will break when updating to DiscordJS v12
+    //  I think v12 has better typing
+    if (!msg.guild) {
+      return channel.send("Make sure you are running this in a channel that supports roles.");
+    }
+
     const validCommands:Map<string, ()=>void> = new Map([
       ['request', () => { requestCommand(args, msg) }],
       ['help', () => { helpCommand(msg) }]
@@ -22,10 +29,10 @@ export default Role = class {
     const command = validCommands.get(commandName);
 
     if (command) {
-      command();
+      return command();
     }
     else {
-      return channel.send(`Role command "${commandName}" unknown. Use "role request [rolename]" to request a role, or "role help" for more information.`);
+      return channel.send(`Role command "${commandName}" unknown. Use "role request [role name]" to request a role, or "role help" for more information.`);
     }
   }
 };
@@ -37,55 +44,65 @@ const yearRoleNames = [
   'Senior'
 ];
 
+const yearRoleNamesLowercase = yearRoleNames.map(name => name.toLocaleLowerCase());
+const yearRoleNamesString = yearRoleNames.join(', ');
+
 const requestCommand = (args: string[], msg: Message) => {
   const { channel } = msg;
-  const lowerCaseName = args[1].toLowerCase();
-  const foundRole = msg.guild.roles.find(r => r.name.toLowerCase() === lowerCaseName);
-  const validRole = yearRoleNames.includes(foundRole.name);
+  const requestedRole = args[1];
+  const lowerCaseName = requestedRole.toLowerCase();
 
-  if (!foundRole) {
-    return channel.send("Please enter a valid role. Try !role help");
-  } // If role is null
+  const validRole = validateRole(lowerCaseName);
   if (!validRole) {
-    const validRolesString = yearRoleNames.join(', ');
-    return channel.send(`You do not have permission to add role: "${foundRole}".\n
-    Please add one of the following: ${validRolesString}`)
+    return channel.send([`Role: "${lowerCaseName}" is invalid.`,
+      `Please add one of the following: ${yearRoleNamesString}.`
+    ].join("\n"));
   }
 
-  assignRoleHelper(foundRole, msg.member, msg);
+  const foundRole = findRole(lowerCaseName, msg);
+  if (!foundRole) {
+    return channel.send([
+      `Could not find role: "${requestedRole}" on the server.`,
+      `Please make sure the server administrator has added the following roles: ${yearRoleNamesString}`
+    ].join("\n"));
+  } // If role is null
+
+  return assignRoleHelper(foundRole, msg.member, msg);
 };
 
 const helpCommand = (msg: Message) => {
   msg.reply('Sliding into your DMs...').catch();
-  return msg.author.send(`[ROLE HELP]: \n
-  Automatically request a class standing role: \n
-  Use command: *!role request role* \n
-  Roles include: Freshman, Sophomore, Junior, Senior. These are case sensitive. \n
-  Note: Requesting a role will remove you current role.`);
+  return msg.author.send([
+    '**Role Command Help**:',
+    'Automatically request a class standing role:',
+    'Use command: `!role request role`',
+    `Roles include: ${yearRoleNamesString}.`,
+    '**Note**: Requesting a role will remove you current role.'
+  ].join("\n"));
 };
 
-const assignRoleHelper = (role: any, author: GuildMember, msg: Message) => {
-  const userAlreadyHasRole = msg.member.roles.has(role.id);
+const validateRole = (roleName: string) => yearRoleNamesLowercase.includes(roleName);
+const findRole = (roleName: string, msg: Message) => msg.guild.roles.find(r => r.name.toLowerCase() === roleName);
+const userHasRole = (role: DiscordRole, msg: Message) => msg.member.roles.has(role.id);
+
+const assignRoleHelper = (role: any, author: GuildMember, msg: Message): Promise<Message> => {
+  const userAlreadyHasRole = userHasRole(role, msg);
   if (userAlreadyHasRole) {
     return msg.channel.send(`Request cancelled: user already has role: ${role.name}`);
   }
 
-  const userYearRoles = msg.guild.roles.filter(role => yearRoleNames.includes(role.name));
-  const removeRolePromises = removeRoles(userYearRoles, author);
+  const userYearRoles = author.roles.filter(role => yearRoleNames.includes(role.name));
+  const removeRolePromise = author.removeRoles(userYearRoles);
 
-  Promise.all(removeRolePromises).then(() => {
+  return removeRolePromise.then(() => {
     return author.addRole(role).then(() => {
       return msg.channel.send(`Role ${role} added!`);
     });
-  }).catch(console.error);
-};
-
-const removeRoles = (roles:Collection<String, DiscordRole>, user: GuildMember):Array<Promise<GuildMember>>  => {
-  const removeRolePromises:Array<Promise<GuildMember>> = [];
-
-  roles.forEach(role => {
-    removeRolePromises.push(user.removeRole(role));
+  }).catch((e) => {
+    console.error(e);
+    return msg.channel.send([
+      'Seems Hackbot is not authorized to manage roles on this server or ran into an error.',
+      'A server administrator will need to give **Permission** to Hackbot to **Manage Roles**.'
+    ].join("\n"));
   });
-
-  return removeRolePromises;
-}
+};
