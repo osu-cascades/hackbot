@@ -27,6 +27,7 @@ To work on _hackbot_, you should:
 9. Select the server that you want the bot to join.
 10. Copy the hidden **.env-example** file to **.env**, and replace the placeholder values with your own.
 11. At minimum you will need to copy your token from the Discord Application -> Settings -> Bot -> Token. Enter this in your **.env** for `DISCORD_APP_TOKEN`.
+12. I also recommend changing the `MESSAGE_PREFIX`.
 12. Run the bot from the command line: `npm start`
 13. Hack...
 
